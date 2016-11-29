@@ -94,7 +94,7 @@ public class ImageSearchResultsController {
  		
  		try {
  			url = buildURL( query , stamp );
- 			log.info( "Teste input == " + URLEncoder.encode(query, "UTF-8").replace("+", "%20") 
+ 			log.debug( "Teste input == " + URLEncoder.encode(query, "UTF-8").replace("+", "%20") 
  					+ " url == " + url );
 	 		// the SAX parser
  			UserHandler userhandler = new UserHandler( );
