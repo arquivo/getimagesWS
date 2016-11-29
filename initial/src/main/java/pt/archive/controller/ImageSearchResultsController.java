@@ -69,11 +69,7 @@ public class ImageSearchResultsController {
     public List<ImageSearchResult> getImageResults( String query ) {
     	String url;
     	HTMLParser resultImg;
-    	ImageSearchResult exampleTest1 = new ImageSearchResult("http://sapo.pt/img.jpg", (float) 300.0, (float)200.0, "sapo servico de apontadores", "SAPO titulo", "http://sapo.pt", 20040000000000L); 
- 		ImageSearchResult exampleTest2 = new ImageSearchResult(urlBase.concat(type).concat(hitsPerSite), (float) 450.0, (float)150.0, "DN servico de apontadores", "DN titulo", "http://dn.pt", 20080100000000L); 
- 		imageResults.add(exampleTest1);
- 		imageResults.add(exampleTest2);
- 		
+    	
  		if( query == null || query.trim().equals( "" ) ) {
  			log.warn("[ImageSearchResultsController][getImageResults] Query empty!");
  			imageResults.add( getErrorCode( "-1: query empty" ) ); 

@@ -56,17 +56,17 @@ public class HTMLParser {
 				else 
 					continue;
 				
-				float width;
+				String width;
 				if( imgItem.attr( "width" ) != null && !imgItem.attr( "width" ).trim().equals( "" ) )
-					width  = Float.parseFloat( imgItem.attr( "width" ) ); 
+					width  = imgItem.attr( "width" );
 				else 
-					width = 0;
+					width = "";
 				
-				float height;
+				String height;
 				if( imgItem.attr( "height" ) != null && !imgItem.attr( "height" ).trim().equals( "" ) )
-					height  = Float.parseFloat( imgItem.attr( "height" ) ); 
-				else 
-					height = 0;
+					height  = imgItem.attr( "height" ); 
+				else
+					height = "";
 				
 				String alt;
 				if( imgItem.attr( "alt" ) != null && !imgItem.attr( "height" ).trim().equals( "" ) )
