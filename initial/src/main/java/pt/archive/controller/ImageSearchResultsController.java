@@ -53,20 +53,36 @@ public class ImageSearchResultsController {
 	
 	@Value( "${urldirectoriesImage}" )
 	private String urldirectoriesImage;
+	
+	@Value( "${hitsPerPage}" )
+	private String hitsPerPage;
 	/***************************/
 	
 	private List< ItemXML > resultOpenSearch;
 	
+	/**
+	 * 
+	 * @param query: full-text element
+	 * @param startData: 
+	 * @param endData
+	 * @return 
+	 */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ImageSearchResults getImages(@RequestParam(value="query", defaultValue="") String query) {
-    	log.info( "New request query[" + query + "]" );
-        return new ImageSearchResults( getImageResults( query ) );
+    public ImageSearchResults getImages( @RequestParam(value="query", defaultValue="") String query,
+    									 @RequestParam(value="stamp", defaultValue="") String stamtp ) {
+    	log.info( "New request query[" + query + "] stamp["+ stamtp +"]" );
+    	
+    	if( stamtp != null && stamtp.trim( ).equals( "" ) ){
+    		stamtp = "19960101000000-20151022163016";
+    	}
+    	
+    	return new ImageSearchResults( getImageResults( query , stamtp ) );
     }
     
     /* Method that calls the OpenSearchAPI to get the first 10 urls of the query
     * and Returns a list of Images
     */
-    public List<ImageSearchResult> getImageResults( String query ) {
+    public List<ImageSearchResult> getImageResults( String query , String stamp ) {
     	String url;
     	HTMLParser resultImg;
     	
@@ -77,8 +93,8 @@ public class ImageSearchResultsController {
  		}
  		
  		try {
- 			url = buildURL( query );
- 			log.debug( "Teste input == " + URLEncoder.encode(query, "UTF-8").replace("+", "%20") 
+ 			url = buildURL( query , stamp );
+ 			log.info( "Teste input == " + URLEncoder.encode(query, "UTF-8").replace("+", "%20") 
  					+ " url == " + url );
 	 		// the SAX parser
  			UserHandler userhandler = new UserHandler( );
@@ -109,17 +125,25 @@ public class ImageSearchResultsController {
     }
     
     
-    private String buildURL( String input ) throws UnsupportedEncodingException {
+    private String buildURL( String input , String stamp ) throws UnsupportedEncodingException {
     	return urlBase
     			.concat(  URLEncoder.encode( input , "UTF-8").replace("+", "%20") )
     			.concat( Constants.inOP )
     			.concat( "type" )
     			.concat( Constants.colonOP )
     			.concat( type )
+    			.concat( Constants.inOP )
+    			.concat( "date" )
+    			.concat( Constants.colonOP )
+    			.concat( stamp )
     			.concat( Constants.andOP )
     			.concat( "hitsPerSite" )
     			.concat( Constants.equalOP )
-    			.concat( hitsPerSite );
+    			.concat( hitsPerSite )
+    			.concat( Constants.andOP )
+    			.concat( "hitsPerPage" )
+    			.concat( Constants.equalOP )
+    			.concat( hitsPerPage );
     }
     
     private ImageSearchResult getErrorCode( String errorCode ) {

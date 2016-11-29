@@ -36,7 +36,7 @@ public class HTMLParser {
 					doc = resp.parse( );
 				
 			} catch( Exception e ) {
-				log.info( "[Jsoup] get response ["+ item.getUrl( ) +"] exception = ", e );
+				log.error( "[Jsoup] get response ["+ item.getUrl( ) +"] exception = ", e );
 				continue;
 			}
 			
