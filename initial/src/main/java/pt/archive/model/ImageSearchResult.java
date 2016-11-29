@@ -1,7 +1,7 @@
-package hello;
+package pt.archive.model;
 
 public class ImageSearchResult {
-
+	
 	String url;
 	Float width;
 	Float height;
@@ -10,6 +10,8 @@ public class ImageSearchResult {
 	String urlOriginal;
     long timestamp;
 	
+    public ImageSearchResult() { }
+    
 	public ImageSearchResult(String url, Float width, Float height, String alt, String title, String urlOriginal, long timestamp){
         this.url = url;
         this.width = width;

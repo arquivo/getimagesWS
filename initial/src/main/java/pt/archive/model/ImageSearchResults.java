@@ -1,4 +1,4 @@
-package hello;
+package pt.archive.model;
 import java.util.*;
 
 public class ImageSearchResults {
