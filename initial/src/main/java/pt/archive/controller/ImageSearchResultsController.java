@@ -69,13 +69,10 @@ public class ImageSearchResultsController {
 	 */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ImageSearchResults getImages( @RequestParam(value="query", defaultValue="") String query,
-    									 @RequestParam(value="stamp", defaultValue="") String stamtp ) {
+    									 @RequestParam(value="stamp", defaultValue="19960101000000-20151022163016") String stamtp ) {
     	log.info( "New request query[" + query + "] stamp["+ stamtp +"]" );
     	
-    	if( stamtp != null && stamtp.trim( ).equals( "" ) ){
-    		stamtp = "19960101000000-20151022163016";
-    	}
-    	
+    		
     	return new ImageSearchResults( getImageResults( query , stamtp ) );
     }
     
@@ -102,6 +99,10 @@ public class ImageSearchResultsController {
 	 		myReader.setContentHandler( userhandler );
 	 		myReader.parse( new InputSource(new URL( url ).openStream( ) ) );
 	 		resultOpenSearch = userhandler.getItems( );
+	 		
+	 		if( resultOpenSearch == null || resultOpenSearch.size( ) == 0 ) 
+	 			return  Collections.emptyList();
+	 		
 	 		
 	 		//Search information tag <img>
 	 		resultImg = new HTMLParser(  );
