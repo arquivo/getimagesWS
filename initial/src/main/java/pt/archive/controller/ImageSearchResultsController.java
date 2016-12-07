@@ -25,15 +25,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.ArrayList;
 
 @Configuration
@@ -68,6 +66,9 @@ public class ImageSearchResultsController {
 	
 	@Value( "${NThreads}" )
 	private int NThreads;
+	
+	@Value( "${TimeoutThreads}" )
+	private long timeout;
 	/***************************/
 
 	private List< ItemXML > resultOpenSearch;
@@ -94,20 +95,21 @@ public class ImageSearchResultsController {
     public List<ImageSearchResult> getImageResults( String query , String stamp ) {
     	String url;
     	ExecutorService pool = Executors.newFixedThreadPool( NThreads );
-    	CountDownLatch latch;
-    	Set< Future< List< ImageSearchResult > > > set = new HashSet< Future< List< ImageSearchResult > > >( );
-    	List< Callable< Object > > todo;
+    	CountDownLatch doneSignal;
+    	boolean isAllDone = false;
     	
     	if( query == null || query.trim( ).equals( "" ) ) {
  			log.warn("[ImageSearchResultsController][getImageResults] Query empty!");
  			imageResults.add( getErrorCode( "-1: query empty" ) ); 
  			return Collections.emptyList( );
  		}
+ 		if( imageResults != null )
+ 			imageResults.clear();
  		
  		try {
  			terms = query.split( " " );
  			url = buildURL( query , stamp );
- 			log.debug( "Teste input == " + URLEncoder.encode(query, "UTF-8").replace("+", "%20") 
+ 			log.debug( "Teste input == " + URLEncoder.encode( query , "UTF-8" ).replace( "+" , "%20" ) 
  					+ " url == " + url );
 	 		// the SAX parser
  			UserHandler userhandler = new UserHandler( );
@@ -120,39 +122,45 @@ public class ImageSearchResultsController {
 	 			return  Collections.emptyList();
 	 		
 	 		log.debug( "[ImageSearchResultsController][getImageResults] OpenSearch result : " + resultOpenSearch.size( ) );
-	 		latch = new CountDownLatch( resultOpenSearch.size( ) );
-	 		todo  = new ArrayList< Callable < Object > >( resultOpenSearch.size( ) );
-	 		List< Callable< List< ImageSearchResult > > > callables = new ArrayList<>();
-	 		//Search information tag <img>
-	 		for( ItemXML item : resultOpenSearch ) {
-	 			//Callable< List< ImageSearchResult > > callable = new HTMLParser( latch , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage ) );;
-	 			callables.add( new HTMLParser( latch , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage ) ); 
-	 			
-	 			//Future< List< ImageSearchResult > > future = pool.submit( callable );
-	 			//set.add( future );
+	 		doneSignal = new CountDownLatch( resultOpenSearch.size( ) );
+	 		
+	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
+	 		for( ItemXML item : resultOpenSearch ) { //Search information tag <img>
+	 			Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms ) );
+	 			submittedJobs.add( job );
 	 		}
 	 		
-	 		List< Future< List< ImageSearchResult > > > answer = pool.invokeAll( callables );
+	 		try {
+	 			isAllDone = doneSignal.await( timeout , TimeUnit.MILLISECONDS );
+	            if ( !isAllDone ) 
+	            	cleanUpThreads( submittedJobs );
+	        } catch ( InterruptedException e1 ) {
+	        	cleanUpThreads( submittedJobs ); // take care, or cleanup
+	        }
 	 		
 	 		//get images result to search
-	 		for( Future< List< ImageSearchResult > >  future : answer ) {
-	 			if( future.isDone( ) ) {
-	 				List< ImageSearchResult > result = future.get( ); // wait for a processor to complete
+	 		for( Future< List< ImageSearchResult > >  job : submittedJobs ) {
+	 			try {
+	                // before doing a get you may check if it is done
+	                if ( !isAllDone && !job.isDone( ) ) {
+	                    // cancel job and continue with others
+	                    job.cancel( true );
+	                    continue;
+	                }
+	    			List< ImageSearchResult > result = job.get( ); // wait for a processor to complete
 		 			if( result != null && !result.isEmpty( ) )
 		 				imageResults.addAll( result );
-	 			}
+	            } catch (ExecutionException cause) {
+	            	log.error( "[ImageSearchResultsController][getImageResults]", cause ); // exceptions occurred during execution, in any
+	            } catch (InterruptedException e) {
+	            	log.error( "[ImageSearchResultsController][getImageResults]", e ); // take care
+	            }
 	 		}
 	 		
 	        
 	 		log.info( "Request query[" + query + "] stamp["+ stamp +"] Number of results["+ imageResults.size( ) +"]" );
 	 		
-		} catch( InterruptedException e ) {
- 			log.error( "[ImageSearchResultsController][getImageResults]", e );
- 			imageResults.add( getErrorCode( "[ERROR] Internal Error" ) );
- 		} catch( ExecutionException e1 ) {
- 			log.error( "[ImageSearchResultsController][getImageResults]", e1 );
- 			imageResults.add( getErrorCode( "[ERROR] Internal Error" ) );
- 		} catch( UnsupportedEncodingException e2 ) {
+		} catch( UnsupportedEncodingException e2 ) {
  			log.error( "[ImageSearchResultsController][getImageResults]", e2 );
  			imageResults.add( getErrorCode( "[ERROR] -5: URL Encoder Error" ) );
  		} catch( SAXException e3 ) {
@@ -201,6 +209,12 @@ public class ImageSearchResultsController {
     	ImageSearchResult result = new ImageSearchResult( );
     	result.setUrl( errorCode );
     	return result;
+    }
+    
+    private void cleanUpThreads( List< Future< List< ImageSearchResult > > > submittedJobs ){
+    	for ( Future< List< ImageSearchResult > > job : submittedJobs ) {
+            job.cancel(true);
+        }
     }
     
     private void printProperties( ){

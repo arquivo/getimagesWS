@@ -25,19 +25,27 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private String urldirect;
 	private List< ImageSearchResult > resultsImg;
 	private CountDownLatch doneSignal;
+	private String[ ] terms;
 	
-	public HTMLParser( CountDownLatch doneSignal , ItemXML itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct  ) { 
+	public HTMLParser( CountDownLatch doneSignal , ItemXML itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , String[] terms ) { 
 		this.itemtoSearch 	= itemtoSearch;
 		this.numImgsbyUrl 	= numImgsbyUrl;
 		this.hostImage		= hostImage;
 		this.urldirect		= urldirct;
 		this.resultsImg 	= new ArrayList< >( ); 
 		this.doneSignal 	= doneSignal;
+		this.terms			= terms;
 	}
 	
 	@Override
 	public List< ImageSearchResult > call( ) throws Exception {
-		buildResponse( ); //build response to search images per link
+		try {
+			buildResponse( ); //build response to search images per link
+		} catch( Exception e ) {
+			log.error( "[HTMLParser][call] item-digest[" + itemtoSearch.getDigest( ) + "]" , e );
+		} finally {
+			doneSignal.countDown( );
+		}
 		return resultsImg;
 	}
 
@@ -50,6 +58,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			Connection.Response resp = Jsoup.connect( link )
 					.userAgent( "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21" )
 					.timeout( 5000 )
+					.ignoreHttpErrors( true )
 					.execute( );
 			doc = null;
 			if( resp.statusCode( ) == 200 ) 
@@ -76,39 +85,35 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			else 
 				continue;
 			
-			String width;
-			if( imgItem.attr( "width" ) != null && !imgItem.attr( "width" ).trim().equals( "" ) )
-				width  = imgItem.attr( "width" );
-			else 
-				width = "";
-			
-			String height;
-			if( imgItem.attr( "height" ) != null && !imgItem.attr( "height" ).trim().equals( "" ) )
-				height  = imgItem.attr( "height" ); 
-			else
-				height = "";
-			
-			String alt;
-			if( imgItem.attr( "alt" ) != null && !imgItem.attr( "height" ).trim().equals( "" ) )
-				alt  = imgItem.attr( "alt" ); 
-			else 
-				alt = "";
+			String titleImg = getAttribute( imgItem , "title" );
+			String width 	= getAttribute( imgItem , "width" );
+			String height 	= getAttribute( imgItem , "height" );
+			String alt 		= getAttribute( imgItem , "alt" );
+			log.info( "[Tag Images] title["+titleImg+"] width["+width+"] height["+height+"] alt["+alt+"]" );
+			if( !checkTerms( src, titleImg , width , height , alt ) )
+				continue;
 			
 			if( title == null || title.trim().equals( "" ) )
 				title = "";
 			
-			resultsImg.add( new ImageSearchResult(  src , width , height , alt , title , itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) ) );
+			resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) ) );
 			
 			log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
 			          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) );
 			
-			if( numImgsbyUrl != -1) countImg++;
+			if( numImgsbyUrl != -1 ) countImg++;
 			
 		}
 		countImg = 0;			
+		log.info( "Number of results = [" + resultsImg.size( ) + "] to url[" + link + "]" );
 		
-		log.info( "Total de results = [" + resultsImg.size( ) + "] to url[" + link + "]" );
-		
+	}
+	
+	private String getAttribute( Element tag , String attrName ) {
+		if( tag.attr( attrName ) != null && !tag.attr( attrName ).trim().equals( "" ) )
+			return tag.attr( attrName );
+		else 
+			return "";
 	}
 	
 	private String getLink( String url , long tstamp , String linkGetImage ) {
@@ -118,7 +123,19 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				.concat( Constants.urlBarOP )
 				.concat( url );
 	}
-
+	
+	private boolean checkTerms( String src, String titleImg , String width , String height , String alt ) {
+		for( String term : terms ) { 
+			if( src.toLowerCase( ).contains( term.toLowerCase( ) ) 
+					|| titleImg.toLowerCase( ).contains( term.toLowerCase( ) ) 
+					|| width.toLowerCase( ).contains( term.toLowerCase( ) ) 
+					|| height.toLowerCase( ).contains( term.toLowerCase( ) ) 
+					|| alt.toLowerCase( ).contains( term.toLowerCase( ) ) )
+				return true;
+		}
+		return false;
+	}
+	
 	public List< ImageSearchResult > getResultsImg( ) {
 		return resultsImg;
 	}
