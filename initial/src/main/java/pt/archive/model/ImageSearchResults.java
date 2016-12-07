@@ -6,8 +6,8 @@ public class ImageSearchResults {
     private final long totalResults;
     private final List<ImageSearchResult> imageResults;
 
-    public ImageSearchResults(List<ImageSearchResult> imageResults) {
-        this.totalResults = imageResults.size();
+    public ImageSearchResults(List<ImageSearchResult> imageResults , int numResults) {
+        this.totalResults = numResults;
         this.imageResults = imageResults;
     }
 

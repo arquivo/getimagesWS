@@ -63,6 +63,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			doc = null;
 			if( resp.statusCode( ) == 200 ) 
 				doc = resp.parse( );
+			else {
+				log.info( "[HTMLParser] return url["+ link +"] statusCode == " + resp.statusCode( ) );
+				return;
+			}
+				
 			
 		} catch( Exception e ) {
 			log.error( "[Jsoup] get response link["+ link +"] orignalURL["+ itemtoSearch.getUrl( ) +"] exception = ", e );
@@ -79,8 +84,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			String src;
 			if( imgItem.attr( "src" ) != null && !imgItem.attr( "src" ).trim().equals( "" ) ) {
 				src  = imgItem.attr( "src" );
-				if( !src.startsWith( hostImage ) ) 
-					src = hostImage.concat( src );
+				if( !src.startsWith( hostImage ) )
+					if( !src.startsWith( urldirect ) )
+						src = hostImage.concat( urldirect ).concat( src );
+					else
+						src = hostImage.concat( src );
 			}
 			else 
 				continue;
@@ -89,7 +97,8 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			String width 	= getAttribute( imgItem , "width" );
 			String height 	= getAttribute( imgItem , "height" );
 			String alt 		= getAttribute( imgItem , "alt" );
-			log.info( "[Tag Images] title["+titleImg+"] width["+width+"] height["+height+"] alt["+alt+"]" );
+			
+			log.debug( "[Tag Images] title["+titleImg+"] width["+width+"] height["+height+"] alt["+alt+"]" );
 			if( !checkTerms( src, titleImg , width , height , alt ) )
 				continue;
 			
@@ -105,7 +114,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			
 		}
 		countImg = 0;			
-		log.info( "Number of results = [" + resultsImg.size( ) + "] to url[" + link + "]" );
+		log.debug( "Number of results = [" + resultsImg.size( ) + "] to url[" + link + "]" );
 		
 	}
 	
@@ -124,7 +133,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				.concat( url );
 	}
 	
-	private boolean checkTerms( String src, String titleImg , String width , String height , String alt ) {
+	private boolean checkTerms( String src , String titleImg , String width , String height , String alt ) {
 		for( String term : terms ) { 
 			if( src.toLowerCase( ).contains( term.toLowerCase( ) ) 
 					|| titleImg.toLowerCase( ).contains( term.toLowerCase( ) ) 

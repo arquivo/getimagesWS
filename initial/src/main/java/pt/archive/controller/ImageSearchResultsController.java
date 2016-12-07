@@ -38,9 +38,8 @@ import java.util.ArrayList;
 @RestController
 public class ImageSearchResultsController {
 	
-	private final Logger log = LoggerFactory.getLogger(this.getClass()); //Define the logger object for this class
-	private List< ImageSearchResult > imageResults = new ArrayList< ImageSearchResult >( );
-	private String[] terms;
+	private final Logger log = LoggerFactory.getLogger( this.getClass( ) ); //Define the logger object for this class
+	private String[ ] terms;
 	
 	/** Properties file application.properties**/
 	@Value( "${urlBase}" )
@@ -74,7 +73,6 @@ public class ImageSearchResultsController {
 	private List< ItemXML > resultOpenSearch;
 	
 	/**
-	 * 
 	 * @param query: full-text element
 	 * @param startData: 
 	 * @param endData
@@ -85,8 +83,9 @@ public class ImageSearchResultsController {
     									 @RequestParam(value="stamp", defaultValue="19960101000000-20151022163016") String stamtp ) {
     	log.info( "New request query[" + query + "] stamp["+ stamtp +"]" );
     	printProperties( );
-    	
-    	return new ImageSearchResults( getImageResults( query , stamtp ) );
+    	List< ImageSearchResult > imageResults = getImageResults( query , stamtp ); 
+    	log.info( "Results = " + imageResults.size( ) );
+    	return new ImageSearchResults( imageResults , imageResults.size( ) );
     }
     
     /* Method that calls the OpenSearchAPI to get the first N urls of the query
@@ -96,17 +95,17 @@ public class ImageSearchResultsController {
     	String url;
     	ExecutorService pool = Executors.newFixedThreadPool( NThreads );
     	CountDownLatch doneSignal;
+    	List< ImageSearchResult > imageResults = new ArrayList< >( );
     	boolean isAllDone = false;
-    	
+
     	if( query == null || query.trim( ).equals( "" ) ) {
  			log.warn("[ImageSearchResultsController][getImageResults] Query empty!");
  			imageResults.add( getErrorCode( "-1: query empty" ) ); 
  			return Collections.emptyList( );
  		}
- 		if( imageResults != null )
- 			imageResults.clear();
  		
  		try {
+ 			cleanUpMemory( );
  			terms = query.split( " " );
  			url = buildURL( query , stamp );
  			log.debug( "Teste input == " + URLEncoder.encode( query , "UTF-8" ).replace( "+" , "%20" ) 
@@ -121,7 +120,7 @@ public class ImageSearchResultsController {
 	 		if( resultOpenSearch == null || resultOpenSearch.size( ) == 0 )  
 	 			return  Collections.emptyList();
 	 		
-	 		log.debug( "[ImageSearchResultsController][getImageResults] OpenSearch result : " + resultOpenSearch.size( ) );
+	 		log.info( "[ImageSearchResultsController][getImageResults] OpenSearch result : " + resultOpenSearch.size( ) );
 	 		doneSignal = new CountDownLatch( resultOpenSearch.size( ) );
 	 		
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
@@ -148,17 +147,18 @@ public class ImageSearchResultsController {
 	                    continue;
 	                }
 	    			List< ImageSearchResult > result = job.get( ); // wait for a processor to complete
-		 			if( result != null && !result.isEmpty( ) )
+		 			if( result != null && !result.isEmpty( ) ) {
+		 				log.debug( "Resultados do future = " + result.size( ) );
 		 				imageResults.addAll( result );
+		 			}
+		 			
 	            } catch (ExecutionException cause) {
 	            	log.error( "[ImageSearchResultsController][getImageResults]", cause ); // exceptions occurred during execution, in any
 	            } catch (InterruptedException e) {
 	            	log.error( "[ImageSearchResultsController][getImageResults]", e ); // take care
 	            }
 	 		}
-	 		
-	        
-	 		log.info( "Request query[" + query + "] stamp["+ stamp +"] Number of results["+ imageResults.size( ) +"]" );
+	 		log.debug( "Request query[" + query + "] stamp["+ stamp +"] Number of results["+ imageResults.size( ) +"]" );
 	 		
 		} catch( UnsupportedEncodingException e2 ) {
  			log.error( "[ImageSearchResultsController][getImageResults]", e2 );
@@ -215,6 +215,19 @@ public class ImageSearchResultsController {
     	for ( Future< List< ImageSearchResult > > job : submittedJobs ) {
             job.cancel(true);
         }
+    }
+    
+    private void cleanUpMemory( ) {
+  
+		if( terms != null ) {
+			log.info( "[DEBUGGG] imageResults["+ terms.length +"] ");
+			terms = new String[ terms.length ];
+		}
+		
+		if( resultOpenSearch != null ) {
+			log.info( "[DEBUGGG] resultOpenSearch["+ resultOpenSearch.size( ) +"] ");
+			resultOpenSearch.clear( );
+		}
     }
     
     private void printProperties( ){
