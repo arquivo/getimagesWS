@@ -32,15 +32,19 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Configuration
 @RestController
 public class ImageSearchResultsController {
 	
 	private final Logger log = LoggerFactory.getLogger( this.getClass( ) ); //Define the logger object for this class
-	private String[ ] terms;
-	
+	private List< String > terms;
+	private String startIndex;
+
 	/** Properties file application.properties**/
 	@Value( "${urlBase}" )
 	private String urlBase;
@@ -80,9 +84,11 @@ public class ImageSearchResultsController {
 	 */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ImageSearchResults getImages( @RequestParam(value="query", defaultValue="") String query,
-    									 @RequestParam(value="stamp", defaultValue="19960101000000-20151022163016") String stamtp ) {
+    									 @RequestParam(value="stamp", defaultValue="19960101000000-20151022163016") String stamtp,
+    									 @RequestParam(value="start", defaultValue="0") String _startIndex ) {
     	log.info( "New request query[" + query + "] stamp["+ stamtp +"]" );
     	printProperties( );
+    	startIndex = _startIndex;
     	List< ImageSearchResult > imageResults = getImageResults( query , stamtp ); 
     	log.info( "Results = " + imageResults.size( ) );
     	return new ImageSearchResults( imageResults , imageResults.size( ) );
@@ -106,10 +112,10 @@ public class ImageSearchResultsController {
  		
  		try {
  			cleanUpMemory( );
- 			terms = query.split( " " );
+ 			terms = new LinkedList< String >( Arrays.asList( query.split( " " ) ) );
+ 			removeStopWords( );
  			url = buildURL( query , stamp );
- 			log.debug( "Teste input == " + URLEncoder.encode( query , "UTF-8" ).replace( "+" , "%20" ) 
- 					+ " url == " + url );
+ 			log.debug( "Teste input == " + URLEncoder.encode( query , "UTF-8" ).replace( "+" , "%20" ) + " url == " + url );
 	 		// the SAX parser
  			UserHandler userhandler = new UserHandler( );
 	 		XMLReader myReader = XMLReaderFactory.createXMLReader( );
@@ -118,7 +124,7 @@ public class ImageSearchResultsController {
 	 		resultOpenSearch = userhandler.getItems( );
 	 		
 	 		if( resultOpenSearch == null || resultOpenSearch.size( ) == 0 )  
-	 			return  Collections.emptyList();
+	 			return  Collections.emptyList( );
 	 		
 	 		log.info( "[ImageSearchResultsController][getImageResults] OpenSearch result : " + resultOpenSearch.size( ) );
 	 		doneSignal = new CountDownLatch( resultOpenSearch.size( ) );
@@ -130,7 +136,7 @@ public class ImageSearchResultsController {
 	 		}
 	 		
 	 		try {
-	 			isAllDone = doneSignal.await( timeout , TimeUnit.MILLISECONDS );
+	 			isAllDone = doneSignal.await( timeout , TimeUnit.SECONDS );
 	            if ( !isAllDone ) 
 	            	cleanUpThreads( submittedJobs );
 	        } catch ( InterruptedException e1 ) {
@@ -158,6 +164,8 @@ public class ImageSearchResultsController {
 	            	log.error( "[ImageSearchResultsController][getImageResults]", e ); // take care
 	            }
 	 		}
+	 		Collections.sort( imageResults );
+ 			
 	 		log.debug( "Request query[" + query + "] stamp["+ stamp +"] Number of results["+ imageResults.size( ) +"]" );
 	 		
 		} catch( UnsupportedEncodingException e2 ) {
@@ -202,7 +210,11 @@ public class ImageSearchResultsController {
     			.concat( Constants.andOP )
     			.concat( "hitsPerPage" )
     			.concat( Constants.equalOP )
-    			.concat( hitsPerPage );
+    			.concat( hitsPerPage )
+    			.concat( Constants.andOP )
+    			.concat( "start" )
+    			.concat( Constants.equalOP )
+    			.concat( startIndex );
     }
     
     private ImageSearchResult getErrorCode( String errorCode ) {
@@ -217,11 +229,30 @@ public class ImageSearchResultsController {
         }
     }
     
+    private void removeStopWords( ) { 
+    	for( Iterator< String > iterator = terms.iterator( ) ; iterator.hasNext( ); ) {
+    		String term = iterator.next( );
+    		for( String stopWord : Constants.stopWord ) {
+    			if( term.equals( stopWord ) ) {
+    				log.info( "term["+term+"] == stopWord["+stopWord+"]" );
+    				iterator.remove( );
+    			}
+    		}
+    	}
+    	
+    	log.info( "*** Print Terms without stop words ***" );
+    	for( String term : terms ){
+    		log.info( " " + term + " " );
+    	}
+    	log.info( "*************************************" );
+    	
+    }
+    
     private void cleanUpMemory( ) {
   
 		if( terms != null ) {
-			log.info( "[DEBUGGG] imageResults["+ terms.length +"] ");
-			terms = new String[ terms.length ];
+			log.info( "[DEBUGGG] imageResults["+ terms.size( ) +"] ");
+			terms.clear( );
 		}
 		
 		if( resultOpenSearch != null ) {

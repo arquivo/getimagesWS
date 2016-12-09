@@ -1,6 +1,8 @@
 package pt.archive.model;
 
-public class ImageSearchResult {
+import pt.archive.utils.Ranking;
+
+public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	
 	String url;
 	String width;
@@ -8,20 +10,31 @@ public class ImageSearchResult {
 	String alt;
 	String title;
 	String urlOriginal;
+	Ranking score;
     long timestamp;
 	
     public ImageSearchResult() { }
     
-	public ImageSearchResult(String url, String width, String height, String alt, String title, String urlOriginal, long timestamp){
-        this.url = url;
-        this.width = width;
-        this.height = height;
-        this.alt = alt;
-        this.title = title;
-        this.urlOriginal = urlOriginal;
-        this.timestamp = timestamp;
+	public ImageSearchResult(String url, String width, String height, String alt, String title, String urlOriginal, long timestamp, Ranking score){
+        this.url 			= url;
+        this.width 			= width;
+        this.height 		= height;
+        this.alt 			= alt;
+        this.title 			= title;
+        this.urlOriginal 	= urlOriginal;
+        this.timestamp 		= timestamp;
+        this.score 			= score;
     }
 
+	public Ranking getScore() {
+		return score;
+	}
+	public void setScore(Ranking score) {
+		this.score = score;
+	}
+	public void setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
+	}
 	public String getUrl() {
 		return url;
 	}
@@ -61,5 +74,12 @@ public class ImageSearchResult {
     public long getTimestamp(){
         return timestamp;
     }
+
+	@Override
+	public int compareTo( ImageSearchResult another ) {
+		return this.getScore( ).getScore( ) > another.getScore( ).getScore( ) ? -1 
+			     : this.getScore( ).getScore( ) < another.getScore( ).getScore( ) ? 1 
+			     : 0;
+	}
 		
 }

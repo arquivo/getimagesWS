@@ -1,7 +1,6 @@
 package pt.archive.utils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
@@ -25,9 +24,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private String urldirect;
 	private List< ImageSearchResult > resultsImg;
 	private CountDownLatch doneSignal;
-	private String[ ] terms;
+	private List< String > terms;
 	
-	public HTMLParser( CountDownLatch doneSignal , ItemXML itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , String[] terms ) { 
+	public HTMLParser( CountDownLatch doneSignal , ItemXML itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms ) { 
 		this.itemtoSearch 	= itemtoSearch;
 		this.numImgsbyUrl 	= numImgsbyUrl;
 		this.hostImage		= hostImage;
@@ -52,7 +51,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	public void buildResponse( ) {
 		int countImg = 0;
 		String link = getLink( itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , hostImage.concat( urldirect ) );
-		
+		Ranking rank = new Ranking( );
 		log.debug( "[HTMLParser][buildResponse] URL search = " + link );
 		try {
 			Connection.Response resp = Jsoup.connect( link )
@@ -67,7 +66,6 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				log.info( "[HTMLParser] return url["+ link +"] statusCode == " + resp.statusCode( ) );
 				return;
 			}
-				
 			
 		} catch( Exception e ) {
 			log.error( "[Jsoup] get response link["+ link +"] orignalURL["+ itemtoSearch.getUrl( ) +"] exception = ", e );
@@ -99,21 +97,25 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			String alt 		= getAttribute( imgItem , "alt" );
 			
 			log.debug( "[Tag Images] title["+titleImg+"] width["+width+"] height["+height+"] alt["+alt+"]" );
-			if( !checkTerms( src, titleImg , width , height , alt ) )
+			float scoreImg = checkTerms( src, titleImg , alt );
+			if( scoreImg == 0 )
 				continue;
+			else
+				rank.setScore( scoreImg );
 			
 			if( title == null || title.trim().equals( "" ) )
 				title = "";
 			
-			resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) ) );
+			resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , rank ) );
 			
 			log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
-			          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) );
+			          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) + " score = " + rank.getScore( ) );
 			
 			if( numImgsbyUrl != -1 ) countImg++;
 			
 		}
-		countImg = 0;			
+		countImg = 0;
+		
 		log.debug( "Number of results = [" + resultsImg.size( ) + "] to url[" + link + "]" );
 		
 	}
@@ -133,17 +135,49 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				.concat( url );
 	}
 	
-	private boolean checkTerms( String src , String titleImg , String width , String height , String alt ) {
+	private float checkTerms( String src , String titleImg , String alt ) {
+		int counterTermssrc 	= 0;
+		int counterTermsTitle 	= 0;
+		int counterTermsAlt 	= 0;
+		log.debug( "***Analisar Terms***" );
 		for( String term : terms ) { 
-			if( src.toLowerCase( ).contains( term.toLowerCase( ) ) 
-					|| titleImg.toLowerCase( ).contains( term.toLowerCase( ) ) 
-					|| width.toLowerCase( ).contains( term.toLowerCase( ) ) 
-					|| height.toLowerCase( ).contains( term.toLowerCase( ) ) 
-					|| alt.toLowerCase( ).contains( term.toLowerCase( ) ) )
-				return true;
+			log.debug( "Term["+term.toLowerCase()+"] src["+src.toLowerCase()+"] title["+titleImg.toLowerCase()+"] alt["+alt.toLowerCase()+"]" );
+			if( src.toLowerCase( ).contains( term.toLowerCase( ) ) ) {
+				
+				counterTermssrc++;
+			}
+			if( titleImg.toLowerCase( ).contains( term.toLowerCase( ) ) ) {
+				counterTermsTitle++;
+			}
+			if( alt.toLowerCase( ).contains( term.toLowerCase( ) ) ) {
+				counterTermsAlt++;
+			}	
 		}
-		return false;
+		log.debug( "checkTerms src["+ counterTermssrc +"] title["+ counterTermsTitle +"] alt["+ counterTermsAlt +"]" );
+		if( counterTermsAlt == 0 && counterTermssrc == 0 && counterTermsTitle == 0 )
+			return 0;
+		
+		if( counterTermssrc >= counterTermsTitle &&  counterTermssrc >= counterTermsAlt ) {
+			if( counterTermssrc == terms.size( ) )
+				return Constants.srcScore + Constants.incrementRank;
+			else
+				return Constants.srcScore;
+		} else if( counterTermsTitle >= counterTermssrc &&  counterTermsTitle >= counterTermsAlt ) {
+			if( counterTermsTitle == terms.size( ) )
+				return Constants.titleScore + Constants.incrementRank;
+			else
+				return Constants.titleScore;
+		} else if( counterTermsAlt >= counterTermssrc &&  counterTermsAlt >= counterTermsTitle ) {
+			if( counterTermsAlt == terms.size( ) )
+				return Constants.altScore + Constants.incrementRank;
+			else
+				return Constants.altScore;
+		}
+		
+		return 0;
 	}
+	
+	
 	
 	public List< ImageSearchResult > getResultsImg( ) {
 		return resultsImg;
