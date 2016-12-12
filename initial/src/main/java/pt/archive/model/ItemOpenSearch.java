@@ -2,7 +2,7 @@ package pt.archive.model;
 
 import java.math.BigDecimal;
 
-public class ItemXML {
+public class ItemOpenSearch {
 	
 	private long id;
 	private long index;
@@ -16,9 +16,9 @@ public class ItemXML {
 	private String primaryType;
 	private String subtype;
 	
-	public ItemXML( ) { }
+	public ItemOpenSearch( ) { }
 	
-	public ItemXML( long id, long index, String url, String link, String arcname, BigDecimal arcoffset, String digest, long tstamp,
+	public ItemOpenSearch( long id, long index, String url, String link, String arcname, BigDecimal arcoffset, String digest, long tstamp,
 			BigDecimal contentLength, String primaryType, String subtype ) {
 		this.id 			= id;
 		this.index 			= index;

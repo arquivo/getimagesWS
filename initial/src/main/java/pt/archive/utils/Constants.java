@@ -10,7 +10,8 @@ public class Constants {
 	public static final float  srcScore 	= 5.0f;
 	public static final float  titleScore 	= 3.0f;
 	public static final float  altScore 	= 1.0f;
-	public static final float  incrementRank= 0.1f;
+	public static final float  incrementRank= 1.0f;
+	public static final int    incrScorePath = 2;
 	public static final String[] stopWord = { //86 stop words
 		"a","e","o","é","à","s","n","d","c","i","p","de","do","da","para","em","os","com",
 		"no","por","que","um","as","se","na","uma","não","dos","pt","ao","mais","ou","das","nos",

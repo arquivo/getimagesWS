@@ -1,6 +1,10 @@
 package pt.archive.utils;
 
+import java.net.URL;
+import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
@@ -13,12 +17,12 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pt.archive.model.ImageSearchResult;
-import pt.archive.model.ItemXML;
+import pt.archive.model.ItemOpenSearch;
 
 public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private final Logger log = LoggerFactory.getLogger( this.getClass( ) );
 	private Document doc;
-	private ItemXML itemtoSearch;
+	private ItemOpenSearch itemtoSearch;
 	private int numImgsbyUrl;
 	private String hostImage;
 	private String urldirect;
@@ -26,7 +30,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private CountDownLatch doneSignal;
 	private List< String > terms;
 	
-	public HTMLParser( CountDownLatch doneSignal , ItemXML itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms ) { 
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms ) { 
 		this.itemtoSearch 	= itemtoSearch;
 		this.numImgsbyUrl 	= numImgsbyUrl;
 		this.hostImage		= hostImage;
@@ -81,7 +85,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			
 			String src;
 			if( imgItem.attr( "src" ) != null && !imgItem.attr( "src" ).trim().equals( "" ) ) {
-				src  = imgItem.attr( "src" );
+				src = imgItem.absUrl( "src" ); //absolute URL on src
 				if( !src.startsWith( hostImage ) )
 					if( !src.startsWith( urldirect ) )
 						src = hostImage.concat( urldirect ).concat( src );
@@ -96,6 +100,8 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			String height 	= getAttribute( imgItem , "height" );
 			String alt 		= getAttribute( imgItem , "alt" );
 			
+			//log.info( "Parent : " + imgItem.parent( ).tagName( ) );
+			
 			log.debug( "[Tag Images] title["+titleImg+"] width["+width+"] height["+height+"] alt["+alt+"]" );
 			float scoreImg = checkTerms( src, titleImg , alt );
 			if( scoreImg == 0 )
@@ -103,22 +109,22 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			else
 				rank.setScore( scoreImg );
 			
-			if( title == null || title.trim().equals( "" ) )
+			if( title == null || title.trim( ).equals( "" ) )
 				title = "";
 			
-			resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , rank ) );
+			resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , rank , convertByteYoHex( src )) );
 			
 			log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
 			          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) + " score = " + rank.getScore( ) );
 			
 			if( numImgsbyUrl != -1 ) countImg++;
-			
 		}
 		countImg = 0;
 		
 		log.debug( "Number of results = [" + resultsImg.size( ) + "] to url[" + link + "]" );
 		
 	}
+	
 	
 	private String getAttribute( Element tag , String attrName ) {
 		if( tag.attr( attrName ) != null && !tag.attr( attrName ).trim().equals( "" ) )
@@ -139,45 +145,83 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		int counterTermssrc 	= 0;
 		int counterTermsTitle 	= 0;
 		int counterTermsAlt 	= 0;
+		URL urlSrc = null;
+		List< String > urlTerms;
+		float resultScore = 0;
+		try {
+			urlSrc = new URL( src );
+			urlTerms = new LinkedList< String >( Arrays.asList( urlSrc.getPath( ).split( "/" ) ) );
+		} catch( Exception e ) {
+			return 0.0f;
+		}
+		
+		log.debug( "src["+src+"]" );
+		log.debug("protocol = " + urlSrc.getProtocol());
+        log.debug("authority = " + urlSrc.getAuthority());
+        log.debug("host = " + urlSrc.getHost());
+        log.debug("port = " + urlSrc.getPort());
+        log.debug("path = " + urlSrc.getPath());
+        log.debug("query = " + urlSrc.getQuery());
+        log.debug("filename = " + urlSrc.getFile());
+        log.debug("ref = " + urlSrc.getRef());
+        
 		log.debug( "***Analisar Terms***" );
-		for( String term : terms ) { 
+		for( String term : terms ) { //counter number of term occurrence (title,src,alt)
 			log.debug( "Term["+term.toLowerCase()+"] src["+src.toLowerCase()+"] title["+titleImg.toLowerCase()+"] alt["+alt.toLowerCase()+"]" );
-			if( src.toLowerCase( ).contains( term.toLowerCase( ) ) ) {
-				
-				counterTermssrc++;
-			}
-			if( titleImg.toLowerCase( ).contains( term.toLowerCase( ) ) ) {
+			int index = src.toLowerCase( ).indexOf( term.toLowerCase( ) );
+			if( index != -1 ) 
+				counterTermssrc += checkWhereis( urlTerms , term ) + 1;
+			
+			if( titleImg.toLowerCase( ).contains( term.toLowerCase( ) ) ) 
 				counterTermsTitle++;
-			}
-			if( alt.toLowerCase( ).contains( term.toLowerCase( ) ) ) {
+			
+			if( alt.toLowerCase( ).contains( term.toLowerCase( ) ) ) 
 				counterTermsAlt++;
-			}	
 		}
 		log.debug( "checkTerms src["+ counterTermssrc +"] title["+ counterTermsTitle +"] alt["+ counterTermsAlt +"]" );
 		if( counterTermsAlt == 0 && counterTermssrc == 0 && counterTermsTitle == 0 )
 			return 0;
 		
 		if( counterTermssrc >= counterTermsTitle &&  counterTermssrc >= counterTermsAlt ) {
+			resultScore += counterTermssrc;
 			if( counterTermssrc == terms.size( ) )
-				return Constants.srcScore + Constants.incrementRank;
+				resultScore += Constants.srcScore + Constants.incrementRank;
 			else
-				return Constants.srcScore;
+				resultScore += Constants.srcScore;
 		} else if( counterTermsTitle >= counterTermssrc &&  counterTermsTitle >= counterTermsAlt ) {
+			resultScore += counterTermsTitle;
 			if( counterTermsTitle == terms.size( ) )
-				return Constants.titleScore + Constants.incrementRank;
+				resultScore += Constants.titleScore + Constants.incrementRank;
 			else
-				return Constants.titleScore;
+				resultScore += Constants.titleScore;
 		} else if( counterTermsAlt >= counterTermssrc &&  counterTermsAlt >= counterTermsTitle ) {
+			resultScore += counterTermsAlt;
 			if( counterTermsAlt == terms.size( ) )
-				return Constants.altScore + Constants.incrementRank;
+				resultScore += Constants.altScore + Constants.incrementRank;
 			else
-				return Constants.altScore;
+				resultScore += Constants.altScore;
 		}
 		
-		return 0;
+		return resultScore;
 	}
 	
 	
+	private int checkWhereis( List< String > urlTerms , String queryTerm ) {
+		int counterIndex = 1,
+			counterResult = 0;
+		for( String term : urlTerms ) {
+			int index = term.indexOf( queryTerm );
+			if( index != -1 ) {
+				if( counterIndex == urlTerms.size( ) ) 
+					counterResult += Constants.incrScorePath * 2; 
+				else
+					counterResult += Constants.incrScorePath;
+			}
+			counterIndex++;
+		}
+		
+		return counterResult;
+	}
 	
 	public List< ImageSearchResult > getResultsImg( ) {
 		return resultsImg;
@@ -186,7 +230,29 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	public void setResultsImg( List< ImageSearchResult > resultsImg ) {
 		this.resultsImg = resultsImg;
 	}
+	
+	private String convertByteYoHex( String str ) {
+		try {
+			MessageDigest md = MessageDigest.getInstance( "SHA-256" );
+			md.update( str.getBytes( ) );
+			
+			byte byteData[ ] = md.digest( );
+			
+			//convert the byte to hex format method 1
+			StringBuffer sb = new StringBuffer( );
+			
+			for ( int i = 0 ; i < byteData.length ; i++ ) {
+			    sb.append( Integer.toString( ( byteData[ i ] & 0xff ) + 0x100, 16 ).substring( 1 ) );
+			}	
+			log.debug( "src["+str+"] digest["+sb.toString( )+"]" );
+			return sb.toString( );
 
+		} catch( Exception e ) {
+			return null;
+		}
+		
+	}
+	
 	@Override
 	public String toString( ) {
 		return "HTMLParser [doc=" + doc.getElementsByAttribute( "title" ) + ", numImgsbyUrl=" + numImgsbyUrl + ", hostImage=" + hostImage + ", urldirect="

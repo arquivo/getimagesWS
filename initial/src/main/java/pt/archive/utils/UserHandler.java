@@ -9,12 +9,12 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import pt.archive.model.ItemXML;
+import pt.archive.model.ItemOpenSearch;
 
 public class UserHandler extends DefaultHandler{
    private final Logger log = LoggerFactory.getLogger( this.getClass( ) );
-   private List<ItemXML> items = null;
-   private ItemXML item	= null;
+   private List<ItemOpenSearch> items = null;
+   private ItemOpenSearch item	= null;
    private boolean bId	 	= false;
    private boolean bTStamp 	= false;
    private boolean bSource  = false;
@@ -24,7 +24,7 @@ public class UserHandler extends DefaultHandler{
    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 	   log.debug( "Start Element = " + qName );
 	   if ( qName.equalsIgnoreCase( "item" ) ) {
-         item = new ItemXML( ); // create a new item and put it in Map
+         item = new ItemOpenSearch( ); // create a new item and put it in Map
          if( items == null ) { //initialize list 
         	 log.debug( "---> Initialize list!!" );
         	 items = new ArrayList<>();
@@ -75,7 +75,7 @@ public class UserHandler extends DefaultHandler{
    /*
     * getter method for images list
     */
-   public List< ItemXML > getItems( ) {
+   public List< ItemOpenSearch > getItems( ) {
 	   return items;
    }
 

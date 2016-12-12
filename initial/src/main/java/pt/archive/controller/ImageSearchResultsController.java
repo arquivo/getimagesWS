@@ -14,24 +14,31 @@ import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 import pt.archive.model.ImageSearchResult;
 import pt.archive.model.ImageSearchResults;
-import pt.archive.model.ItemXML;
+import pt.archive.model.ItemOpenSearch;
 import pt.archive.utils.Constants;
 import pt.archive.utils.HTMLParser;
 import pt.archive.utils.UserHandler;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+
+import javax.annotation.PostConstruct;
+
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ArrayList;
@@ -44,7 +51,8 @@ public class ImageSearchResultsController {
 	private final Logger log = LoggerFactory.getLogger( this.getClass( ) ); //Define the logger object for this class
 	private List< String > terms;
 	private String startIndex;
-
+	private List< String > blacklListUrls;
+	
 	/** Properties file application.properties**/
 	@Value( "${urlBase}" )
 	private String urlBase;
@@ -72,9 +80,20 @@ public class ImageSearchResultsController {
 	
 	@Value( "${TimeoutThreads}" )
 	private long timeout;
+	
+	@Value( "${blacklist.file}" )
+	private String blackListFileLocation;
 	/***************************/
-
-	private List< ItemXML > resultOpenSearch;
+	
+	private List< ItemOpenSearch > resultOpenSearch;
+	
+	@PostConstruct
+	public void initIt() throws Exception {
+		
+	  log.info("Init method after properties are set : blacklistFile[" + blackListFileLocation +"]");
+	  loadBlackList( );
+	  
+	}
 	
 	/**
 	 * @param query: full-text element
@@ -102,8 +121,9 @@ public class ImageSearchResultsController {
     	ExecutorService pool = Executors.newFixedThreadPool( NThreads );
     	CountDownLatch doneSignal;
     	List< ImageSearchResult > imageResults = new ArrayList< >( );
+    	List< ImageSearchResult > resultImges = new ArrayList< >( );
     	boolean isAllDone = false;
-
+    	
     	if( query == null || query.trim( ).equals( "" ) ) {
  			log.warn("[ImageSearchResultsController][getImageResults] Query empty!");
  			imageResults.add( getErrorCode( "-1: query empty" ) ); 
@@ -123,16 +143,18 @@ public class ImageSearchResultsController {
 	 		myReader.parse( new InputSource(new URL( url ).openStream( ) ) );
 	 		resultOpenSearch = userhandler.getItems( );
 	 		
-	 		if( resultOpenSearch == null || resultOpenSearch.size( ) == 0 )  
+	 		if( resultOpenSearch == null || resultOpenSearch.size( ) == 0 )  //No results the OpenSearch
 	 			return  Collections.emptyList( );
 	 		
 	 		log.info( "[ImageSearchResultsController][getImageResults] OpenSearch result : " + resultOpenSearch.size( ) );
 	 		doneSignal = new CountDownLatch( resultOpenSearch.size( ) );
 	 		
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
-	 		for( ItemXML item : resultOpenSearch ) { //Search information tag <img>
-	 			Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms ) );
-	 			submittedJobs.add( job );
+	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
+	 			if( !presentBlackList( item.getUrl( ) ) ) {
+	 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms ) );
+		 			submittedJobs.add( job );
+	 			}	 			
 	 		}
 	 		
 	 		try {
@@ -157,15 +179,19 @@ public class ImageSearchResultsController {
 		 				log.debug( "Resultados do future = " + result.size( ) );
 		 				imageResults.addAll( result );
 		 			}
-		 			
 	            } catch (ExecutionException cause) {
 	            	log.error( "[ImageSearchResultsController][getImageResults]", cause ); // exceptions occurred during execution, in any
 	            } catch (InterruptedException e) {
 	            	log.error( "[ImageSearchResultsController][getImageResults]", e ); // take care
 	            }
 	 		}
-	 		Collections.sort( imageResults );
- 			
+	 		
+	 		Collections.sort( imageResults ); //sort 
+	 		log.info( "Numero de resposta com duplicados: " + imageResults.size( ) );
+	 		resultImges = uniqueResult( imageResults ); //remove duplcates 
+	 		log.info( "Numero de resposta sem duplicados: " + imageResults.size( ) );
+	 		
+	 		
 	 		log.debug( "Request query[" + query + "] stamp["+ stamp +"] Number of results["+ imageResults.size( ) +"]" );
 	 		
 		} catch( UnsupportedEncodingException e2 ) {
@@ -188,7 +214,7 @@ public class ImageSearchResultsController {
 	 			pool.shutdown( ); //shut down the executor service now
  		}
  		
- 		return imageResults;
+ 		return resultImges;
     }
     
     
@@ -217,6 +243,16 @@ public class ImageSearchResultsController {
     			.concat( startIndex );
     }
     
+    private List< ImageSearchResult > uniqueResult( List< ImageSearchResult > imageResults ) {
+    	List< ImageSearchResult > uniqueList = new ArrayList< >( );
+    	Set< ImageSearchResult > uniqueSet = new HashSet< >( );
+    	for( ImageSearchResult obj : imageResults ) {
+    		if( uniqueSet.add( obj ) )
+    			uniqueList.add( obj );
+    	}
+    	return uniqueList;
+    }
+    
     private ImageSearchResult getErrorCode( String errorCode ) {
     	ImageSearchResult result = new ImageSearchResult( );
     	result.setUrl( errorCode );
@@ -229,23 +265,16 @@ public class ImageSearchResultsController {
         }
     }
     
-    private void removeStopWords( ) { 
+    private void removeStopWords( ) {
     	for( Iterator< String > iterator = terms.iterator( ) ; iterator.hasNext( ); ) {
     		String term = iterator.next( );
     		for( String stopWord : Constants.stopWord ) {
     			if( term.equals( stopWord ) ) {
-    				log.info( "term["+term+"] == stopWord["+stopWord+"]" );
+    				log.info( "[StopWords] Remove term["+term+"] to ranking" );
     				iterator.remove( );
     			}
     		}
     	}
-    	
-    	log.info( "*** Print Terms without stop words ***" );
-    	for( String term : terms ){
-    		log.info( " " + term + " " );
-    	}
-    	log.info( "*************************************" );
-    	
     }
     
     private void cleanUpMemory( ) {
@@ -261,6 +290,40 @@ public class ImageSearchResultsController {
 		}
     }
     
+    private void loadBlackList( ) {
+    	//blackListFileLocation
+    	Scanner s = null;
+    	try{
+    		s = new Scanner( new File( blackListFileLocation ) );
+    		blacklListUrls = new ArrayList< String >( );
+    		while( s.hasNext( ) ) {
+    			blacklListUrls.add( s.next( ) );
+    		}
+    	} catch( IOException e ) {
+    		log.error( "Load blacklist file error: " , e );
+    	} finally {
+    		if( s != null )
+    			s.close( );
+    	}
+    }
+    
+    private boolean presentBlackList( String url ){
+    	
+    	for( String blackUrl : blacklListUrls ) {
+    		if( blackUrl.toLowerCase( ).equals( url.toLowerCase( ) ) ) 
+    			return true;
+    	}
+    	return false;
+    }
+    
+    private void printBlackList( ){
+    	log.info( "******* BlackList Urls *******" );
+    	for( String url : blacklListUrls ) 
+    		log.info( "  " + url );
+    	log.info("***************************");
+    	
+    }
+     
     private void printProperties( ){
     	log.info( "********* Properties *********" );
     	log.info( "	urlBase=" +urlBase );
