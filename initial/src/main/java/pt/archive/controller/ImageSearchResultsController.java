@@ -15,6 +15,7 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import pt.archive.model.ImageSearchResult;
 import pt.archive.model.ImageSearchResults;
 import pt.archive.model.ItemOpenSearch;
+import pt.archive.utils.CDXParser;
 import pt.archive.utils.Constants;
 import pt.archive.utils.HTMLParser;
 import pt.archive.utils.UserHandler;
@@ -83,6 +84,15 @@ public class ImageSearchResultsController {
 	
 	@Value( "${blacklist.file}" )
 	private String blackListFileLocation;
+	
+	@Value( "${urlBaseCDX}" )
+	private String urlBaseCDX;
+	
+	@Value( "${outputCDX}" )
+	private String outputCDX;
+	
+	@Value( "${flCDX}" )
+	private String flParam;
 	/***************************/
 	
 	private List< ItemOpenSearch > resultOpenSearch;
@@ -120,8 +130,9 @@ public class ImageSearchResultsController {
     	String url;
     	ExecutorService pool = Executors.newFixedThreadPool( NThreads );
     	CountDownLatch doneSignal;
-    	List< ImageSearchResult > imageResults = new ArrayList< >( );
-    	List< ImageSearchResult > resultImges = new ArrayList< >( );
+    	List< ImageSearchResult > imageResults 	= new ArrayList< >( );
+    	List< ImageSearchResult > resultImges 	= new ArrayList< >( );
+    	List< ImageSearchResult > resultImages 	= new ArrayList< >( );
     	boolean isAllDone = false;
     	
     	if( query == null || query.trim( ).equals( "" ) ) {
@@ -188,11 +199,12 @@ public class ImageSearchResultsController {
 	 		
 	 		Collections.sort( imageResults ); //sort 
 	 		log.info( "Numero de resposta com duplicados: " + imageResults.size( ) );
-	 		resultImges = uniqueResult( imageResults ); //remove duplcates 
+	 		resultImges = uniqueResult( imageResults ); //remove duplcates  ?????
 	 		log.info( "Numero de resposta sem duplicados: " + imageResults.size( ) );
+	 		CDXParser parseCDX = new CDXParser( urlBaseCDX, outputCDX, flParam, resultImges ); //SORT
+	 		resultImages = parseCDX.getuniqueResults( );
 	 		
-	 		
-	 		log.debug( "Request query[" + query + "] stamp["+ stamp +"] Number of results["+ imageResults.size( ) +"]" );
+	 		log.debug( "Request query[" + query + "] stamp["+ stamp +"] Number of results["+ resultImages.size( ) +"]" );
 	 		
 		} catch( UnsupportedEncodingException e2 ) {
  			log.error( "[ImageSearchResultsController][getImageResults]", e2 );
@@ -214,7 +226,7 @@ public class ImageSearchResultsController {
 	 			pool.shutdown( ); //shut down the executor service now
  		}
  		
- 		return resultImges;
+ 		return resultImages;
     }
     
     

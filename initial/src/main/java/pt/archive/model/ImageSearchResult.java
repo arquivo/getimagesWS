@@ -12,11 +12,11 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	String urlOriginal;
 	String digest;
 	Ranking score;
-    long timestamp;
+    String timestamp;
 	
-    public ImageSearchResult() { }
+    public ImageSearchResult( ) { }
     
-	public ImageSearchResult(String url, String width, String height, String alt, String title, String urlOriginal, long timestamp, Ranking score, String digest){
+	public ImageSearchResult( String url, String width, String height, String alt, String title, String urlOriginal, String timestamp, Ranking score, String digest ){
         this.url 			= url;
         this.width 			= width;
         this.height 		= height;
@@ -34,7 +34,7 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	public void setScore(Ranking score) {
 		this.score = score;
 	}
-	public void setTimestamp(long timestamp) {
+	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
 	public String getUrl() {
@@ -67,13 +67,7 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getUrlOriginal() {
-		return urlOriginal;
-	}
-	public void setUrlOriginal(String urlOriginal) {
-		this.urlOriginal = urlOriginal;
-	}
-    public long getTimestamp(){
+    public String getTimestamp(){
         return timestamp;
     }
     public void setDigest(String digest) {
@@ -82,7 +76,13 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	public String getDigest() {
 		return digest;
 	}
-
+	public String getUrlOriginal() {
+		return urlOriginal;
+	}
+	public void setUrlOriginal(String urlOriginal) {
+		this.urlOriginal = urlOriginal;
+	}
+	
 	@Override
 	public boolean equals( Object o ) {
 		if( this == o ) return true;

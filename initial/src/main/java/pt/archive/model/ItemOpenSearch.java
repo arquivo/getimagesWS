@@ -11,14 +11,14 @@ public class ItemOpenSearch {
 	private String arcname;
 	private BigDecimal arcoffset;
 	private String digest;
-	private long tstamp;
+	private String tstamp;
 	private BigDecimal contentLength;
 	private String primaryType;
 	private String subtype;
 	
 	public ItemOpenSearch( ) { }
 	
-	public ItemOpenSearch( long id, long index, String url, String link, String arcname, BigDecimal arcoffset, String digest, long tstamp,
+	public ItemOpenSearch( long id, long index, String url, String link, String arcname, BigDecimal arcoffset, String digest, String tstamp,
 			BigDecimal contentLength, String primaryType, String subtype ) {
 		this.id 			= id;
 		this.index 			= index;
@@ -63,10 +63,10 @@ public class ItemOpenSearch {
 	public void setDigest(String digest) {
 		this.digest = digest;
 	}
-	public long getTstamp() {
+	public String getTstamp() {
 		return tstamp;
 	}
-	public void setTstamp(long tstamp) {
+	public void setTstamp(String tstamp) {
 		this.tstamp = tstamp;
 	}
 	public BigDecimal getContentLength() {

@@ -59,7 +59,7 @@ public class UserHandler extends DefaultHandler{
 		   bId = false;
 	   } else if( bTStamp ) {
 		   log.debug( "[bTStamp Element] contents = " + new String( ch , start , length ) );
-		   item.setTstamp( Long.parseLong( new String( ch , start , length ) ) );
+		   item.setTstamp( new String( ch , start , length ) );
 		   bTStamp = false;
 	   } else if( bSource ) {
 		   log.debug( "[ID Element] contents = " + new String( ch , start , length ) );

@@ -83,9 +83,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			if( numImgsbyUrl != -1 ) 
 				if( countImg == numImgsbyUrl ) break; 
 			
-			String src;
+			String src, srcOriginal;
 			if( imgItem.attr( "src" ) != null && !imgItem.attr( "src" ).trim().equals( "" ) ) {
-				src = imgItem.absUrl( "src" ); //absolute URL on src
+				src = imgItem.attr( "src" ); //absolute URL on src
 				if( !src.startsWith( hostImage ) )
 					if( !src.startsWith( urldirect ) )
 						src = hostImage.concat( urldirect ).concat( src );
@@ -112,7 +112,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			if( title == null || title.trim( ).equals( "" ) )
 				title = "";
 			
-			resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , rank , convertByteYoHex( src )) );
+			resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , rank , convertByteYoHex( src ) ) );
 			
 			log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
 			          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) + " score = " + rank.getScore( ) );
@@ -133,10 +133,10 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			return "";
 	}
 	
-	private String getLink( String url , long tstamp , String linkGetImage ) {
+	private String getLink( String url , String tstamp , String linkGetImage ) {
 		log.debug( "[getLink] linkGetImage["+ linkGetImage +"] url["+ url +"] tstamp["+ tstamp +"] " );
 		return linkGetImage
-				.concat( String.valueOf( tstamp ) )
+				.concat( tstamp )
 				.concat( Constants.urlBarOP )
 				.concat( url );
 	}
