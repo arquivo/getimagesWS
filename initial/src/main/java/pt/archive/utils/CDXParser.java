@@ -1,5 +1,6 @@
 package pt.archive.utils;
 
+import pt.archive.model.ImageSearchResult;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,13 +11,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pt.archive.model.ImageSearchResult;
+
 
 public class CDXParser {
 	
@@ -36,8 +38,9 @@ public class CDXParser {
 
 	public List< ImageSearchResult > getuniqueResults( ) {
 		String responseCDXServer;
+		String keyDigest = "digest";
 		List< ImageSearchResult > resultsUnique = new ArrayList< >( );
-		
+		int counterImg = 0;
 		for( ImageSearchResult img : input ) {
 			String urlCDX = getLink( img.getUrl( ) , img.getTimestamp( ) );
 			//log.info( "[urlCDXServer] = " + urlCDX );
@@ -54,25 +57,33 @@ public class CDXParser {
 			            long valB = 0;
 
 			            try {
-			                valA = ( long ) a.get(KEY_NAME);
-			                valB = ( long ) b.get(KEY_NAME);
-			            } 
-			            catch (JSONException e) {
+			                valA = Long.valueOf( ( String ) a.get( KEY_NAME ) );
+			                valB = Long.valueOf( ( String ) b.get( KEY_NAME ) );
+			            } catch ( JSONException e ) {
 			                log.error( "[getuniqueResults][compare] e = " , e );
 			            }
 
-			            return Long.compare( valA , valB );
+			            return Long.compare( valB , valA );
 			            //if you want to change the sort order, simply use the following:
 			            //return -valA.compareTo(valB);
 			        }
-			    });
+			    } );
+				
+				if( !isExists( jsonValues.get( 0 ).get( keyDigest ).toString( ) , counterImg ) ) {
+					img.setDigest( jsonValues.get( 0 ).get( "digest" ).toString( ) );
+					img.setTimestamp( jsonValues.get( 0 ).get( "timestamp" ).toString( ) );
+					resultsUnique.add( img );
+				}
+				
 				log.info( "Depois de ordenado => " );
 				printDebug( jsonValues );
 			} catch( JSONException e ) {
 				log.error( "[CDXParser][GetuniqueResults] JSONParser e " , e );
 			} catch( Exception e1 ) {
+				resultsUnique.add( img );
 				log.error( "[CDXParser][GetuniqueResults] e " , e1 );
 			}
+			counterImg++;
 		}
 		return resultsUnique;
 	}
@@ -83,6 +94,15 @@ public class CDXParser {
 			log.info( "  obj = " + obj.toString( ) );
 		}
 		log.info( "**********************" );
+	}
+	
+	private boolean isExists( String digest , int indexImg ) {
+		
+		for( int i = 0 ; i <= indexImg ; i++ ) 
+			if( input.get( i ).getDigest( ).equals( digest ) )
+				return true;
+		
+		return false;
 	}
 	
 	private String getLink( String url , String timestamp ) {
