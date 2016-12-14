@@ -52,6 +52,7 @@ public class ImageSearchResultsController {
 	private List< String > terms;
 	private String startIndex;
 	private List< String > blacklListUrls;
+	private List< String > blackListDomain;
 	
 	/** Properties file application.properties**/
 	@Value( "${urlBase}" )
@@ -81,8 +82,11 @@ public class ImageSearchResultsController {
 	@Value( "${TimeoutThreads}" )
 	private long timeout;
 	
-	@Value( "${blacklist.file}" )
-	private String blackListFileLocation;
+	@Value( "${blacklistUrl.file}" )
+	private String blackListUrlFileLocation;
+	
+	@Value( "${blacklistDomain.file}" )
+	private String blacklistDomainFileLocation;
 	
 	@Value( "${urlBaseCDX}" )
 	private String urlBaseCDX;
@@ -99,8 +103,8 @@ public class ImageSearchResultsController {
 	@PostConstruct
 	public void initIt( ) throws Exception {
 		
-	  log.info("Init method after properties are set : blacklistFile[" + blackListFileLocation +"]");
-	  loadBlackList( );
+	  log.info("Init method after properties are set : blacklistUrlFile[" + blackListUrlFileLocation +"] & blacklistDomainFile[" + blacklistDomainFileLocation + "]");
+	  loadBlackListFiles( );
 	  
 	}
 	
@@ -303,11 +307,17 @@ public class ImageSearchResultsController {
 		}
     }
     
-    private void loadBlackList( ) {
+    private void loadBlackListFiles( ) {
     	//blackListFileLocation
+    	loadBlackListUrls( );
+    	loadBlackListDomain( );
+    	
+    }
+    
+    private void loadBlackListUrls( ) {
     	Scanner s = null;
     	try{
-    		s = new Scanner( new File( blackListFileLocation ) );
+    		s = new Scanner( new File( blackListUrlFileLocation ) );
     		blacklListUrls = new ArrayList< String >( );
     		while( s.hasNext( ) ) {
     			blacklListUrls.add( s.next( ) );
@@ -320,10 +330,26 @@ public class ImageSearchResultsController {
     	}
     }
     
+    private void loadBlackListDomain( ) {
+    	Scanner s = null;
+    	try{
+    		s = new Scanner( new File( blacklistDomainFileLocation ) );
+    		blackListDomain = new ArrayList< String >( );
+    		while( s.hasNext( ) ) {
+    			blackListDomain.add( s.next( ) );
+    		}
+    	} catch( IOException e ) {
+    		log.error( "Load blacklist file error: " , e );
+    	} finally {
+    		if( s != null )
+    			s.close( );
+    	}
+    }
+    
     private boolean presentBlackList( String url ){
     	
-    	for( String blackUrl : blacklListUrls ) {
-    		if( blackUrl.toLowerCase( ).equals( url.toLowerCase( ) ) ) 
+    	for( String domain : blackListDomain ) {
+    		if( domain.toLowerCase( ).contains( url.toLowerCase( ) ) ) 
     			return true;
     	}
     	return false;
