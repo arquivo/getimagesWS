@@ -15,7 +15,6 @@ import org.xml.sax.helpers.XMLReaderFactory;
 import pt.archive.model.ImageSearchResult;
 import pt.archive.model.ImageSearchResults;
 import pt.archive.model.ItemOpenSearch;
-import pt.archive.utils.CDXParser;
 import pt.archive.utils.Constants;
 import pt.archive.utils.HTMLParser;
 import pt.archive.utils.UserHandler;
@@ -98,7 +97,7 @@ public class ImageSearchResultsController {
 	private List< ItemOpenSearch > resultOpenSearch;
 	
 	@PostConstruct
-	public void initIt() throws Exception {
+	public void initIt( ) throws Exception {
 		
 	  log.info("Init method after properties are set : blacklistFile[" + blackListFileLocation +"]");
 	  loadBlackList( );
@@ -131,7 +130,6 @@ public class ImageSearchResultsController {
     	ExecutorService pool = Executors.newFixedThreadPool( NThreads );
     	CountDownLatch doneSignal;
     	List< ImageSearchResult > imageResults 	= new ArrayList< >( );
-    	List< ImageSearchResult > resultImges 	= new ArrayList< >( );
     	List< ImageSearchResult > resultImages 	= new ArrayList< >( );
     	boolean isAllDone = false;
     	
@@ -163,7 +161,7 @@ public class ImageSearchResultsController {
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
 	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
 	 			if( !presentBlackList( item.getUrl( ) ) ) {
-	 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms ) );
+	 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam ) );
 		 			submittedJobs.add( job );
 	 			}	 			
 	 		}
@@ -199,10 +197,10 @@ public class ImageSearchResultsController {
 	 		
 	 		Collections.sort( imageResults ); //sort 
 	 		log.info( "Numero de resposta com duplicados: " + imageResults.size( ) );
-	 		resultImges = uniqueResult( imageResults ); //remove duplcates  ?????
-	 		log.info( "Numero de resposta sem duplicados: " + imageResults.size( ) );
-	 		CDXParser parseCDX = new CDXParser( urlBaseCDX, outputCDX, flParam, resultImges ); //SORT
-	 		resultImages = parseCDX.getuniqueResults( );
+	 		resultImages = uniqueResult( imageResults ); //remove duplcates  ?????
+	 		log.info( "Numero de resposta sem duplicados: " + resultImages.size( ) );
+	 		//CDXParser parseCDX = new CDXParser( urlBaseCDX, outputCDX, flParam, imageResults ); //SORT
+	 		//resultImages = parseCDX.getuniqueResults( );
 	 		
 	 		log.debug( "Request query[" + query + "] stamp["+ stamp +"] Number of results["+ resultImages.size( ) +"]" );
 	 		
@@ -259,8 +257,11 @@ public class ImageSearchResultsController {
     	List< ImageSearchResult > uniqueList = new ArrayList< >( );
     	Set< ImageSearchResult > uniqueSet = new HashSet< >( );
     	for( ImageSearchResult obj : imageResults ) {
-    		if( uniqueSet.add( obj ) )
+    		log.info( "obj = " + obj.getUrl( ) + " digest = " + obj.getDigest( ) );
+    		if( uniqueSet.add( obj ) ){
     			uniqueList.add( obj );
+    			log.info( "Inseriu ["+obj.getUrl( )+"]" );
+    		}
     	}
     	return uniqueList;
     }
@@ -271,7 +272,7 @@ public class ImageSearchResultsController {
     	return result;
     }
     
-    private void cleanUpThreads( List< Future< List< ImageSearchResult > > > submittedJobs ){
+    private void cleanUpThreads( List< Future< List< ImageSearchResult > > > submittedJobs ) {
     	for ( Future< List< ImageSearchResult > > job : submittedJobs ) {
             job.cancel(true);
         }

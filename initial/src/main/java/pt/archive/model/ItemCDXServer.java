@@ -4,12 +4,13 @@ public class ItemCDXServer {
 	private String url;
 	private String timestamp;
 	private String digest;
+	private String mime;
 	
-	public ItemCDXServer(String url, String timestamp, String digest) {
-		super();
-		this.url = url;
-		this.timestamp = timestamp;
-		this.digest = digest;
+	public ItemCDXServer( String url, String timestamp, String digest, String mime ) {
+		this.url 		= url;
+		this.timestamp 	= timestamp;
+		this.digest 	= digest;
+		this.mime       = mime;
 	}
 	
 	public String getUrl() {
@@ -30,11 +31,20 @@ public class ItemCDXServer {
 	public void setDigest(String digest) {
 		this.digest = digest;
 	}
+	public String getMime() {
+		return mime;
+	}
 
+	public void setMime(String mime) {
+		this.mime = mime;
+	}
+	
 	@Override
 	public String toString() {
-		return "ItemCDXServer [url=" + url + ", timestamp=" + timestamp + ", digest=" + digest + "]";
+		return "ItemCDXServer [url=" + url + ", timestamp=" + timestamp + ", digest=" + digest + ", mime=" + mime + "]";
 	}
+
+
 	
 	
 }

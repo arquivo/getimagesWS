@@ -17,7 +17,9 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pt.archive.model.ImageSearchResult;
+import pt.archive.model.ItemCDXServer;
 import pt.archive.model.ItemOpenSearch;
+import pt.archive.model.Ranking;
 
 public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private final Logger log = LoggerFactory.getLogger( this.getClass( ) );
@@ -29,8 +31,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private List< ImageSearchResult > resultsImg;
 	private CountDownLatch doneSignal;
 	private List< String > terms;
+	private String urlBaseCDX;
+	private String outputCDX;
+	private String flParam;
 	
-	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms ) { 
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam) { 
 		this.itemtoSearch 	= itemtoSearch;
 		this.numImgsbyUrl 	= numImgsbyUrl;
 		this.hostImage		= hostImage;
@@ -38,6 +43,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.resultsImg 	= new ArrayList< >( ); 
 		this.doneSignal 	= doneSignal;
 		this.terms			= terms;
+		this.urlBaseCDX		= urlBaseCDX;
+		this.outputCDX		= outputCDX;
+		this.flParam		= flParam;
 	}
 	
 	@Override
@@ -54,6 +62,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 
 	public void buildResponse( ) {
 		int countImg = 0;
+		ItemCDXServer resultCDXServer;
 		String link = getLink( itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , hostImage.concat( urldirect ) );
 		Ranking rank = new Ranking( );
 		log.debug( "[HTMLParser][buildResponse] URL search = " + link );
@@ -79,7 +88,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		String title = doc.title( ); //get page title
 		Elements links = doc.select( "img" ); //get all tag <img />
 		for( Element imgItem : links ) {
-				
+			ImageSearchResult resultImg;
 			if( numImgsbyUrl != -1 ) 
 				if( countImg == numImgsbyUrl ) break; 
 			
@@ -112,12 +121,24 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			if( title == null || title.trim( ).equals( "" ) )
 				title = "";
 			
-			resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , rank , convertByteYoHex( src ) ) );
-			
-			log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
-			          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) + " score = " + rank.getScore( ) );
-			
-			if( numImgsbyUrl != -1 ) countImg++;
+			try {
+				log.info( " [CDXParser] URL = " + itemtoSearch.getUrl( ) + " src = " + src );
+				CDXParser itemCDX = new CDXParser( urlBaseCDX , outputCDX , flParam , new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , rank , null , null ) );
+				resultCDXServer = itemCDX.getImgCDX( );
+				if( resultCDXServer == null )
+					continue;
+				
+				resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , resultCDXServer.getTimestamp( ) , rank , resultCDXServer.getDigest() , resultCDXServer.getMime() ) );
+				
+				log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
+				          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) + " score = " + rank.getScore( ) );
+				
+				if( numImgsbyUrl != -1 ) countImg++;
+				
+			} catch( Exception e ) {
+				log.warn( "[Image] Error get resource["+src+"] " );
+				continue;
+			}
 		}
 		countImg = 0;
 		

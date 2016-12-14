@@ -1,6 +1,8 @@
 package pt.archive.utils;
 
 import pt.archive.model.ImageSearchResult;
+import pt.archive.model.ItemCDXServer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,66 +28,69 @@ public class CDXParser {
 	private String hostBaseCDX;
 	private String outputCDX;
 	private String flParam;
-	private List< ImageSearchResult > input;
-
-	public CDXParser( String hostBaseCDX, String outputCDX, String flParam, List<ImageSearchResult> input ) {
+	private ImageSearchResult img;
+	private final String keyUrl 		= "url";
+	private final String keyDigest 		= "digest";
+	private final String keyTimestamp 	= "timestamp"; 
+	private final String keyMimeType 	= "mime";
+	
+	public CDXParser( String hostBaseCDX, String outputCDX, String flParam, ImageSearchResult img ) {
 		super();
 		this.hostBaseCDX 	= hostBaseCDX;
 		this.outputCDX 		= outputCDX;
 		this.flParam 		= flParam;
-		this.input 			= input;
+		this.img 			= img;
 	}
 
-	public List< ImageSearchResult > getuniqueResults( ) {
-		String responseCDXServer;
-		String keyDigest = "digest";
-		List< ImageSearchResult > resultsUnique = new ArrayList< >( );
+	public ItemCDXServer getImgCDX( ) {
+		
+		ItemCDXServer  imgCDX = null;
 		int counterImg = 0;
-		for( ImageSearchResult img : input ) {
-			String urlCDX = getLink( img.getUrl( ) , img.getTimestamp( ) );
-			//log.info( "[urlCDXServer] = " + urlCDX );
-			try{
-				List< JSONObject > jsonValues = readJsonFromUrl( urlCDX );
-				printDebug( jsonValues );
-				Collections.sort( jsonValues , new Comparator<JSONObject>() {
-			        //You can change "Name" with "ID" if you want to sort by ID
-			        private static final String KEY_NAME = "timestamp";
 
+		String urlCDX = getLink( img.getUrl( ) , img.getTimestamp( ) );
+		
+		try{
+			List< JSONObject > jsonValues = readJsonFromUrl( urlCDX );
+			//printDebug( jsonValues );
+			if( jsonValues != null && jsonValues.size( ) > 1 )
+				Collections.sort( jsonValues , new Comparator< JSONObject >( ) {
+			       
+			        private static final String KEY_NAME = "timestamp"; //sort desc by timestamp
+	
 			        @Override
 			        public int compare( JSONObject a , JSONObject b ) {
 			            long valA = 0;
 			            long valB = 0;
-
+	
 			            try {
 			                valA = Long.valueOf( ( String ) a.get( KEY_NAME ) );
 			                valB = Long.valueOf( ( String ) b.get( KEY_NAME ) );
 			            } catch ( JSONException e ) {
 			                log.error( "[getuniqueResults][compare] e = " , e );
 			            }
-
+	
 			            return Long.compare( valB , valA );
 			            //if you want to change the sort order, simply use the following:
 			            //return -valA.compareTo(valB);
 			        }
 			    } );
-				
-				if( !isExists( jsonValues.get( 0 ).get( keyDigest ).toString( ) , counterImg ) ) {
-					img.setDigest( jsonValues.get( 0 ).get( "digest" ).toString( ) );
-					img.setTimestamp( jsonValues.get( 0 ).get( "timestamp" ).toString( ) );
-					resultsUnique.add( img );
-				}
-				
-				log.info( "Depois de ordenado => " );
-				printDebug( jsonValues );
-			} catch( JSONException e ) {
-				log.error( "[CDXParser][GetuniqueResults] JSONParser e " , e );
-			} catch( Exception e1 ) {
-				resultsUnique.add( img );
-				log.error( "[CDXParser][GetuniqueResults] e " , e1 );
-			}
-			counterImg++;
+			
+			imgCDX = new ItemCDXServer( jsonValues.get( 0 ).get( keyUrl ).toString( ) ,
+										jsonValues.get( 0 ).get( keyTimestamp ).toString( ),
+										jsonValues.get( 0 ).get( keyDigest ).toString( ),
+										jsonValues.get( 0 ).get( keyMimeType ).toString( ) );
+			
+			/*log.info( "Depois de ordenado => " );
+			printDebug( jsonValues );*/
+		} catch( JSONException e ) {
+			log.debug( "[CDXParser][GetuniqueResults] URL["+urlCDX+"] JSONParser e " , e );
+			return null;
+		} catch( Exception e1 ) {
+			log.debug( "[CDXParser][GetuniqueResults] URL["+urlCDX+"] e " , e1 );
+			return null;
 		}
-		return resultsUnique;
+	
+		return imgCDX;
 	}
 	
 	private void printDebug( List< JSONObject > jsonValues ) {
@@ -96,14 +101,7 @@ public class CDXParser {
 		log.info( "**********************" );
 	}
 	
-	private boolean isExists( String digest , int indexImg ) {
-		
-		for( int i = 0 ; i <= indexImg ; i++ ) 
-			if( input.get( i ).getDigest( ).equals( digest ) )
-				return true;
-		
-		return false;
-	}
+	
 	
 	private String getLink( String url , String timestamp ) {
 		
@@ -123,7 +121,6 @@ public class CDXParser {
 	}
 	
 	private  ArrayList< JSONObject > readAll( BufferedReader rd ) throws IOException, ParseException {
-		StringBuilder sb = new StringBuilder();
 		ArrayList<JSONObject> json=new ArrayList<JSONObject>();
 		String line;
 		while ( ( line = rd.readLine( ) ) != null ) {
@@ -133,11 +130,11 @@ public class CDXParser {
 		return json;
 	}
  
-	private ArrayList< JSONObject > readJsonFromUrl(String url) throws IOException, JSONException, ParseException {
+	private ArrayList< JSONObject > readJsonFromUrl( String url ) throws IOException, JSONException, ParseException {
 		 InputStream is = new URL( url ).openStream( );
 		 ArrayList< JSONObject >  jsonResponse = new ArrayList< >( );
 		 try {
-			 BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
+			 BufferedReader rd = new BufferedReader( new InputStreamReader( is , Charset.forName( "UTF-8" ) ) );
 			 jsonResponse = readAll( rd );
 		     return jsonResponse;
 		 } finally {

@@ -1,4 +1,4 @@
-package pt.archive.utils;
+package pt.archive.model;
 
 public class Ranking {
 	
