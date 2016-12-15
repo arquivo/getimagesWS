@@ -103,8 +103,9 @@ public class CDXParser {
 	}
 	
 	private String getLink( String url , String timestamp ) {
-		
-		String urlaux = url.substring( url.indexOf( timestamp.substring( 0 , ( timestamp.length( ) + 3 ) - 1 ) ) + ( timestamp.length( ) + 3 )+ 1 );
+//ttp://arquivo.pt/noFrame/replay/20120122112120im_/http://www.fundacao-antonio-aleixo.pt/images/logo@lgarweb.jpg
+		//String urlaux = url.substring( url.indexOf( timestamp.substring( 0 ,timestamp.length( ) - 1 ) ) + timestamp.length( ) + 1 );
+		String urlaux = url.substring( url.indexOf( timestamp ) +  18 );
 		log.info( "[CDXParser][getLink] url["+url+"] timestamp["+timestamp+"] urlaux["+urlaux+"]" );
 		return hostBaseCDX
 					.concat( "url" )
@@ -139,7 +140,6 @@ public class CDXParser {
 	}
  
 	private ArrayList< JSONObject > readJsonFromUrl( String strurl ) {
-		log.info( "Pesquisar por strURL = " + strurl );
 		InputStream is = null;
 		ArrayList< JSONObject >  jsonResponse = new ArrayList< >( );
 		try {
