@@ -34,8 +34,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private String urlBaseCDX;
 	private String outputCDX;
 	private String flParam;
+	private List< String > blacklistUrls;
 	
-	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam) { 
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls) { 
 		this.itemtoSearch 	= itemtoSearch;
 		this.numImgsbyUrl 	= numImgsbyUrl;
 		this.hostImage		= hostImage;
@@ -46,6 +47,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.urlBaseCDX		= urlBaseCDX;
 		this.outputCDX		= outputCDX;
 		this.flParam		= flParam;
+		this.blacklistUrls  = blacklistUrls;
 	}
 	
 	@Override
@@ -93,7 +95,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				if( countImg == numImgsbyUrl ) break; 
 			
 			String src, srcOriginal;
-			if( imgItem.attr( "src" ) != null && !imgItem.attr( "src" ).trim().equals( "" ) ) {
+			if( imgItem.attr( "src" ) != null && !imgItem.attr( "src" ).trim().equals( "" ) && !presentBlackList( imgItem.attr( "src" ) ) ) {
 				src = imgItem.attr( "src" ); //absolute URL on src
 				if( !src.startsWith( hostImage ) )
 					if( !src.startsWith( urldirect ) )
@@ -146,6 +148,13 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		
 	}
 	
+	private boolean presentBlackList( String src ) {
+		for( String blacksrc : blacklistUrls ) 
+			if( blacksrc.equals( src ) ) 
+				return true;
+		
+		return false;
+	}
 	
 	private String getAttribute( Element tag , String attrName ) {
 		if( tag.attr( attrName ) != null && !tag.attr( attrName ).trim().equals( "" ) )

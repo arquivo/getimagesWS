@@ -165,7 +165,7 @@ public class ImageSearchResultsController {
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
 	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
 	 			if( !presentBlackList( item.getUrl( ) ) ) {
-	 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam ) );
+	 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls ) );
 		 			submittedJobs.add( job );
 	 			}	 			
 	 		}
@@ -308,7 +308,6 @@ public class ImageSearchResultsController {
     }
     
     private void loadBlackListFiles( ) {
-    	//blackListFileLocation
     	loadBlackListUrls( );
     	loadBlackListDomain( );
     	
@@ -348,10 +347,10 @@ public class ImageSearchResultsController {
     
     private boolean presentBlackList( String url ){
     	
-    	for( String domain : blackListDomain ) {
-    		if( domain.toLowerCase( ).contains( url.toLowerCase( ) ) ) 
+    	for( String domain : blackListDomain ) 
+    		if( url.toLowerCase( ).contains( domain.toLowerCase( ) ) ) 
     			return true;
-    	}
+    	
     	return false;
     }
     
