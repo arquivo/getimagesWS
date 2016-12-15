@@ -31,7 +31,7 @@ public class Ranking {
 	
 	@Override
 	public String toString() {
-		return "Ranking [socre=" + score + ", rank=" + rank + "]";
+		return "Ranking [score=" + score + ", rank=" + rank + "]";
 	}
 
 }

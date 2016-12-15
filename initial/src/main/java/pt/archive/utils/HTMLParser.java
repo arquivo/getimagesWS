@@ -35,19 +35,21 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private String outputCDX;
 	private String flParam;
 	private List< String > blacklistUrls;
+	private List< String > blacklistDomain;
 	
-	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls) { 
-		this.itemtoSearch 	= itemtoSearch;
-		this.numImgsbyUrl 	= numImgsbyUrl;
-		this.hostImage		= hostImage;
-		this.urldirect		= urldirct;
-		this.resultsImg 	= new ArrayList< >( ); 
-		this.doneSignal 	= doneSignal;
-		this.terms			= terms;
-		this.urlBaseCDX		= urlBaseCDX;
-		this.outputCDX		= outputCDX;
-		this.flParam		= flParam;
-		this.blacklistUrls  = blacklistUrls;
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain ) { 
+		this.itemtoSearch 		= itemtoSearch;
+		this.numImgsbyUrl 		= numImgsbyUrl;
+		this.hostImage			= hostImage;
+		this.urldirect			= urldirct;
+		this.resultsImg 		= new ArrayList< >( ); 
+		this.doneSignal 		= doneSignal;
+		this.terms				= terms;
+		this.urlBaseCDX			= urlBaseCDX;
+		this.outputCDX			= outputCDX;
+		this.flParam			= flParam;
+		this.blacklistUrls  	= blacklistUrls;
+		this.blacklistDomain 	= blacklistDomain;
 	}
 	
 	@Override
@@ -67,11 +69,15 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		ItemCDXServer resultCDXServer;
 		String link = getLink( itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , hostImage.concat( urldirect ) );
 		Ranking rank = new Ranking( );
+		
+		if( checkBlacklistDomain( itemtoSearch.getUrl( ) ) ) //check domain exists in blacklist
+			return;
+		
 		log.debug( "[HTMLParser][buildResponse] URL search = " + link );
 		try {
 			Connection.Response resp = Jsoup.connect( link )
 					.userAgent( "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21" )
-					.timeout( 5000 )
+					.timeout( Constants.timeoutConn )
 					.ignoreHttpErrors( true )
 					.execute( );
 			doc = null;
@@ -90,13 +96,13 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		String title = doc.title( ); //get page title
 		Elements links = doc.select( "img" ); //get all tag <img />
 		for( Element imgItem : links ) {
-			ImageSearchResult resultImg;
 			if( numImgsbyUrl != -1 ) 
 				if( countImg == numImgsbyUrl ) break; 
 			
-			String src, srcOriginal;
+			String src, srcOriginal, timestamp;
 			if( imgItem.attr( "src" ) != null && !imgItem.attr( "src" ).trim().equals( "" ) && !presentBlackList( imgItem.attr( "src" ) ) ) {
 				src = imgItem.attr( "src" ); //absolute URL on src
+				srcOriginal = imgItem.attr( "src" );
 				if( !src.startsWith( hostImage ) )
 					if( !src.startsWith( urldirect ) )
 						src = hostImage.concat( urldirect ).concat( src );
@@ -106,11 +112,21 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			else 
 				continue;
 			
+			
+			//http://arquivo.pt/noFrame/replay/ 
+			//http://arquivo.pt/noFrame/replay/20131115204312im_/http://s.vcst.net/img/products/default-red-mini.png
+			int indexts = hostImage.concat( urldirect ).length( );
+			timestamp = src.substring( indexts , indexts + 14 );
+			//log.info( "src [" + src + "] timestamp[" + timestamp + "]" );
 			String titleImg = getAttribute( imgItem , "title" );
 			String width 	= getAttribute( imgItem , "width" );
 			String height 	= getAttribute( imgItem , "height" );
 			String alt 		= getAttribute( imgItem , "alt" );
 			
+			if( !onlyContainsNumbers( timestamp ) ) {
+				log.warn( "Wrong timstamp[" + timestamp + "] format" );
+				continue;
+			}
 			//log.info( "Parent : " + imgItem.parent( ).tagName( ) );
 			
 			log.debug( "[Tag Images] title["+titleImg+"] width["+width+"] height["+height+"] alt["+alt+"]" );
@@ -124,19 +140,19 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				title = "";
 			
 			try {
-				log.info( " [CDXParser] URL = " + itemtoSearch.getUrl( ) + " src = " + src );
-				CDXParser itemCDX = new CDXParser( urlBaseCDX , outputCDX , flParam , new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , rank , null , null ) );
+				log.debug( " [CDXParser] URL = " + itemtoSearch.getUrl( ) + " src = " + src );
+				CDXParser itemCDX = new CDXParser( urlBaseCDX , outputCDX , flParam , new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , null , null ) );
 				resultCDXServer = itemCDX.getImgCDX( );
 				if( resultCDXServer == null )
 					continue;
 				
-				resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , resultCDXServer.getTimestamp( ) , rank , resultCDXServer.getDigest() , resultCDXServer.getMime() ) );
-				
+				resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) ) );
+				//resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , null , rank , null , null ) );
 				log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
 				          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) + " score = " + rank.getScore( ) );
 				
 				if( numImgsbyUrl != -1 ) countImg++;
-				
+				log.info( "[CDXParser] ImageResult solved! " );
 			} catch( Exception e ) {
 				log.warn( "[Image] Error get resource["+src+"] " );
 				continue;
@@ -153,6 +169,13 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			if( blacksrc.equals( src ) ) 
 				return true;
 		
+		return false;
+	}
+	
+	private boolean checkBlacklistDomain( String urlOpenSearch ) {
+		for( String blackUrl : blacklistDomain )
+			if( urlOpenSearch.toLowerCase( ).contains( blackUrl.toLowerCase( ) ) )
+				return true;
 		return false;
 	}
 	
@@ -282,6 +305,15 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		}
 		
 	}
+	
+	private boolean onlyContainsNumbers( String text ) {
+	    try {
+	        Long.parseLong( text );
+	        return true;
+	    } catch ( NumberFormatException ex ) {
+	        return false;
+	    }
+	} 
 	
 	@Override
 	public String toString( ) {

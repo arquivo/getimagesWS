@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,14 +46,17 @@ public class CDXParser {
 	public ItemCDXServer getImgCDX( ) {
 		
 		ItemCDXServer  imgCDX = null;
-		int counterImg = 0;
 
 		String urlCDX = getLink( img.getUrl( ) , img.getTimestamp( ) );
-		
+		log.info( "Link CDXServer = " + urlCDX );
 		try{
 			List< JSONObject > jsonValues = readJsonFromUrl( urlCDX );
 			//printDebug( jsonValues );
-			if( jsonValues != null && jsonValues.size( ) > 1 )
+			
+			if( jsonValues == null )
+				return null;
+			
+			if( jsonValues.size( ) > 1 )
 				Collections.sort( jsonValues , new Comparator< JSONObject >( ) {
 			       
 			        private static final String KEY_NAME = "timestamp"; //sort desc by timestamp
@@ -70,8 +74,6 @@ public class CDXParser {
 			            }
 	
 			            return Long.compare( valB , valA );
-			            //if you want to change the sort order, simply use the following:
-			            //return -valA.compareTo(valB);
 			        }
 			    } );
 			
@@ -79,7 +81,6 @@ public class CDXParser {
 										jsonValues.get( 0 ).get( keyTimestamp ).toString( ),
 										jsonValues.get( 0 ).get( keyDigest ).toString( ),
 										jsonValues.get( 0 ).get( keyMimeType ).toString( ) );
-			
 			/*log.info( "Depois de ordenado => " );
 			printDebug( jsonValues );*/
 		} catch( JSONException e ) {
@@ -101,11 +102,10 @@ public class CDXParser {
 		log.info( "**********************" );
 	}
 	
-	
-	
 	private String getLink( String url , String timestamp ) {
 		
-		String urlaux = url.substring( url.indexOf( timestamp.substring( 0 , ( timestamp.length( ) - 3 ) - 1 ) ) + timestamp.length( ) + 1 );
+		String urlaux = url.substring( url.indexOf( timestamp.substring( 0 , ( timestamp.length( ) + 3 ) - 1 ) ) + ( timestamp.length( ) + 3 )+ 1 );
+		log.info( "[CDXParser][getLink] url["+url+"] timestamp["+timestamp+"] urlaux["+urlaux+"]" );
 		return hostBaseCDX
 					.concat( "url" )
 					.concat( Constants.equalOP )
@@ -114,6 +114,14 @@ public class CDXParser {
 					.concat( "output" )
 					.concat( Constants.equalOP )
 					.concat( outputCDX )
+					//.concat( Constants.andOP )
+					//.concat( "from" )
+					//.concat( Constants.equalOP )
+					//.concat( timestamp )
+					//.concat( Constants.andOP )
+					//.concat( "to" )
+					//.concat( Constants.equalOP )
+					//.concat( timestamp )
 					.concat( Constants.andOP )
 					.concat( "fl" )
 					.concat( Constants.equalOP )
@@ -130,17 +138,29 @@ public class CDXParser {
 		return json;
 	}
  
-	private ArrayList< JSONObject > readJsonFromUrl( String url ) throws IOException, JSONException, ParseException {
-		 InputStream is = new URL( url ).openStream( );
-		 ArrayList< JSONObject >  jsonResponse = new ArrayList< >( );
-		 try {
-			 BufferedReader rd = new BufferedReader( new InputStreamReader( is , Charset.forName( "UTF-8" ) ) );
-			 jsonResponse = readAll( rd );
-		     return jsonResponse;
-		 } finally {
-			 is.close( );
-		 }
+	private ArrayList< JSONObject > readJsonFromUrl( String strurl ) {
+		log.info( "Pesquisar por strURL = " + strurl );
+		InputStream is = null;
+		ArrayList< JSONObject >  jsonResponse = new ArrayList< >( );
+		try {
+			URL url = new URL( strurl );
+			URLConnection con = url.openConnection( );
+			con.setConnectTimeout( Constants.timeoutConn ); // 5 sec
+			con.setReadTimeout( 10000 ); //10 sec
+			is = con.getInputStream( );
+			//InputStream is = new URL( strurl ).openStream( );
+			BufferedReader rd = new BufferedReader( new InputStreamReader( is , Charset.forName( "UTF-8" ) ) );
+			jsonResponse = readAll( rd );
+		    return jsonResponse;
+		} catch( Exception e ) {
+			log.error( "[readJsonFromUrl]" + e );
+			return null;
+		} finally {
+			if( is != null ) {
+				try { is.close( ); } catch( IOException e1 ) {  log.error( "[readJsonFromUrl] Close Stream: " + e1 ); }
+			}
+		}
+		
 	 }
-	
 	
 }

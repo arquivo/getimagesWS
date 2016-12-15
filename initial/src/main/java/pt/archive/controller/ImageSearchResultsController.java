@@ -105,7 +105,7 @@ public class ImageSearchResultsController {
 		
 	  log.info("Init method after properties are set : blacklistUrlFile[" + blackListUrlFileLocation +"] & blacklistDomainFile[" + blacklistDomainFileLocation + "]");
 	  loadBlackListFiles( );
-	  
+	  printProperties( );
 	}
 	
 	/**
@@ -119,7 +119,6 @@ public class ImageSearchResultsController {
     									 @RequestParam(value="stamp", defaultValue="19960101000000-20151022163016") String stamtp,
     									 @RequestParam(value="start", defaultValue="0") String _startIndex ) {
     	log.info( "New request query[" + query + "] stamp["+ stamtp +"]" );
-    	printProperties( );
     	startIndex = _startIndex;
     	List< ImageSearchResult > imageResults = getImageResults( query , stamtp ); 
     	log.info( "Results = " + imageResults.size( ) );
@@ -164,15 +163,12 @@ public class ImageSearchResultsController {
 	 		
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
 	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
-	 			if( !presentBlackList( item.getUrl( ) ) ) {
-	 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls ) );
-		 			submittedJobs.add( job );
-	 			}	 			
+ 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain ) );
+	 			submittedJobs.add( job );
 	 		}
-	 		
 	 		try {
 	 			isAllDone = doneSignal.await( timeout , TimeUnit.SECONDS );
-	            if ( !isAllDone ) 
+	 		    if ( !isAllDone ) 
 	            	cleanUpThreads( submittedJobs );
 	        } catch ( InterruptedException e1 ) {
 	        	cleanUpThreads( submittedJobs ); // take care, or cleanup
@@ -181,10 +177,8 @@ public class ImageSearchResultsController {
 	 		//get images result to search
 	 		for( Future< List< ImageSearchResult > >  job : submittedJobs ) {
 	 			try {
-	                // before doing a get you may check if it is done
-	                if ( !isAllDone && !job.isDone( ) ) {
-	                    // cancel job and continue with others
-	                    job.cancel( true );
+	                if ( !isAllDone && !job.isDone( ) ) {  // before doing a get you may check if it is done
+	                    job.cancel( true ); // cancel job and continue with others
 	                    continue;
 	                }
 	    			List< ImageSearchResult > result = job.get( ); // wait for a processor to complete
@@ -192,16 +186,16 @@ public class ImageSearchResultsController {
 		 				log.debug( "Resultados do future = " + result.size( ) );
 		 				imageResults.addAll( result );
 		 			}
-	            } catch (ExecutionException cause) {
+	            } catch ( ExecutionException cause ) {
 	            	log.error( "[ImageSearchResultsController][getImageResults]", cause ); // exceptions occurred during execution, in any
-	            } catch (InterruptedException e) {
+	            } catch ( InterruptedException e ) {
 	            	log.error( "[ImageSearchResultsController][getImageResults]", e ); // take care
 	            }
 	 		}
 	 		
 	 		Collections.sort( imageResults ); //sort 
 	 		log.info( "Numero de resposta com duplicados: " + imageResults.size( ) );
-	 		resultImages = uniqueResult( imageResults ); //remove duplcates  ?????
+	 		resultImages = uniqueResult( imageResults ); //remove duplicates
 	 		log.info( "Numero de resposta sem duplicados: " + resultImages.size( ) );
 	 		//CDXParser parseCDX = new CDXParser( urlBaseCDX, outputCDX, flParam, imageResults ); //SORT
 	 		//resultImages = parseCDX.getuniqueResults( );
@@ -210,19 +204,14 @@ public class ImageSearchResultsController {
 	 		
 		} catch( UnsupportedEncodingException e2 ) {
  			log.error( "[ImageSearchResultsController][getImageResults]", e2 );
- 			imageResults.add( getErrorCode( "[ERROR] -5: URL Encoder Error" ) );
  		} catch( SAXException e3 ) {
  			log.error( "[ImageSearchResultsController][getImageResults]", e3 );
- 			imageResults.add( getErrorCode( "[ERROR] -2: Parser Error" ) ); 
  		} catch( MalformedURLException e4 ) {
  			log.error( "[ImageSearchResultsController][getImageResults]", e4 );
- 			imageResults.add( getErrorCode( "[ERROR] -3: URL OpenSearch Error" ) );
  		} catch( IOException e5 ) {
  			log.error( "[ImageSearchResultsController][getImageResults]", e5 );
- 			imageResults.add( getErrorCode( "[ERROR] -4: IOException Error" ) );
  		}catch( Exception e6 ) {
  			log.error( "[ImageSearchResultsController][getImageResults]", e6 );
- 			imageResults.add( getErrorCode( "[ERROR]: No images found" ) );
  		}finally{
 	 		if( pool != null )
 	 			pool.shutdown( ); //shut down the executor service now
@@ -261,10 +250,10 @@ public class ImageSearchResultsController {
     	List< ImageSearchResult > uniqueList = new ArrayList< >( );
     	Set< ImageSearchResult > uniqueSet = new HashSet< >( );
     	for( ImageSearchResult obj : imageResults ) {
-    		log.info( "obj = " + obj.getUrl( ) + " digest = " + obj.getDigest( ) );
+    		//log.info( "obj = " + obj.getUrl( ) + " digest = " + obj.getDigest( ) );
     		if( uniqueSet.add( obj ) ){
     			uniqueList.add( obj );
-    			log.info( "Inseriu ["+obj.getUrl( )+"]" );
+    			//log.info( "Inseriu ["+obj.getUrl( )+"]" );
     		}
     	}
     	return uniqueList;
@@ -345,15 +334,7 @@ public class ImageSearchResultsController {
     	}
     }
     
-    private boolean presentBlackList( String url ){
-    	
-    	for( String domain : blackListDomain ) 
-    		if( url.toLowerCase( ).contains( domain.toLowerCase( ) ) ) 
-    			return true;
-    	
-    	return false;
-    }
-    
+
     private void printBlackList( ){
     	log.info( "******* BlackList Urls *******" );
     	for( String url : blacklListUrls ) 
