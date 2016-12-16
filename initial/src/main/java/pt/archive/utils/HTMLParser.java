@@ -99,10 +99,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			if( numImgsbyUrl != -1 ) 
 				if( countImg == numImgsbyUrl ) break; 
 			
-			String src, srcOriginal, timestamp;
+			String src, timestamp;
 			if( imgItem.attr( "src" ) != null && !imgItem.attr( "src" ).trim().equals( "" ) && !presentBlackList( imgItem.attr( "src" ) ) ) {
 				src = imgItem.attr( "src" ); //absolute URL on src
-				srcOriginal = imgItem.attr( "src" );
 				if( !src.startsWith( hostImage ) )
 					if( !src.startsWith( urldirect ) )
 						src = hostImage.concat( urldirect ).concat( src );
@@ -112,9 +111,6 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			else 
 				continue;
 			
-			
-			//http://arquivo.pt/noFrame/replay/ 
-			//http://arquivo.pt/noFrame/replay/20131115204312im_/http://s.vcst.net/img/products/default-red-mini.png
 			int indexts = hostImage.concat( urldirect ).length( );
 			timestamp = src.substring( indexts , indexts + 14 );
 			//log.info( "src [" + src + "] timestamp[" + timestamp + "]" );
@@ -124,7 +120,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			String alt 		= getAttribute( imgItem , "alt" );
 			
 			if( !onlyContainsNumbers( timestamp ) ) {
-				log.warn( "Wrong timstamp[" + timestamp + "] format" );
+				log.warn( "Wrong timstamp[" + timestamp + "] format ["+ src +"]" );
 				continue;
 			}
 			//log.info( "Parent : " + imgItem.parent( ).tagName( ) );
@@ -135,7 +131,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				continue;
 			else
 				rank.setScore( scoreImg );
-			
+			log.info( "scroImg == " + scoreImg );
 			if( title == null || title.trim( ).equals( "" ) )
 				title = "";
 			
@@ -152,7 +148,6 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) + " score = " + rank.getScore( ) );
 				
 				if( numImgsbyUrl != -1 ) countImg++;
-				log.info( "[CDXParser] ImageResult solved! " );
 			} catch( Exception e ) {
 				log.warn( "[Image] Error get resource["+src+"] " );
 				continue;
@@ -195,12 +190,12 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	}
 	
 	private float checkTerms( String src , String titleImg , String alt ) {
-		int counterTermssrc 	= 0;
-		int counterTermsTitle 	= 0;
-		int counterTermsAlt 	= 0;
+		float counterTermssrc 		= 0;
+		float counterTermsTitle 	= 0;
+		float counterTermsAlt 		= 0;
 		URL urlSrc = null;
 		List< String > urlTerms;
-		float resultScore = 0;
+		//float resultScore = 0;
 		try {
 			urlSrc = new URL( src );
 			urlTerms = new LinkedList< String >( Arrays.asList( urlSrc.getPath( ).split( "/" ) ) );
@@ -208,7 +203,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			return 0.0f;
 		}
 		
-		log.debug( "src["+src+"]" );
+		
 		log.debug("protocol = " + urlSrc.getProtocol());
         log.debug("authority = " + urlSrc.getAuthority());
         log.debug("host = " + urlSrc.getHost());
@@ -223,52 +218,41 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			log.debug( "Term["+term.toLowerCase()+"] src["+src.toLowerCase()+"] title["+titleImg.toLowerCase()+"] alt["+alt.toLowerCase()+"]" );
 			int index = src.toLowerCase( ).indexOf( term.toLowerCase( ) );
 			if( index != -1 ) 
-				counterTermssrc += checkWhereis( urlTerms , term ) + 1;
+				counterTermssrc += checkWhereis( urlTerms , term );
 			
 			if( titleImg.toLowerCase( ).contains( term.toLowerCase( ) ) ) 
-				counterTermsTitle++;
+				counterTermsTitle += 1.0f;
 			
 			if( alt.toLowerCase( ).contains( term.toLowerCase( ) ) ) 
-				counterTermsAlt++;
+				counterTermsAlt += 1.0f;
 		}
-		log.debug( "checkTerms src["+ counterTermssrc +"] title["+ counterTermsTitle +"] alt["+ counterTermsAlt +"]" );
+		
 		if( counterTermsAlt == 0 && counterTermssrc == 0 && counterTermsTitle == 0 )
 			return 0;
 		
+		log.info( "checkTerms countersrc["+ counterTermssrc +"] title["+ counterTermsTitle +"] alt["+ counterTermsAlt +"] src["+src+"]" );
 		if( counterTermssrc >= counterTermsTitle &&  counterTermssrc >= counterTermsAlt ) {
-			resultScore += counterTermssrc;
-			if( counterTermssrc == terms.size( ) )
-				resultScore += Constants.srcScore + Constants.incrementRank;
-			else
-				resultScore += Constants.srcScore;
+			return counterTermssrc;
 		} else if( counterTermsTitle >= counterTermssrc &&  counterTermsTitle >= counterTermsAlt ) {
-			resultScore += counterTermsTitle;
-			if( counterTermsTitle == terms.size( ) )
-				resultScore += Constants.titleScore + Constants.incrementRank;
-			else
-				resultScore += Constants.titleScore;
+			return counterTermsTitle;
 		} else if( counterTermsAlt >= counterTermssrc &&  counterTermsAlt >= counterTermsTitle ) {
-			resultScore += counterTermsAlt;
-			if( counterTermsAlt == terms.size( ) )
-				resultScore += Constants.altScore + Constants.incrementRank;
-			else
-				resultScore += Constants.altScore;
+			return counterTermsAlt;
 		}
 		
-		return resultScore;
+		return 0.0f;
 	}
 	
 	
-	private int checkWhereis( List< String > urlTerms , String queryTerm ) {
-		int counterIndex = 1,
-			counterResult = 0;
+	private float checkWhereis( List< String > urlTerms , String queryTerm ) {
+		int counterIndex = 1;
+		float counterResult = 0;
 		for( String term : urlTerms ) {
 			int index = term.indexOf( queryTerm );
 			if( index != -1 ) {
 				if( counterIndex == urlTerms.size( ) ) 
-					counterResult += Constants.incrScorePath * 2; 
+					counterResult += Constants.incrementSrcMore;
 				else
-					counterResult += Constants.incrScorePath;
+					counterResult += Constants.incrScoreSrcLess;
 			}
 			counterIndex++;
 		}
@@ -303,7 +287,6 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		} catch( Exception e ) {
 			return null;
 		}
-		
 	}
 	
 	private boolean onlyContainsNumbers( String text ) {

@@ -36,7 +36,7 @@ public class CDXParser {
 	private final String keyMimeType 	= "mime";
 	
 	public CDXParser( String hostBaseCDX, String outputCDX, String flParam, ImageSearchResult img ) {
-		super();
+		super( );
 		this.hostBaseCDX 	= hostBaseCDX;
 		this.outputCDX 		= outputCDX;
 		this.flParam 		= flParam;
@@ -48,7 +48,6 @@ public class CDXParser {
 		ItemCDXServer  imgCDX = null;
 
 		String urlCDX = getLink( img.getUrl( ) , img.getTimestamp( ) );
-		log.info( "Link CDXServer = " + urlCDX );
 		try{
 			List< JSONObject > jsonValues = readJsonFromUrl( urlCDX );
 			//printDebug( jsonValues );
@@ -103,10 +102,8 @@ public class CDXParser {
 	}
 	
 	private String getLink( String url , String timestamp ) {
-//ttp://arquivo.pt/noFrame/replay/20120122112120im_/http://www.fundacao-antonio-aleixo.pt/images/logo@lgarweb.jpg
-		//String urlaux = url.substring( url.indexOf( timestamp.substring( 0 ,timestamp.length( ) - 1 ) ) + timestamp.length( ) + 1 );
 		String urlaux = url.substring( url.indexOf( timestamp ) +  18 );
-		log.info( "[CDXParser][getLink] url["+url+"] timestamp["+timestamp+"] urlaux["+urlaux+"]" );
+		log.debug( "[CDXParser][getLink] url["+url+"] timestamp["+timestamp+"] urlaux["+urlaux+"]" );
 		return hostBaseCDX
 					.concat( "url" )
 					.concat( Constants.equalOP )

@@ -249,13 +249,17 @@ public class ImageSearchResultsController {
     private List< ImageSearchResult > uniqueResult( List< ImageSearchResult > imageResults ) {
     	List< ImageSearchResult > uniqueList = new ArrayList< >( );
     	Set< ImageSearchResult > uniqueSet = new HashSet< >( );
+    	//log.info( "*** Links Rejeitados ***" );
     	for( ImageSearchResult obj : imageResults ) {
     		//log.info( "obj = " + obj.getUrl( ) + " digest = " + obj.getDigest( ) );
     		if( uniqueSet.add( obj ) ){
     			uniqueList.add( obj );
     			//log.info( "Inseriu ["+obj.getUrl( )+"]" );
-    		}
+    		} /*else {
+    			log.info( obj.getUrl( ) + " digest["+obj.getDigest()+"]");
+    		}*/
     	}
+    	//log.info("*****************");
     	return uniqueList;
     }
     

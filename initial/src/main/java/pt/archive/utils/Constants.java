@@ -2,16 +2,15 @@ package pt.archive.utils;
 
 public class Constants {
 	
-	public static final String andOP 		 = "&";
-	public static final String inOP  		 = "+";
-	public static final String equalOP 		 = "=";
-	public static final String colonOP 		 = ":";
-	public static final String urlBarOP 	 = "/";
-	public static final float  srcScore 	 = 5.0f;
-	public static final float  titleScore 	 = 3.0f;
-	public static final float  altScore 	 = 1.0f;
-	public static final float  incrementRank = 1.0f;
-	public static final int    incrScorePath = 2;
+	public static final String andOP 		 	= "&";
+	public static final String inOP  		 	= "+";
+	public static final String equalOP 		 	= "=";
+	public static final String colonOP 		 	= ":";
+	public static final String urlBarOP 	 	= "/";
+	public static final float  titleScore 	 	= 3.0f;
+	public static final float  altScore 	 	= 3.0f;
+	public static final float  incrementSrcMore = 3;
+	public static final float  incrScoreSrcLess = 0.5f;
 	public static final String[] stopWord = { //86 stop words
 		"a","e","o","é","à","s","n","d","c","i","p","de","do","da","para","em","os","com",
 		"no","por","que","um","as","se","na","uma","não","dos","pt","ao","mais","ou","das","nos",
