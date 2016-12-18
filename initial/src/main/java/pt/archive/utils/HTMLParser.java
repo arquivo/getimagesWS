@@ -120,7 +120,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			String alt 		= getAttribute( imgItem , "alt" );
 			
 			if( !onlyContainsNumbers( timestamp ) ) {
-				log.warn( "Wrong timstamp[" + timestamp + "] format ["+ src +"]" );
+				//log.warn( "Wrong timstamp[" + timestamp + "] format ["+ src +"]" );
 				continue;
 			}
 			//log.info( "Parent : " + imgItem.parent( ).tagName( ) );
@@ -131,7 +131,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				continue;
 			else
 				rank.setScore( scoreImg );
-			log.info( "scroImg == " + scoreImg );
+			
 			if( title == null || title.trim( ).equals( "" ) )
 				title = "";
 			
@@ -141,7 +141,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				resultCDXServer = itemCDX.getImgCDX( );
 				if( resultCDXServer == null )
 					continue;
-				
+				log.debug( "scoreImg [" + scoreImg + "] digest " + itemCDX.getImgCDX().getDigest()  );
 				resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) ) );
 				//resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , null , rank , null , null ) );
 				log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
@@ -216,21 +216,22 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		log.debug( "***Analisar Terms***" );
 		for( String term : terms ) { //counter number of term occurrence (title,src,alt)
 			log.debug( "Term["+term.toLowerCase()+"] src["+src.toLowerCase()+"] title["+titleImg.toLowerCase()+"] alt["+alt.toLowerCase()+"]" );
+			if( term.startsWith( Constants.negSearch ) ) continue;
 			int index = src.toLowerCase( ).indexOf( term.toLowerCase( ) );
 			if( index != -1 ) 
 				counterTermssrc += checkWhereis( urlTerms , term );
 			
 			if( titleImg.toLowerCase( ).contains( term.toLowerCase( ) ) ) 
-				counterTermsTitle += 1.0f;
+				counterTermsTitle += Constants.titleScore;
 			
 			if( alt.toLowerCase( ).contains( term.toLowerCase( ) ) ) 
-				counterTermsAlt += 1.0f;
+				counterTermsAlt += Constants.altScore;
 		}
 		
 		if( counterTermsAlt == 0 && counterTermssrc == 0 && counterTermsTitle == 0 )
 			return 0;
 		
-		log.info( "checkTerms countersrc["+ counterTermssrc +"] title["+ counterTermsTitle +"] alt["+ counterTermsAlt +"] src["+src+"]" );
+		log.debug( "checkTerms countersrc["+ counterTermssrc +"] title["+ counterTermsTitle +"] alt["+ counterTermsAlt +"] src["+src+"]" );
 		if( counterTermssrc >= counterTermsTitle &&  counterTermssrc >= counterTermsAlt ) {
 			return counterTermssrc;
 		} else if( counterTermsTitle >= counterTermssrc &&  counterTermsTitle >= counterTermsAlt ) {

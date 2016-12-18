@@ -7,8 +7,10 @@ public class Constants {
 	public static final String equalOP 		 	= "=";
 	public static final String colonOP 		 	= ":";
 	public static final String urlBarOP 	 	= "/";
-	public static final float  titleScore 	 	= 3.0f;
-	public static final float  altScore 	 	= 3.0f;
+	public static final String quotationMarks	= "\"";
+	public static final String negSearch		= "-";
+	public static final float  titleScore 	 	= 2.0f;
+	public static final float  altScore 	 	= 2.0f;
 	public static final float  incrementSrcMore = 3;
 	public static final float  incrScoreSrcLess = 0.5f;
 	public static final String[] stopWord = { //86 stop words

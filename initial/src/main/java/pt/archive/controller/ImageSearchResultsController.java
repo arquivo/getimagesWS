@@ -102,7 +102,6 @@ public class ImageSearchResultsController {
 	
 	@PostConstruct
 	public void initIt( ) throws Exception {
-		
 	  log.info("Init method after properties are set : blacklistUrlFile[" + blackListUrlFileLocation +"] & blacklistDomainFile[" + blacklistDomainFileLocation + "]");
 	  loadBlackListFiles( );
 	  printProperties( );
@@ -145,7 +144,7 @@ public class ImageSearchResultsController {
  		try {
  			cleanUpMemory( );
  			terms = new LinkedList< String >( Arrays.asList( query.split( " " ) ) );
- 			removeStopWords( );
+ 			prepareTerms( );
  			url = buildURL( query , stamp );
  			log.debug( "Teste input == " + URLEncoder.encode( query , "UTF-8" ).replace( "+" , "%20" ) + " url == " + url );
 	 		// the SAX parser
@@ -249,17 +248,11 @@ public class ImageSearchResultsController {
     private List< ImageSearchResult > uniqueResult( List< ImageSearchResult > imageResults ) {
     	List< ImageSearchResult > uniqueList = new ArrayList< >( );
     	Set< ImageSearchResult > uniqueSet = new HashSet< >( );
-    	//log.info( "*** Links Rejeitados ***" );
     	for( ImageSearchResult obj : imageResults ) {
-    		//log.info( "obj = " + obj.getUrl( ) + " digest = " + obj.getDigest( ) );
     		if( uniqueSet.add( obj ) ){
     			uniqueList.add( obj );
-    			//log.info( "Inseriu ["+obj.getUrl( )+"]" );
-    		} /*else {
-    			log.info( obj.getUrl( ) + " digest["+obj.getDigest()+"]");
-    		}*/
+    		} 
     	}
-    	//log.info("*****************");
     	return uniqueList;
     }
     
@@ -275,6 +268,41 @@ public class ImageSearchResultsController {
         }
     }
     
+    private void prepareTerms( ){
+    	removeStopWords( );
+    	removeCharactersAdvancedSearch( );
+    }
+    
+    private void removeCharactersAdvancedSearch( ){
+    	int index = 0;
+    	char checkquotes = 45,
+    			checkaddElement = 45;
+    	List< String > resultTerms = new ArrayList< >( );
+    	String strTerm;
+    	for( String term : terms ) {
+    		if( checkquotes == 46 ) { //quotation marks start and not end
+    			if( !term.contains( Constants.quotationMarks ) ) { //if no contain quotaiton marks
+    				//TODO refazer com regex...
+    			}
+    		} else {
+    			if( term.startsWith( Constants.quotationMarks ) )  {
+        			//terms.set( index , terms.get( index ).substring( 1 ) );
+        			strTerm = term.substring( 1 );
+        			checkquotes = 46;
+        		} 
+        		
+        		
+        		if( term.endsWith( Constants.quotationMarks ) )
+        			strTerm = term.substring( 0 , term.length( ) - 1 ) );
+        		
+    		}
+    		if( checkaddElement == 45 )
+    			resultTerms.add( strTerm );
+    		strTerm = "";
+    		index++;
+    	}
+    }
+    
     private void removeStopWords( ) {
     	for( Iterator< String > iterator = terms.iterator( ) ; iterator.hasNext( ); ) {
     		String term = iterator.next( );
@@ -288,7 +316,6 @@ public class ImageSearchResultsController {
     }
     
     private void cleanUpMemory( ) {
-  
 		if( terms != null ) {
 			log.info( "[DEBUGGG] imageResults["+ terms.size( ) +"] ");
 			terms.clear( );
