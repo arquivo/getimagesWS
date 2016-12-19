@@ -1,4 +1,4 @@
-# Arquivo.pt: Protótipo da pesquisa de imagens
+# [Arquivo.pt](http://arquivo.pt/): Prototype Search Image
 Web service rest extracted from the [OpenSearch](https://github.com/arquivo/pywb-opensearch-cdx) webpage harvested. Then, it collects from the sites parametrizable number of images of each page, assigning each image a score for the final ranking. It also uses the link: https://github.com/ikreymer/pywb/wiki/CDX-Server-API [CDXServer] to verify that the resource was well indexed.
 
 ## Requirements
@@ -26,10 +26,14 @@ Feel free to send emails with comments and questions.
 ## How Image search works
 Input example
 ```
+query = rtp 
+```
+Output example
+```
 {total:0 , }
 ```
 
-    
+##PAdvanced Search Image
 
 
 
