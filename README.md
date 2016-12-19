@@ -3,9 +3,9 @@
 Web service rest extracted from the link: https: //github.com/file/pywb-opensearch-cdx [OpenSearch] webpage harvested. Then, it collects from the sites parametrizable number of images of each page, assigning each image a score for the final ranking. It also uses the link: https: //github.com/ikreymer/pywb/wiki/CDX-Server-API [CDXServer] to verify that the resource was well indexed.
 
 ## Requirements
-	* JDK 1.7
-	* Maven 3
-	* Tomcat7 or another web-container
+* JDK 1.7
+* Maven 3
+* Tomcat7 or another web-container
 
 ## Build and usage
 	* Build the application with: mvn clean install
