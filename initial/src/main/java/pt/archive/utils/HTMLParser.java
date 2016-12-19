@@ -113,14 +113,12 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			
 			int indexts = hostImage.concat( urldirect ).length( );
 			timestamp = src.substring( indexts , indexts + 14 );
-			//log.info( "src [" + src + "] timestamp[" + timestamp + "]" );
 			String titleImg = getAttribute( imgItem , "title" );
 			String width 	= getAttribute( imgItem , "width" );
 			String height 	= getAttribute( imgItem , "height" );
 			String alt 		= getAttribute( imgItem , "alt" );
 			
 			if( !onlyContainsNumbers( timestamp ) ) {
-				//log.warn( "Wrong timstamp[" + timestamp + "] format ["+ src +"]" );
 				continue;
 			}
 			//log.info( "Parent : " + imgItem.parent( ).tagName( ) );
@@ -143,7 +141,6 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 					continue;
 				log.debug( "scoreImg [" + scoreImg + "] digest " + itemCDX.getImgCDX().getDigest()  );
 				resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) ) );
-				//resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , null , rank , null , null ) );
 				log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
 				          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) + " score = " + rank.getScore( ) );
 				
@@ -195,7 +192,6 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		float counterTermsAlt 		= 0;
 		URL urlSrc = null;
 		List< String > urlTerms;
-		//float resultScore = 0;
 		try {
 			urlSrc = new URL( src );
 			urlTerms = new LinkedList< String >( Arrays.asList( urlSrc.getPath( ).split( "/" ) ) );
@@ -218,7 +214,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			log.debug( "Term["+term.toLowerCase()+"] src["+src.toLowerCase()+"] title["+titleImg.toLowerCase()+"] alt["+alt.toLowerCase()+"]" );
 			if( term.startsWith( Constants.negSearch ) ) continue;
 			int index = src.toLowerCase( ).indexOf( term.toLowerCase( ) );
-			if( index != -1 ) 
+			if( index != -1 )
 				counterTermssrc += checkWhereis( urlTerms , term );
 			
 			if( titleImg.toLowerCase( ).contains( term.toLowerCase( ) ) ) 
@@ -269,6 +265,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.resultsImg = resultsImg;
 	}
 	
+	@SuppressWarnings("unused")
 	private String convertByteYoHex( String str ) {
 		try {
 			MessageDigest md = MessageDigest.getInstance( "SHA-256" );

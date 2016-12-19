@@ -34,6 +34,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.annotation.PostConstruct;
 
@@ -42,7 +44,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @Configuration
 @RestController
@@ -53,7 +54,7 @@ public class ImageSearchResultsController {
 	private String startIndex;
 	private List< String > blacklListUrls;
 	private List< String > blackListDomain;
-	
+	private List< String > stopwords;
 	/** Properties file application.properties**/
 	@Value( "${urlBase}" )
 	private String urlBase;
@@ -88,6 +89,9 @@ public class ImageSearchResultsController {
 	@Value( "${blacklistDomain.file}" )
 	private String blacklistDomainFileLocation;
 	
+	@Value( "${stopWords.file}" )
+	private String stopWordsFileLocation;
+	
 	@Value( "${urlBaseCDX}" )
 	private String urlBaseCDX;
 	
@@ -104,7 +108,10 @@ public class ImageSearchResultsController {
 	public void initIt( ) throws Exception {
 	  log.info("Init method after properties are set : blacklistUrlFile[" + blackListUrlFileLocation +"] & blacklistDomainFile[" + blacklistDomainFileLocation + "]");
 	  loadBlackListFiles( );
+	  loadStopWords( );
 	  printProperties( );
+	  printStopWords( );
+	  printBlackList( );
 	}
 	
 	/**
@@ -113,7 +120,7 @@ public class ImageSearchResultsController {
 	 * @param endData
 	 * @return 
 	 */
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping( value = "/" , method = RequestMethod.GET )
     public ImageSearchResults getImages( @RequestParam(value="query", defaultValue="") String query,
     									 @RequestParam(value="stamp", defaultValue="19960101000000-20151022163016") String stamtp,
     									 @RequestParam(value="start", defaultValue="0") String _startIndex ) {
@@ -143,8 +150,10 @@ public class ImageSearchResultsController {
  		
  		try {
  			cleanUpMemory( );
- 			terms = new LinkedList< String >( Arrays.asList( query.split( " " ) ) );
+ 			//terms = new LinkedList< String >( Arrays.asList( query.split( " " ) ) );
+ 			getTerms( query );
  			prepareTerms( );
+ 			printTerms( );
  			url = buildURL( query , stamp );
  			log.debug( "Teste input == " + URLEncoder.encode( query , "UTF-8" ).replace( "+" , "%20" ) + " url == " + url );
 	 		// the SAX parser
@@ -222,7 +231,7 @@ public class ImageSearchResultsController {
     
     private String buildURL( String input , String stamp ) throws UnsupportedEncodingException {
     	return urlBase
-    			.concat(  URLEncoder.encode( input , "UTF-8").replace("+", "%20") )
+    			.concat(  URLEncoder.encode( input , "UTF-8" ).replace( "+" , "%20" ) )
     			.concat( Constants.inOP )
     			.concat( "type" )
     			.concat( Constants.colonOP )
@@ -263,9 +272,16 @@ public class ImageSearchResultsController {
     }
     
     private void cleanUpThreads( List< Future< List< ImageSearchResult > > > submittedJobs ) {
-    	for ( Future< List< ImageSearchResult > > job : submittedJobs ) {
-            job.cancel(true);
-        }
+    	for ( Future< List< ImageSearchResult > > job : submittedJobs ) 
+            job.cancel( true );
+    }
+    
+    private void getTerms( String query ) {
+    	terms = new LinkedList< String >( );
+    	Matcher m = Pattern.compile( "([^\"]\\S*|\".+?\")\\s*" ).matcher( query );
+    	while( m.find( ) ) 
+    		if( !m.group( 1 ).startsWith( Constants.siteSearch ) && !m.group( 1 ).startsWith( Constants.negSearch ) )
+    			terms.add( m.group( 1 ).replace( "\"" ,  "" ) );
     }
     
     private void prepareTerms( ){
@@ -274,39 +290,13 @@ public class ImageSearchResultsController {
     }
     
     private void removeCharactersAdvancedSearch( ){
-    	int index = 0;
-    	char checkquotes = 45,
-    			checkaddElement = 45;
-    	List< String > resultTerms = new ArrayList< >( );
-    	String strTerm;
-    	for( String term : terms ) {
-    		if( checkquotes == 46 ) { //quotation marks start and not end
-    			if( !term.contains( Constants.quotationMarks ) ) { //if no contain quotaiton marks
-    				//TODO refazer com regex...
-    			}
-    		} else {
-    			if( term.startsWith( Constants.quotationMarks ) )  {
-        			//terms.set( index , terms.get( index ).substring( 1 ) );
-        			strTerm = term.substring( 1 );
-        			checkquotes = 46;
-        		} 
-        		
-        		
-        		if( term.endsWith( Constants.quotationMarks ) )
-        			strTerm = term.substring( 0 , term.length( ) - 1 ) );
-        		
-    		}
-    		if( checkaddElement == 45 )
-    			resultTerms.add( strTerm );
-    		strTerm = "";
-    		index++;
-    	}
+    	
     }
     
     private void removeStopWords( ) {
     	for( Iterator< String > iterator = terms.iterator( ) ; iterator.hasNext( ); ) {
     		String term = iterator.next( );
-    		for( String stopWord : Constants.stopWord ) {
+    		for( String stopWord : stopwords ) {
     			if( term.equals( stopWord ) ) {
     				log.info( "[StopWords] Remove term["+term+"] to ranking" );
     				iterator.remove( );
@@ -365,11 +355,42 @@ public class ImageSearchResultsController {
     	}
     }
     
-
+    private void loadStopWords( ) {
+    	Scanner s = null;
+    	try{
+    		s = new Scanner( new File( stopWordsFileLocation ) );
+    		stopwords = new ArrayList< String >( );
+    		while( s.hasNext( ) ) {
+    			stopwords.add( s.next( ) );
+    		}
+    	} catch( IOException e ) {
+    		log.error( "Load stopWords file error: " , e );
+    	} finally {
+    		if( s != null )
+    			s.close( );
+    	}
+    }
+    
+    private void printTerms(  ) {
+    	log.info( "****** Terms List ******" );
+    	for( String term : terms ) {
+    		log.info( " " + term );
+    	}
+    	log.info( "***********************" );
+    }
+    
     private void printBlackList( ){
     	log.info( "******* BlackList Urls *******" );
     	for( String url : blacklListUrls ) 
     		log.info( "  " + url );
+    	log.info("***************************");
+    	
+    }
+    
+    private void printStopWords( ){
+    	log.info( "******* StopWords Urls *******" );
+    	for( String word : stopwords ) 
+    		log.info( "  " + word );
     	log.info("***************************");
     	
     }

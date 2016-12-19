@@ -9,6 +9,7 @@ public class Constants {
 	public static final String urlBarOP 	 	= "/";
 	public static final String quotationMarks	= "\"";
 	public static final String negSearch		= "-";
+	public static final String siteSearch		= "site:";
 	public static final float  titleScore 	 	= 2.0f;
 	public static final float  altScore 	 	= 2.0f;
 	public static final float  incrementSrcMore = 3;
