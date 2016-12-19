@@ -25,9 +25,9 @@ Feel free to send emails with comments and questions.
 
 ## How Image search works
 Input example
-´´´json
+```json
 {total:0}
-´´
+´´´
 
     
 
