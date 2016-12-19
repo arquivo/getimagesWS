@@ -24,7 +24,7 @@ Web service rest extracted from the link: https: //github.com/file/pywb-opensear
 Developed by João Nobre (joaoanobre@gmail.com) 
 Feel free to send emails with comments and questions.
 
-## How Image search works
+##How Image search works
 Input example
 ----
 http://localhost:8080/getimagesWS/?query=rtp 
