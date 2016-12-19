@@ -8,17 +8,17 @@ Web service rest extracted from the link: https: //github.com/file/pywb-opensear
 * Tomcat7 or another web-container
 
 ## Build and usage
-	* Build the application with: mvn clean install
-	* Deploy the link:getimagesWS/target[getimagesWS.war] file in a web-container
-	* Example usage ( search for **rtp** )
-		----
-		http://localhost:8080/getimagesWS/?query=rtp 
-		----
+* Build the application with: mvn clean install
+* Deploy the link:getimagesWS/target[getimagesWS.war] file in a web-container
+* Example usage ( search for **rtp** )
+	----
+	http://localhost:8080/getimagesWS/?query=rtp 
+	----
 
 ## Configurations
-	 * File blacklist url: /getimagesWS/blacklistUrl
-	 * FIle blacklist domain: /getimagesWS/blacklistDomain
-	 * File stop words: /getimagesWS/stopWords
+* File blacklist url: /getimagesWS/blacklistUrl
+* FIle blacklist domain: /getimagesWS/blacklistDomain
+* File stop words: /getimagesWS/stopWords
 	 
 ## Contacts
 Developed by João Nobre (joaoanobre@gmail.com) 
