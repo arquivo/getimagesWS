@@ -1,4 +1,23 @@
-Edited from Spring Tutorial in order to be able to deploy a .war inside an already existing tomcat.
+#Arquivo.pt: Protótipo da pesquisa de imagens
+---
+Web service rest extraí do link:https://github.com/arquivo/pywb-opensearch-cdx[OpenSearch] página web colhidas. De seguida, recolhe dos sites número parametrizável de imagens de cada página, atribuindo a cada imagem um score para o ranking final. Usa também o link:https://github.com/ikreymer/pywb/wiki/CDX-Server-API[CDXServer] para verificar se o recurso foi bem indexado.
+
+
+#Requirements
+	* JDK 1.7
+	* Maven 3
+	* Tomcat7 or another web-container
+
+#Build and usage
+	* Build the application with: mvn clean install
+	* Deploy the link:getimagesWS/target[getimagesWS.war] file in a web-container
+	* Example usage ( search for **rtp** )
+		----
+		http://localhost:8080/getimagesWS/?query=rtp 
+		----
+
+#Configurations
+	 File blacklist url: /getimagesWS/ 
 
 ---
 tags: [rest]

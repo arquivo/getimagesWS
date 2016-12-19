@@ -163,7 +163,7 @@ public class ImageSearchResultsController {
 	 		myReader.parse( new InputSource(new URL( url ).openStream( ) ) );
 	 		resultOpenSearch = userhandler.getItems( );
 	 		
-	 		if( resultOpenSearch == null || resultOpenSearch.size( ) == 0 )  //No results the OpenSearch
+	 		if( resultOpenSearch == null || resultOpenSearch.size( ) == 0 )  //No results in OpenSearch
 	 			return  Collections.emptyList( );
 	 		
 	 		log.info( "[ImageSearchResultsController][getImageResults] OpenSearch result : " + resultOpenSearch.size( ) );
