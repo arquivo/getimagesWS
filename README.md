@@ -27,7 +27,7 @@ Feel free to send emails with comments and questions.
 Input example
 ```
 {total:0 , }
-´´´
+```
 
     
 
