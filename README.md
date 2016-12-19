@@ -10,9 +10,9 @@ Web service rest extracted from the [OpenSearch](https://github.com/arquivo/pywb
 * Build the application with: mvn clean install
 * Deploy the link:getimagesWS/target[getimagesWS.war] file in a web-container
 * Example usage ( search for **rtp** )
-	----
-	http://localhost:8080/getimagesWS/?query=rtp 
-	----
+```
+http://localhost:8080/getimagesWS/?query=rtp 
+```
 
 ## Configurations
 * File blacklist url: /getimagesWS/blacklistUrl
