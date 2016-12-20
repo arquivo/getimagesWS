@@ -11,7 +11,7 @@ Web service rest extracted from the [OpenSearch](https://github.com/arquivo/pywb
 * Deploy the link:getimagesWS/target[getimagesWS.war] file in a web-container
 * Example usage ( search for **rtp** )
 ```
-http://localhost:8080/getimagesWS/?query=rtp 
+http://localhost:8080/getimagesWS/?query=antonio%20costa&stamp=19960101000000-20151022163016&start=2
 ```
 
 ## Configurations
@@ -29,8 +29,8 @@ query = rtp
 ```
 **Input attributes**
 * ``query``: query is searching 
-* ``start``: start index to search in openSearch
-* ``stamp``: time interval to search, format: startDate-endDate (example:"19960101000000-20151022163016") 
+* ``start``: start index to search in openSearch (default:0)
+* ``stamp``: time interval to search, format: startDate-endDate (default:"19960101000000-20151022163016") 
 
 ##Output example (json)
 
