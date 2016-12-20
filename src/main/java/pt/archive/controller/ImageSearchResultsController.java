@@ -55,6 +55,9 @@ public class ImageSearchResultsController {
 	private List< String > blacklListUrls;
 	private List< String > blackListDomain;
 	private List< String > stopwords;
+	private String criteriaRank;
+	private String mimeType;
+	
 	/** Properties file application.properties**/
 	@Value( "${urlBase}" )
 	private String urlBase;
@@ -124,7 +127,7 @@ public class ImageSearchResultsController {
     public ImageSearchResults getImages( @RequestParam(value="query", defaultValue="") String query,
     									 @RequestParam(value="stamp", defaultValue="19960101000000-20151022163016") String stamtp,
     									 @RequestParam(value="start", defaultValue="0") String _startIndex ) {
-    	log.info( "New request query[" + query + "] stamp["+ stamtp +"]" );
+    	log.info( "New request query[" + query + "] stamp["+ stamtp +"] start["+ _startIndex +"]" );
     	startIndex = _startIndex;
     	List< ImageSearchResult > imageResults = getImageResults( query , stamtp ); 
     	log.info( "Results = " + imageResults.size( ) );
@@ -150,13 +153,12 @@ public class ImageSearchResultsController {
  		
  		try {
  			cleanUpMemory( );
- 			//terms = new LinkedList< String >( Arrays.asList( query.split( " " ) ) );
- 			getTerms( query );
+ 			String removeStr = getTerms( query );
  			prepareTerms( );
  			printTerms( );
- 			url = buildURL( query , stamp );
- 			log.debug( "Teste input == " + URLEncoder.encode( query , "UTF-8" ).replace( "+" , "%20" ) + " url == " + url );
-	 		// the SAX parser
+ 			url = buildURL( query , stamp , removeStr );
+ 			
+ 			// the SAX parser
  			UserHandler userhandler = new UserHandler( );
 	 		XMLReader myReader = XMLReaderFactory.createXMLReader( );
 	 		myReader.setContentHandler( userhandler );
@@ -171,7 +173,7 @@ public class ImageSearchResultsController {
 	 		
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
 	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
- 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain ) );
+ 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , mimeType ) );
 	 			submittedJobs.add( job );
 	 		}
 	 		try {
@@ -229,9 +231,11 @@ public class ImageSearchResultsController {
     }
     
     
-    private String buildURL( String input , String stamp ) throws UnsupportedEncodingException {
+    private String buildURL( String input , String stamp , String removeTerm ) throws UnsupportedEncodingException {
+    	String query = input.replace( removeTerm , "" );
+    	
     	return urlBase
-    			.concat(  URLEncoder.encode( input , "UTF-8" ).replace( "+" , "%20" ) )
+    			.concat(  URLEncoder.encode( query , "UTF-8" ).replace( "+" , "%20" ) )
     			.concat( Constants.inOP )
     			.concat( "type" )
     			.concat( Constants.colonOP )
@@ -276,12 +280,35 @@ public class ImageSearchResultsController {
             job.cancel( true );
     }
     
-    private void getTerms( String query ) {
+    private String getTerms( String query ) {
     	terms = new LinkedList< String >( );
+    	char sort = 45;
+    	String sortTerm = "";
     	Matcher m = Pattern.compile( "([^\"]\\S*|\".+?\")\\s*" ).matcher( query );
-    	while( m.find( ) ) 
-    		if( !m.group( 1 ).startsWith( Constants.siteSearch ) && !m.group( 1 ).startsWith( Constants.negSearch ) )
+    	while( m.find( ) ) {
+    		if( m.group( 1 ).startsWith( Constants.sortCriteria ) ) {
+    			String auxSort = m.group( 1 ).substring( m.group( 1 ).indexOf( Constants.sortCriteria ) + Constants.sortCriteria.length( ) );
+    			sortTerm = m.group( 1 );
+    			log.info( "  auxSort => " + auxSort + " remove = " + sortTerm );
+    			sort = 46;
+    			if( auxSort.equals( Constants.criteriaRank.NEW.toString( ) ) )
+    				criteriaRank = "new";
+    			else if( auxSort.equals( Constants.criteriaRank.OLD.toString( ) ) )
+    				criteriaRank = "old";
+    			else {
+    				criteriaRank = "score";
+    				sortTerm = "";
+    			}
+    		} else if( m.group( 1 ).startsWith( Constants.typeSearch ) ) { //mimeType
+    			mimeType = m.group( 1 ).substring( m.group( 1 ).indexOf( Constants.typeSearch ) + Constants.typeSearch.length( ) );
+    		} else if( !m.group( 1 ).startsWith( Constants.sizeSearch ) && !m.group( 1 ).startsWith( Constants.siteSearch ) && !m.group( 1 ).startsWith( Constants.negSearch ) ) 
     			terms.add( m.group( 1 ).replace( "\"" ,  "" ) );
+    		
+    	}
+    	
+    	if( sort == 45 )
+    		criteriaRank = "score";
+    	return sortTerm;
     }
     
     private void prepareTerms( ){

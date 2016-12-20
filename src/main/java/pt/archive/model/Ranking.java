@@ -3,14 +3,14 @@ package pt.archive.model;
 public class Ranking {
 	
 	private float score;
-	private int rank;
+	private String type;
 	
 	public Ranking( ){ }
 	
-	public Ranking(float socre, int rank) {
+	public Ranking(float socre, String rank) {
 		super();
 		this.score = socre;
-		this.rank = rank;
+		this.type = rank;
 	}
 	
 	public float getScore() {
@@ -21,17 +21,17 @@ public class Ranking {
 		this.score = score;
 	}
 	
-	public int getRank() {
-		return rank;
+	public String getRank() {
+		return type;
 	}
 	
-	public void setRank(int rank) {
-		this.rank = rank;
+	public void setRank(String type) {
+		this.type = type;
 	}
 	
 	@Override
 	public String toString() {
-		return "Ranking [score=" + score + ", rank=" + rank + "]";
+		return "Ranking [score=" + score + ", rank=" + type + "]";
 	}
 
 }

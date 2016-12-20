@@ -1,5 +1,8 @@
 package pt.archive.model;
 
+import pt.archive.utils.Constants;
+import pt.archive.utils.Constants.criteriaRank;
+
 public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	
 	String url;
@@ -103,6 +106,10 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
         
 	}
 	
+	private long ConvertTimstampToLong(  ) {
+		return Long.parseLong( this.getTimestamp( ) );
+	}
+	
 	@Override
 	public int hashCode() {
 	     return this.digest.hashCode( );
@@ -110,9 +117,33 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	
 	@Override
 	public int compareTo( ImageSearchResult another ) {
-		return this.getScore( ).getScore( ) > another.getScore( ).getScore( ) ? -1 
-			     : this.getScore( ).getScore( ) < another.getScore( ).getScore( ) ? 1 
-			     : 0;
+		int result = 0;
+		
+		if( this.score.getRank( ).equals( Constants.criteriaRank.NEW.toString( ) ) ) {
+			if( this.ConvertTimstampToLong( ) > another.ConvertTimstampToLong( ) )
+				result = -1; 
+			else if( this.ConvertTimstampToLong( ) < another.ConvertTimstampToLong( ) )
+				result = 1; 
+			else
+				result = 0;
+		} else if( this.score.getRank( ).equals( Constants.criteriaRank.OLD.toString( ) ) ) {
+			if( this.ConvertTimstampToLong( ) < another.ConvertTimstampToLong( ) )
+				result = -1; 
+			else if( this.ConvertTimstampToLong( ) > another.ConvertTimstampToLong( ) )
+				result = 1; 
+			else
+				result = 0;
+		} else if( this.score.getRank( ).equals( Constants.criteriaRank.SCORE.toString( ) ) ) {
+			if( this.getScore( ).getScore( ) > another.getScore( ).getScore( ) )
+				result = -1; 
+			else if( this.getScore( ).getScore( ) < another.getScore( ).getScore( ) )
+				result = 1; 
+			else
+				result = 0;
+		}
+		
+		
+		return result;
 	}
 		
 }

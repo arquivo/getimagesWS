@@ -34,10 +34,12 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private String urlBaseCDX;
 	private String outputCDX;
 	private String flParam;
+	private String criteriaRank;
 	private List< String > blacklistUrls;
 	private List< String > blacklistDomain;
+	private String mimeType;
 	
-	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain ) { 
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , String mimeType ) { 
 		this.itemtoSearch 		= itemtoSearch;
 		this.numImgsbyUrl 		= numImgsbyUrl;
 		this.hostImage			= hostImage;
@@ -50,6 +52,8 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.flParam			= flParam;
 		this.blacklistUrls  	= blacklistUrls;
 		this.blacklistDomain 	= blacklistDomain;
+		this.criteriaRank		= criteriaRank;
+		this.mimeType 			= mimeType;
 	}
 	
 	@Override
@@ -100,7 +104,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				if( countImg == numImgsbyUrl ) break; 
 			
 			String src, timestamp;
-			if( imgItem.attr( "src" ) != null && !imgItem.attr( "src" ).trim().equals( "" ) && !presentBlackList( imgItem.attr( "src" ) ) ) {
+			if( imgItem.attr( "src" ) != null && !imgItem.attr( "src" ).trim( ).equals( "" ) && !presentBlackList( imgItem.attr( "src" ) ) ) {
 				src = imgItem.attr( "src" ); //absolute URL on src
 				if( !src.startsWith( hostImage ) )
 					if( !src.startsWith( urldirect ) )
@@ -127,8 +131,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			float scoreImg = checkTerms( src, titleImg , alt );
 			if( scoreImg == 0 )
 				continue;
-			else
-				rank.setScore( scoreImg );
+			
+			rank.setScore( scoreImg );
+			rank.setRank( criteriaRank );
 			
 			if( title == null || title.trim( ).equals( "" ) )
 				title = "";
@@ -139,6 +144,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				resultCDXServer = itemCDX.getImgCDX( );
 				if( resultCDXServer == null )
 					continue;
+				
 				log.debug( "scoreImg [" + scoreImg + "] digest " + itemCDX.getImgCDX().getDigest()  );
 				resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) ) );
 				log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
@@ -160,7 +166,6 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		for( String blacksrc : blacklistUrls ) 
 			if( blacksrc.equals( src ) ) 
 				return true;
-		
 		return false;
 	}
 	
@@ -192,13 +197,13 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		float counterTermsAlt 		= 0;
 		URL urlSrc = null;
 		List< String > urlTerms;
+		
 		try {
 			urlSrc = new URL( src );
 			urlTerms = new LinkedList< String >( Arrays.asList( urlSrc.getPath( ).split( "/" ) ) );
 		} catch( Exception e ) {
 			return 0.0f;
 		}
-		
 		
 		log.debug("protocol = " + urlSrc.getProtocol());
         log.debug("authority = " + urlSrc.getAuthority());
