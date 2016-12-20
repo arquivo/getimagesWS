@@ -34,7 +34,7 @@ query = rtp
 
 ##Output example (json)
 
-> {"totalResults":1,"content":[{"url":"http://arquivo.pt/noFrame/replay/20110520204656im_/http://www.jornaldenegocios.pt/images/2010_05/rtp_not_pe.jpg","width":"","height":"","alt":"","title":"","urlOriginal":"http://topicos.jornaldenegocios.pt/RTP","digest":"ab1af682c12ff47f365732bc1cdc5b99","score":{"score":3.0,"rank":0},"timestamp":"20110520204656","mime":"image/jpeg"}]}
+    > {"totalResults":1,"content":[{"url":"http://arquivo.pt/noFrame/replay/20110520204656im_/http://www.jornaldenegocios.pt/images/2010_05/rtp_not_pe.jpg","width":"","height":"","alt":"","title":"","urlOriginal":"http://topicos.jornaldenegocios.pt/RTP","digest":"ab1af682c12ff47f365732bc1cdc5b99","score":{"score":3.0,"rank":0},"timestamp":"20110520204656","mime":"image/jpeg"}]}
 
 Search has generated *389* results, as described by the *totalResults* field
 
