@@ -28,9 +28,9 @@ Feel free to send emails with comments and questions.
 query = rtp 
 ```
 **Input attributes**
-* query: query is searching 
-* start: start index to search in openSearch
-* stamp: time interval to search, format: startDate-endDate (example:"19960101000000-20151022163016") 
+* ``query``: query is searching 
+* ``start``: start index to search in openSearch
+* ``stamp``: time interval to search, format: startDate-endDate (example:"19960101000000-20151022163016") 
 
 ##Output example (json)
 
@@ -39,16 +39,16 @@ query = rtp
 Search has generated *389* results, as described by the *totalResults* field
 
 **Output attributes**
-* url: link to resource
-* width: image width
-* height: image height
-* alt: image alt
-* title: image title
-* urlOriginal: original url where resource is available
-* digest: resource hash
-* score: number for the ranking (the higher the more relevant) 
-* timestamp: image timestamp
-* mime: image mimetype
+* ``url``: link to resource
+* ``width``: image width
+* ``height``: image height
+* ``alt``: image alt
+* ``title``: image title
+* ``urlOriginal``: original url where resource is available
+* ``digest``: resource hash
+* ``score``: number for the ranking (the higher the more relevant) 
+* ``timestamp``: image timestamp
+* ``mime``: image mimetype
 
 
 ##Advanced Search Image
