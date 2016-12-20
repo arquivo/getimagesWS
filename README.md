@@ -23,17 +23,16 @@ http://localhost:8080/getimagesWS/?query=rtp
 Developed by João Nobre (joaoanobre@gmail.com) 
 Feel free to send emails with comments and questions.
 
-## How Image search works
-Input example
+##Input example
 ```
 query = rtp 
 ```
 **Input attributes**
-*query: query is searching 
-*start: start index to search in openSearch
-*stamp: time interval to search, format: startDate-endDate (example:"19960101000000-20151022163016") 
+* query: query is searching 
+* start: start index to search in openSearch
+* stamp: time interval to search, format: startDate-endDate (example:"19960101000000-20151022163016") 
 
-Output example (json)
+##Output example (json)
 [source,json]
 ----
 {"totalResults":1,"content":[{"url":"http://arquivo.pt/noFrame/replay/20110520204656im_/http://www.jornaldenegocios.pt/images/2010_05/rtp_not_pe.jpg","width":"","height":"","alt":"","title":"","urlOriginal":"http://topicos.jornaldenegocios.pt/RTP","digest":"ab1af682c12ff47f365732bc1cdc5b99","score":{"score":3.0,"rank":0},"timestamp":"20110520204656","mime":"image/jpeg"}]}
