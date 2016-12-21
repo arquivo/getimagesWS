@@ -122,9 +122,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			String height 	= getAttribute( imgItem , "height" );
 			String alt 		= getAttribute( imgItem , "alt" );
 			
-			if( !onlyContainsNumbers( timestamp ) ) {
+			if( !onlyContainsNumbers( timestamp ) )
 				continue;
-			}
+			
 			//log.info( "Parent : " + imgItem.parent( ).tagName( ) );
 			
 			log.debug( "[Tag Images] title["+titleImg+"] width["+width+"] height["+height+"] alt["+alt+"]" );
@@ -145,6 +145,10 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				if( resultCDXServer == null )
 					continue;
 				
+				log.debug( "ImgmimeType=["+resultCDXServer.getMime( ).equals( mimeType )+"] type=["+mimeType+"]" );
+				if( !mimeType.equals( "all" ) && !resultCDXServer.getMime( ).equals( mimeType ) ) //TODO rever
+					continue;
+
 				log.debug( "scoreImg [" + scoreImg + "] digest " + itemCDX.getImgCDX().getDigest()  );
 				resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) ) );
 				log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 

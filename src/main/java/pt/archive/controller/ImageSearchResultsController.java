@@ -1,5 +1,6 @@
 package pt.archive.controller;
 
+import org.apache.tomcat.util.bcel.classfile.ConstantDouble;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,6 +52,7 @@ public class ImageSearchResultsController {
 	
 	private final Logger log = LoggerFactory.getLogger( this.getClass( ) ); //Define the logger object for this class
 	private List< String > terms;
+	private List< String > allterms;
 	private String startIndex;
 	private List< String > blacklListUrls;
 	private List< String > blackListDomain;
@@ -144,7 +146,7 @@ public class ImageSearchResultsController {
     	List< ImageSearchResult > imageResults 	= new ArrayList< >( );
     	List< ImageSearchResult > resultImages 	= new ArrayList< >( );
     	boolean isAllDone = false;
-    	
+    	String queryWithoutTerm;
     	if( query == null || query.trim( ).equals( "" ) ) {
  			log.warn("[ImageSearchResultsController][getImageResults] Query empty!");
  			imageResults.add( getErrorCode( "-1: query empty" ) ); 
@@ -153,10 +155,11 @@ public class ImageSearchResultsController {
  		
  		try {
  			cleanUpMemory( );
- 			String removeStr = getTerms( query );
- 			prepareTerms( );
+ 			getTerms( query );
+ 			queryWithoutTerm = prepareTerms( query );
+ 			log.info( "query final => " + queryWithoutTerm );
  			printTerms( );
- 			url = buildURL( query , stamp , removeStr );
+ 			url = buildURL( queryWithoutTerm , stamp );
  			
  			// the SAX parser
  			UserHandler userhandler = new UserHandler( );
@@ -231,11 +234,9 @@ public class ImageSearchResultsController {
     }
     
     
-    private String buildURL( String input , String stamp , String removeTerm ) throws UnsupportedEncodingException {
-    	String query = input.replace( removeTerm , "" );
-    	
+    private String buildURL( String input , String stamp ) throws UnsupportedEncodingException {
     	return urlBase
-    			.concat(  URLEncoder.encode( query , "UTF-8" ).replace( "+" , "%20" ) )
+    			.concat(  URLEncoder.encode( input , "UTF-8" ).replace( "+" , "%20" ) )
     			.concat( Constants.inOP )
     			.concat( "type" )
     			.concat( Constants.colonOP )
@@ -280,9 +281,10 @@ public class ImageSearchResultsController {
             job.cancel( true );
     }
     
-    private String getTerms( String query ) {
-    	terms = new LinkedList< String >( );
-    	char sort = 45;
+    private void getTerms( String query ) {
+    	terms = new LinkedList< >( );
+    	allterms = new LinkedList< >( );
+    	char sort = 45, mime = 45;
     	String sortTerm = "";
     	Matcher m = Pattern.compile( "([^\"]\\S*|\".+?\")\\s*" ).matcher( query );
     	while( m.find( ) ) {
@@ -300,24 +302,42 @@ public class ImageSearchResultsController {
     				sortTerm = "";
     			}
     		} else if( m.group( 1 ).startsWith( Constants.typeSearch ) ) { //mimeType
-    			mimeType = m.group( 1 ).substring( m.group( 1 ).indexOf( Constants.typeSearch ) + Constants.typeSearch.length( ) );
-    		} else if( !m.group( 1 ).startsWith( Constants.sizeSearch ) && !m.group( 1 ).startsWith( Constants.siteSearch ) && !m.group( 1 ).startsWith( Constants.negSearch ) ) 
+    			mime = 46;
+    			mimeType = Constants.mimeTypestr.concat( m.group( 1 ).substring( m.group( 1 ).indexOf( Constants.typeSearch ) + Constants.typeSearch.length( ) ) );
+    		} else if( !m.group( 1 ).startsWith( Constants.sizeSearch ) && !m.group( 1 ).startsWith( Constants.siteSearch ) && !m.group( 1 ).startsWith( Constants.negSearch ) )
     			terms.add( m.group( 1 ).replace( "\"" ,  "" ) );
-    		
+    		allterms.add( m.group( 1 ).replace( "\"" ,  "" ) );
     	}
     	
     	if( sort == 45 )
     		criteriaRank = "score";
-    	return sortTerm;
-    }
-    
-    private void prepareTerms( ){
-    	removeStopWords( );
-    	removeCharactersAdvancedSearch( );
-    }
-    
-    private void removeCharactersAdvancedSearch( ){
+    	if( mime == 45 )
+    		mimeType = "all";
     	
+    	log.info( "criteriaRank["+criteriaRank+"] mimeType["+mimeType+"]" );
+    	
+    }
+    
+    private String prepareTerms( String query ){
+    	removeStopWords( );
+    	return removeCharactersAdvancedSearch( query );
+    }
+    
+    private String removeCharactersAdvancedSearch( String query ){
+    	StringBuffer queryResult = new StringBuffer();
+    	for( String term : allterms ) {
+    		log.info( "TERM => " + term );
+    		if( !term.startsWith( Constants.siteSearch ) &&
+    			!term.startsWith( Constants.sizeSearch ) &&
+    			!term.startsWith( Constants.sortCriteria ) )  {
+    			if( queryResult.length( ) > 0 )
+    				queryResult.append( " ".concat( term ) );
+    			else
+    				queryResult.append( term );
+    		}
+    	}
+    	log.info( "query no final do remove => " + queryResult.toString( ) );
+    	return queryResult.toString( );
     }
     
     private void removeStopWords( ) {

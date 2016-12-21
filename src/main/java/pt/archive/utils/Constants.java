@@ -21,6 +21,7 @@ public class Constants {
 	public static final String sortCriteria 	= "sort:";
 	public static final String typeSearch 		= "type:";
 	public static final String sizeSearch 		= "size:";
+	public static final String mimeTypestr 		= "image/";
 	public static enum criteriaRank implements Serializable {
 		SCORE,
 		NEW,
