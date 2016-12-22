@@ -160,7 +160,7 @@ public class ImageSearchResultsController {
  			log.info( "query final => " + queryWithoutTerm );
  			printTerms( );
  			url = buildURL( queryWithoutTerm , stamp );
- 			
+ 			log.info( "Request to OpenSearch["+ url +"]" );
  			// the SAX parser
  			UserHandler userhandler = new UserHandler( );
 	 		XMLReader myReader = XMLReaderFactory.createXMLReader( );
@@ -235,6 +235,7 @@ public class ImageSearchResultsController {
     
     
     private String buildURL( String input , String stamp ) throws UnsupportedEncodingException {
+    	log.info( "[buildURL] input => " + input );
     	return urlBase
     			.concat(  URLEncoder.encode( input , "UTF-8" ).replace( "+" , "%20" ) )
     			.concat( Constants.inOP )
@@ -304,8 +305,9 @@ public class ImageSearchResultsController {
     		} else if( m.group( 1 ).startsWith( Constants.typeSearch ) ) { //mimeType
     			mime = 46;
     			mimeType = Constants.mimeTypestr.concat( m.group( 1 ).substring( m.group( 1 ).indexOf( Constants.typeSearch ) + Constants.typeSearch.length( ) ) );
-    		} else if( !m.group( 1 ).startsWith( Constants.sizeSearch ) && !m.group( 1 ).startsWith( Constants.siteSearch ) && !m.group( 1 ).startsWith( Constants.negSearch ) )
+    		} else if( !m.group( 1 ).startsWith( Constants.sizeSearch ) && !m.group( 1 ).startsWith( Constants.siteSearch ) && !m.group( 1 ).startsWith( Constants.negSearch ) ) {
     			terms.add( m.group( 1 ).replace( "\"" ,  "" ) );
+    		}
     		allterms.add( m.group( 1 ).replace( "\"" ,  "" ) );
     	}
     	
