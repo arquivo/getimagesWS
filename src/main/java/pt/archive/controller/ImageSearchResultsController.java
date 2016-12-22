@@ -327,8 +327,7 @@ public class ImageSearchResultsController {
     	StringBuffer queryResult = new StringBuffer();
     	for( String term : allterms ) {
     		log.info( "TERM => " + term );
-    		if( !term.startsWith( Constants.siteSearch ) &&
-    			!term.startsWith( Constants.sizeSearch ) &&
+    		if( !term.startsWith( Constants.sizeSearch ) &&
     			!term.startsWith( Constants.sortCriteria ) )  {
     			if( queryResult.length( ) > 0 )
     				queryResult.append( " ".concat( term ) );
