@@ -1,6 +1,5 @@
 package pt.archive.controller;
 
-import org.apache.tomcat.util.bcel.classfile.ConstantDouble;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -58,7 +57,6 @@ public class ImageSearchResultsController {
 	private List< String > blackListDomain;
 	private List< String > stopwords;
 	private String criteriaRank;
-	private String mimeType;
 	
 	/** Properties file application.properties**/
 	@Value( "${urlBase}" )
@@ -145,6 +143,7 @@ public class ImageSearchResultsController {
     	CountDownLatch doneSignal;
     	List< ImageSearchResult > imageResults 	= new ArrayList< >( );
     	List< ImageSearchResult > resultImages 	= new ArrayList< >( );
+    	List< String > types = new ArrayList< >( ); 
     	boolean isAllDone = false;
     	String queryWithoutTerm;
     	if( query == null || query.trim( ).equals( "" ) ) {
@@ -159,6 +158,11 @@ public class ImageSearchResultsController {
  			queryWithoutTerm = prepareTerms( query );
  			log.info( "query final => " + queryWithoutTerm );
  			printTerms( );
+ 			types = getTypes( query );
+ 			log.info( "****** Types ***** " );
+ 			log.info( "  " + types );
+ 			log.info( "******************" );
+ 			
  			url = buildURL( queryWithoutTerm , stamp );
  			log.info( "Request to OpenSearch["+ url +"]" );
  			// the SAX parser
@@ -176,7 +180,7 @@ public class ImageSearchResultsController {
 	 		
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
 	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
- 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , mimeType ) );
+ 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types ) );
 	 			submittedJobs.add( job );
 	 		}
 	 		try {
@@ -285,7 +289,7 @@ public class ImageSearchResultsController {
     private void getTerms( String query ) {
     	terms = new LinkedList< >( );
     	allterms = new LinkedList< >( );
-    	char sort = 45, mime = 45;
+    	char sort = 45;
     	String sortTerm = "";
     	Matcher m = Pattern.compile( "([^\"]\\S*|\".+?\")\\s*" ).matcher( query );
     	while( m.find( ) ) {
@@ -302,10 +306,7 @@ public class ImageSearchResultsController {
     				criteriaRank = "score";
     				sortTerm = "";
     			}
-    		} else if( m.group( 1 ).startsWith( Constants.typeSearch ) ) { //mimeType
-    			mime = 46;
-    			mimeType = Constants.mimeTypestr.concat( m.group( 1 ).substring( m.group( 1 ).indexOf( Constants.typeSearch ) + Constants.typeSearch.length( ) ) );
-    		} else if( !m.group( 1 ).startsWith( Constants.sizeSearch ) && !m.group( 1 ).startsWith( Constants.siteSearch ) && !m.group( 1 ).startsWith( Constants.negSearch ) ) {
+    		} else if( !m.group( 1 ).startsWith( Constants.typeSearch ) && !m.group( 1 ).startsWith( Constants.sizeSearch ) && !m.group( 1 ).startsWith( Constants.siteSearch ) && !m.group( 1 ).startsWith( Constants.negSearch ) ) {
     			terms.add( m.group( 1 ).replace( "\"" ,  "" ) );
     		}
     		allterms.add( m.group( 1 ).replace( "\"" ,  "" ) );
@@ -313,20 +314,26 @@ public class ImageSearchResultsController {
     	
     	if( sort == 45 )
     		criteriaRank = "score";
-    	if( mime == 45 )
-    		mimeType = "all";
     	
-    	log.info( "criteriaRank["+criteriaRank+"] mimeType["+mimeType+"]" );
+    	log.info( "criteriaRank["+criteriaRank+"]" );
     	
     }
     
-    private String prepareTerms( String query ){
+    private String prepareTerms( String query ) {
     	removeStopWords( );
     	return removeCharactersAdvancedSearch( query );
     }
     
-    private String removeCharactersAdvancedSearch( String query ){
-    	StringBuffer queryResult = new StringBuffer();
+    private List< String > getTypes( String query ) {
+    	List< String > resultTypes = new ArrayList< >( );
+    	for( String term : allterms ) 
+    		if( term.startsWith( Constants.typeSearch ) )
+    			resultTypes.add( Constants.mimeTypestr.concat( term.substring( term.indexOf( Constants.typeSearch ) + Constants.typeSearch.length( ) ) ) );
+    	return resultTypes;
+    }
+    
+    private String removeCharactersAdvancedSearch( String query ) {
+    	StringBuffer queryResult = new StringBuffer( );
     	for( String term : allterms ) {
     		log.info( "TERM => " + term );
     		if( !term.startsWith( Constants.sizeSearch ) &&

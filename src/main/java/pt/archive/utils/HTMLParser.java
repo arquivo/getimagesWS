@@ -37,9 +37,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private String criteriaRank;
 	private List< String > blacklistUrls;
 	private List< String > blacklistDomain;
-	private String mimeType;
+	private List< String > mimetypes;
 	
-	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , String mimeType ) { 
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes ) { 
 		this.itemtoSearch 		= itemtoSearch;
 		this.numImgsbyUrl 		= numImgsbyUrl;
 		this.hostImage			= hostImage;
@@ -53,7 +53,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.blacklistUrls  	= blacklistUrls;
 		this.blacklistDomain 	= blacklistDomain;
 		this.criteriaRank		= criteriaRank;
-		this.mimeType 			= mimeType;
+		this.mimetypes 			= mimetypes;
 	}
 	
 	@Override
@@ -145,10 +145,12 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				if( resultCDXServer == null )
 					continue;
 				
-				log.debug( "ImgmimeType=["+resultCDXServer.getMime( ).equals( mimeType )+"] type=["+mimeType+"]" );
-				if( !mimeType.equals( "all" ) && !resultCDXServer.getMime( ).equals( mimeType ) ) //TODO rever
+				if( !typeExists( resultCDXServer.getMime( ) ) ) {
+					log.info( " type [" + resultCDXServer.getMime( ) + "] not exists " );
 					continue;
-
+				}
+				
+					
 				log.debug( "scoreImg [" + scoreImg + "] digest " + itemCDX.getImgCDX().getDigest()  );
 				resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) ) );
 				log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
@@ -164,6 +166,15 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		
 		log.debug( "Number of results = [" + resultsImg.size( ) + "] to url[" + link + "]" );
 		
+	}
+	
+	private boolean typeExists( String mimeType ) {
+		if( mimetypes.size( ) == 0 )
+			return true;
+		for( String type : mimetypes ) 
+			if( type.equals( mimeType ) )
+				return true;
+		return false;
 	}
 	
 	private boolean presentBlackList( String src ) {
