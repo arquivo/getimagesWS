@@ -52,3 +52,11 @@ Search has generated *389* results, as described by the *totalResults* field
 
 
 ##Advanced Search Image
+
+##Search Operators (query terms)
+| **Search Service** | **Description** | **Example** |
+|:------|:----------|:----------|
+| site: | site-only search | site:sapo.pt 
+| sort: | returns results ordered by  <ul><li>Ranking (default)</li><li>New</li><li>Old</li></ul>  | sort:new (sort images descending  timestamp ) | 
+| type: | returns only images of the type  | type:png |
+| ""     | search images with a expression | "Antonio Costa" (search images containing a expression "Antonio Costa") | 

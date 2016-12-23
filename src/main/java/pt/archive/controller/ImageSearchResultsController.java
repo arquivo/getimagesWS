@@ -316,7 +316,6 @@ public class ImageSearchResultsController {
     		criteriaRank = "score";
     	
     	log.info( "criteriaRank["+criteriaRank+"]" );
-    	
     }
     
     private String prepareTerms( String query ) {

@@ -1,7 +1,6 @@
 package pt.archive.model;
 
 import pt.archive.utils.Constants;
-import pt.archive.utils.Constants.criteriaRank;
 
 public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	
