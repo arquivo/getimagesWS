@@ -103,6 +103,15 @@ public class ImageSearchResultsController {
 	
 	@Value( "${flCDX}" )
 	private String flParam;
+	
+	@Value( "${imgParseflag}" )
+	private int imgParseflag;
+	
+	@Value( "${widthThumbnail}" )
+	private int widthThumbnail;
+	
+	@Value( "${heightThumbnail}" )
+	private int heightThumbnail;
 	/***************************/
 	
 	private List< ItemOpenSearch > resultOpenSearch;
@@ -180,7 +189,7 @@ public class ImageSearchResultsController {
 	 		
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
 	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
- 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types ) );
+ 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail ) );
 	 			submittedJobs.add( job );
 	 		}
 	 		try {

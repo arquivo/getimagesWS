@@ -38,8 +38,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private List< String > blacklistUrls;
 	private List< String > blacklistDomain;
 	private List< String > mimetypes;
-	
-	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes ) { 
+	private int imgParseflag;
+	private int widthThumbnail;
+	private int heightThumbnail; 
+	 
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail ) { 
 		this.itemtoSearch 		= itemtoSearch;
 		this.numImgsbyUrl 		= numImgsbyUrl;
 		this.hostImage			= hostImage;
@@ -54,6 +57,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.blacklistDomain 	= blacklistDomain;
 		this.criteriaRank		= criteriaRank;
 		this.mimetypes 			= mimetypes;
+		this.imgParseflag 		= imgParseflag;
+		this.widthThumbnail		= widthThumbnail;
+		this.heightThumbnail	= heightThumbnail;
 	}
 	
 	@Override
@@ -73,7 +79,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		ItemCDXServer resultCDXServer;
 		String link = getLink( itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , hostImage.concat( urldirect ) );
 		Ranking rank = new Ranking( );
-		
+		ImageSearchResult imgResult;
 		if( checkBlacklistDomain( itemtoSearch.getUrl( ) ) ) //check domain exists in blacklist
 			return;
 		
@@ -150,9 +156,16 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 					continue;
 				}
 				
+				imgResult = new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) );
+				if( imgParseflag == 1 ) { //TODO return thumbnail
+					ImageParse imgParse = new ImageParse( );
+					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail);
+					if( imgResult == null ) continue;
+					log.info( "[ImageParse] imgResult ["+imgResult.getWidth()+"*"+imgResult.getHeight()+"]" );
+				}
 					
-				log.debug( "scoreImg [" + scoreImg + "] digest " + itemCDX.getImgCDX().getDigest()  );
-				resultsImg.add( new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) ) );
+				log.info( "scoreImg [" + scoreImg + "] digest " + itemCDX.getImgCDX().getDigest() + " thumbnail["+imgResult.getThumbnail()+"]" );
+				resultsImg.add( imgResult );
 				log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
 				          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) + " score = " + rank.getScore( ) );
 				

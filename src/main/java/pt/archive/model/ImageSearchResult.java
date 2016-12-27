@@ -1,5 +1,7 @@
 package pt.archive.model;
 
+import java.awt.Image;
+
 import pt.archive.utils.Constants;
 
 public class ImageSearchResult implements Comparable< ImageSearchResult > {
@@ -14,6 +16,7 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	Ranking score;
     String timestamp;
 	String mime;
+	String thumbnail;
 	
     public ImageSearchResult( ) { }
     
@@ -90,7 +93,14 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	public void setMime( String mime ) {
 		this.mime = mime;
 	}
-	
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
 	@Override
 	public boolean equals( Object o ) {
 		
