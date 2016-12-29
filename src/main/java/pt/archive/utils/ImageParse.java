@@ -24,7 +24,7 @@ public class ImageParse {
 	/**
 	 * 
 	 * @param img
-	 * @param widthThumbnail
+	 * @param widthThumbnail 
 	 * @param heightThumbnail
 	 * @return
 	 */
@@ -47,17 +47,8 @@ public class ImageParse {
 	        
 	        // Write to output stream
 	        ImageIO.write( buffer , img.getMime( ) , bao );
-	        if( bao == null )
-	        	log.info( "bao is null!!" );
-	        else
-	        	log.info( "bao byte = " + bao.toByteArray( ) );
-	        
 	        String encoded = Base64.encodeBase64String( bao.toByteArray( ) );
-	        if( encoded == null )
-	        	log.info( "encoded is null!!" );
-	        else
-	        	log.info( "encoded string = " + encoded );
-			img.setThumbnail( encoded );
+	        img.setThumbnail( encoded );
 			log.info( "ImageParse = " + img.getUrl( ) );
 			
 		} catch (MalformedURLException e) {

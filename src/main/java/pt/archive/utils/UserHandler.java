@@ -26,7 +26,6 @@ public class UserHandler extends DefaultHandler{
 	   if ( qName.equalsIgnoreCase( "item" ) ) {
          item = new ItemOpenSearch( ); // create a new item and put it in Map
          if( items == null ) { //initialize list 
-        	 log.debug( "---> Initialize list!!" );
         	 items = new ArrayList<>();
          }
 	   } else if ( qName.equalsIgnoreCase( "source" )  ) {
