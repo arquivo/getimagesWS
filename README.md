@@ -19,7 +19,7 @@ http://localhost:8080/getimagesWS/?query=antonio%20costa&stamp=19960101000000-20
 * File blacklist domain: /getimagesWS/blacklistDomain
 * File stop words: /getimagesWS/stopWords
 
-## Properties file: application.properties
+## Properties file: [application.properties](https://github.com/arquivo/getimagesWS/blob/master/src/main/resources/application.properties)
 | **Propertie** | **Description** | **Example** |
 |:------|:----------|:----------|
 | urlBase | Opensearch url used in web search | urlBase=http://arquivo.pt/opensearch?query=
