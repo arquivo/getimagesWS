@@ -16,9 +16,31 @@ http://localhost:8080/getimagesWS/?query=antonio%20costa&stamp=19960101000000-20
 
 ## Configurations
 * File blacklist url: /getimagesWS/blacklistUrl
-* FIle blacklist domain: /getimagesWS/blacklistDomain
+* File blacklist domain: /getimagesWS/blacklistDomain
 * File stop words: /getimagesWS/stopWords
-   
+
+## Properties file: application.properties
+| **Propertie** | **Description** | **Example** |
+|:------|:----------|:----------|
+| urlBase | Opensearch url used in web search | urlBase=http://arquivo.pt/opensearch?query=
+| type | Parameter of expected results type in opensearch | type=text/html | 
+| hitsPerSite |  Maximum number of requests for each site in opensearch. | hitsPerSite=2 |
+| hitsPerPage |  Maximum number of results to display in opensearch, the default is 10. | hitsPerPage=100 |
+| NThreads | Number of threads that will process image fetch on each site | NThreads=10 |
+| NumImgsbyUrl | Number images per site, -1 if get all images per site | NumImgbyUrl=-1 |
+| hostGetImage | Host to get the images | hostGetImage=http://arquivo.pt |
+| urldirectoriesImage | Excerpt from the reproduction url of the original site of the image | urldirectoriesImage=/noFrame/replay/ |
+| urlBaseCDX | Host to check images in CDXServer | urlBaseCDX=http://arquivo.pt/wayback/-cdx? |
+| outputCDX | Type output response in the CDXServer | outputCDX=json |
+| flCDX | Parameter to CDXServer url, define response attributes  | flCDX=url,timestamp,digest,mime|
+| logging.level.pt.archive | Define level for log4j | logging.level.pt.archive = INFO  |
+| logging.file | Logger file location | logging.file = (...)/tomcat/logs/application-getimagesWS.log|
+| stopWords.file | stop word file location | (...)/getimagesWS/stopWords |
+| blacklistUrl.file | Location of urls black list file | blacklistUrl.file = (...)/getimagesWS/blacklistUrl |
+| blacklistDomain.file | Location of black domains list file | blacklistDomain.file = (...)/getimagesWS/blacklistDomain |
+| imgParseflag | lag for the web service return the actual size of the images (0 no return / 1 return) | imgParseflag = 1 |
+
+
 ## Contacts
 Developed by João Nobre (joaoanobre@gmail.com) 
 Feel free to send emails with comments and questions.
@@ -59,4 +81,4 @@ Search has generated *389* results, as described by the *totalResults* field
 | site: | site-only search | site:sapo.pt 
 | sort: | returns results ordered by  <ul><li>Ranking (default)</li><li>New</li><li>Old</li></ul>  | sort:new (sort images descending  timestamp ) | 
 | type: | returns only images of the type  | type:png |
-| ""     | search images with a expression | "Antonio Costa" (search images containing a expression "Antonio Costa") | 
+| ""     | search images with a expression | "Antonio Costa" (search images containing a expression "Antonio Costa") |

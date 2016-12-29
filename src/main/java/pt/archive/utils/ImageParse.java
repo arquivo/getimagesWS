@@ -21,11 +21,18 @@ public class ImageParse {
 	
 	public ImageParse( ) { }
 
+	/**
+	 * 
+	 * @param img
+	 * @param widthThumbnail
+	 * @param heightThumbnail
+	 * @return
+	 */
 	public ImageSearchResult getPropImage( ImageSearchResult img , int widthThumbnail , int heightThumbnail ) {
 		BufferedImage bimg;
 		try {
 			bimg = ImageIO.read( new URL( img.getUrl() ) );
-		
+			
 			float width          = bimg.getWidth();
 			float height         = bimg.getHeight();
 			Image thumbnail = bimg.getScaledInstance( widthThumbnail , heightThumbnail , BufferedImage.SCALE_SMOOTH );

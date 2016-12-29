@@ -134,7 +134,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			//log.info( "Parent : " + imgItem.parent( ).tagName( ) );
 			
 			log.debug( "[Tag Images] title["+titleImg+"] width["+width+"] height["+height+"] alt["+alt+"]" );
-			float scoreImg = checkTerms( src, titleImg , alt );
+			float scoreImg = checkTerms( src , titleImg , alt );
 			if( scoreImg == 0 )
 				continue;
 			
@@ -168,7 +168,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				resultsImg.add( imgResult );
 				log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
 				          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) + " score = " + rank.getScore( ) );
-				
+
 				if( numImgsbyUrl != -1 ) countImg++;
 			} catch( Exception e ) {
 				log.warn( "[Image] Error get resource["+src+"] " );
