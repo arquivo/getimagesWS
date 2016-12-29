@@ -42,7 +42,11 @@ public class CDXParser {
 		this.flParam 		= flParam;
 		this.img 			= img;
 	}
-
+	
+	/**
+	 * get image from CDXServer with url,timstamp,digest,mime attributes
+	 * @return ItemCDXServer
+	 */
 	public ItemCDXServer getImgCDX( ) {
 		
 		ItemCDXServer  imgCDX = null;
@@ -93,14 +97,12 @@ public class CDXParser {
 		return imgCDX;
 	}
 	
-	private void printDebug( List< JSONObject > jsonValues ) {
-		log.info( "**** Values JSON ****" );
-		for( JSONObject obj : jsonValues ) {
-			log.info( "  obj = " + obj.toString( ) );
-		}
-		log.info( "**********************" );
-	}
-	
+	/**
+	 * build CDXServer url
+	 * @param url
+	 * @param timestamp
+	 * @return
+	 */
 	private String getLink( String url , String timestamp ) {
 		String urlaux = url.substring( url.indexOf( timestamp ) +  18 );
 		log.debug( "[CDXParser][getLink] url["+url+"] timestamp["+timestamp+"] urlaux["+urlaux+"]" );
@@ -126,6 +128,13 @@ public class CDXParser {
 					.concat( flParam );
 	}
 	
+	/**
+	 * build json struture with CDXServer response
+	 * @param rd
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	private  ArrayList< JSONObject > readAll( BufferedReader rd ) throws IOException, ParseException {
 		ArrayList<JSONObject> json=new ArrayList<JSONObject>();
 		String line;
@@ -136,6 +145,11 @@ public class CDXParser {
 		return json;
 	}
  
+	/**
+	 * Connect and get response to the CDXServer
+	 * @param strurl
+	 * @return
+	 */
 	private ArrayList< JSONObject > readJsonFromUrl( String strurl ) {
 		InputStream is = null;
 		ArrayList< JSONObject >  jsonResponse = new ArrayList< >( );

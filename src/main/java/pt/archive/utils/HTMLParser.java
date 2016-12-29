@@ -62,6 +62,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.heightThumbnail	= heightThumbnail;
 	}
 	
+	
 	@Override
 	public List< ImageSearchResult > call( ) throws Exception {
 		try {
@@ -73,7 +74,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		}
 		return resultsImg;
 	}
-
+	
+	
+	/**
+	 * get image from the sites 
+	 */
 	public void buildResponse( ) {
 		int countImg = 0;
 		ItemCDXServer resultCDXServer;
@@ -181,6 +186,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		
 	}
 	
+	/**
+	 * check mimetypes is equals from the request
+	 * @param mimeType
+	 * @return
+	 */
 	private boolean typeExists( String mimeType ) {
 		if( mimetypes.size( ) == 0 )
 			return true;
@@ -190,6 +200,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		return false;
 	}
 	
+	/**
+	 * check source is present in blacklist
+	 * @param src
+	 * @return
+	 */
 	private boolean presentBlackList( String src ) {
 		for( String blacksrc : blacklistUrls ) 
 			if( blacksrc.equals( src ) ) 
@@ -197,6 +212,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		return false;
 	}
 	
+	/**
+	 * check domain is present in blacklist
+	 * @param urlOpenSearch
+	 * @return
+	 */
 	private boolean checkBlacklistDomain( String urlOpenSearch ) {
 		for( String blackUrl : blacklistDomain )
 			if( urlOpenSearch.toLowerCase( ).contains( blackUrl.toLowerCase( ) ) )
@@ -204,6 +224,12 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		return false;
 	}
 	
+	/**
+	 * get attribute from HTML
+	 * @param tag
+	 * @param attrName
+	 * @return
+	 */
 	private String getAttribute( Element tag , String attrName ) {
 		if( tag.attr( attrName ) != null && !tag.attr( attrName ).trim().equals( "" ) )
 			return tag.attr( attrName );
@@ -211,6 +237,13 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			return "";
 	}
 	
+	/**
+	 * build link to get images
+	 * @param url
+	 * @param tstamp
+	 * @param linkGetImage
+	 * @return
+	 */
 	private String getLink( String url , String tstamp , String linkGetImage ) {
 		log.debug( "[getLink] linkGetImage["+ linkGetImage +"] url["+ url +"] tstamp["+ tstamp +"] " );
 		return linkGetImage
@@ -219,6 +252,13 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				.concat( url );
 	}
 	
+	/**
+	 * Ranking method: check where/how many terms are present in the source/title/alt of the image
+	 * @param src
+	 * @param titleImg
+	 * @param alt
+	 * @return
+	 */
 	private float checkTerms( String src , String titleImg , String alt ) {
 		float counterTermssrc 		= 0;
 		float counterTermsTitle 	= 0;
@@ -272,7 +312,12 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		return 0.0f;
 	}
 	
-	
+	/**
+	 * check where is term is present in the source image
+	 * @param urlTerms
+	 * @param queryTerm
+	 * @return
+	 */
 	private float checkWhereis( List< String > urlTerms , String queryTerm ) {
 		int counterIndex = 1;
 		float counterResult = 0;

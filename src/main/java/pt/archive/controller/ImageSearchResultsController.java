@@ -143,9 +143,14 @@ public class ImageSearchResultsController {
     	return new ImageSearchResults( imageResults , imageResults.size( ) );
     }
     
-    /* Method that calls the OpenSearchAPI to get the first N urls of the query
-    * and Returns a list of Images
-    */
+    
+    /**
+     * Method that calls the OpenSearchAPI to get the first N urls of the query
+     * and Returns a list of Images
+     * @param query
+     * @param stamp
+     * @return
+     */
     public List<ImageSearchResult> getImageResults( String query , String stamp ) {
     	String url;
     	ExecutorService pool = Executors.newFixedThreadPool( NThreads );
@@ -247,6 +252,13 @@ public class ImageSearchResultsController {
     }
     
     
+    /**
+     * Build openSearch url
+     * @param input
+     * @param stamp
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     private String buildURL( String input , String stamp ) throws UnsupportedEncodingException {
     	log.info( "[buildURL] input => " + input );
     	return urlBase
@@ -273,6 +285,11 @@ public class ImageSearchResultsController {
     			.concat( startIndex );
     }
     
+    /**
+     * remove duplicates images
+     * @param imageResults
+     * @return
+     */
     private List< ImageSearchResult > uniqueResult( List< ImageSearchResult > imageResults ) {
     	List< ImageSearchResult > uniqueList = new ArrayList< >( );
     	Set< ImageSearchResult > uniqueSet = new HashSet< >( );
@@ -284,17 +301,30 @@ public class ImageSearchResultsController {
     	return uniqueList;
     }
     
+    /**
+     * Error code define
+     * @param errorCode
+     * @return
+     */
     private ImageSearchResult getErrorCode( String errorCode ) {
     	ImageSearchResult result = new ImageSearchResult( );
     	result.setUrl( errorCode );
     	return result;
     }
     
+    /**
+     * Clean memory threads
+     * @param submittedJobs
+     */
     private void cleanUpThreads( List< Future< List< ImageSearchResult > > > submittedJobs ) {
     	for ( Future< List< ImageSearchResult > > job : submittedJobs ) 
             job.cancel( true );
     }
     
+    /**
+     * get parameter of the query (Advanced search)
+     * @param query
+     */
     private void getTerms( String query ) {
     	terms = new LinkedList< >( );
     	allterms = new LinkedList< >( );
@@ -327,11 +357,21 @@ public class ImageSearchResultsController {
     	log.info( "criteriaRank["+criteriaRank+"]" );
     }
     
+    /**
+     * Prepare terms of the ranking
+     * @param query
+     * @return
+     */
     private String prepareTerms( String query ) {
     	removeStopWords( );
     	return removeCharactersAdvancedSearch( query );
     }
     
+    /**
+     * return types of the images (Advanced search)
+     * @param query
+     * @return
+     */
     private List< String > getTypes( String query ) {
     	List< String > resultTypes = new ArrayList< >( );
     	for( String term : allterms ) 
@@ -340,6 +380,11 @@ public class ImageSearchResultsController {
     	return resultTypes;
     }
     
+    /**
+     * Remove terms in the advanced search 
+     * @param query
+     * @return
+     */
     private String removeCharactersAdvancedSearch( String query ) {
     	StringBuffer queryResult = new StringBuffer( );
     	for( String term : allterms ) {
@@ -356,6 +401,9 @@ public class ImageSearchResultsController {
     	return queryResult.toString( );
     }
     
+    /**
+     * Remove stop words of the terms
+     */
     private void removeStopWords( ) {
     	for( Iterator< String > iterator = terms.iterator( ) ; iterator.hasNext( ); ) {
     		String term = iterator.next( );
@@ -380,11 +428,14 @@ public class ImageSearchResultsController {
 		}
     }
     
+    /**
+     * load blacklist files
+     */
     private void loadBlackListFiles( ) {
     	loadBlackListUrls( );
     	loadBlackListDomain( );
-    	
     }
+    
     
     private void loadBlackListUrls( ) {
     	Scanner s = null;
