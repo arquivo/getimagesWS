@@ -42,11 +42,10 @@ public class ImageParse {
 			
 			float width          = bimg.getWidth( );
 			float height         = bimg.getHeight( );
-			Image thumbnail = bimg.getScaledInstance( widthThumbnail , heightThumbnail , BufferedImage.SCALE_SMOOTH );
+			//Image thumbnail = bimg.getScaledInstance( widthThumbnail , heightThumbnail , BufferedImage.SCALE_SMOOTH );
 			img.setHeight( Float.toString( height ) );
 			img.setWidth( Float.toString( width ) );
 			
-			//BufferedImage scaled = scale( bimg , 0.5 ); // Create thumbnail
 			BufferedImage scaledImg = Scalr.resize( bimg, 
 									Method.SPEED, 
 									Scalr.Mode.AUTOMATIC, 
@@ -54,9 +53,6 @@ public class ImageParse {
 									heightThumbnail, 
 									Scalr.OP_ANTIALIAS);
 
-			// Prepare buffered image.
-	        BufferedImage buffer = toBufferedImage( thumbnail );
-	        log.info( "thumbnail => " + thumbnail.getSource( ) );
 			// Create a byte array output stream.
 	        ByteArrayOutputStream bao = new ByteArrayOutputStream( );
 	        log.info( "create thumbnail mime["+img.getMime( ).substring( 6 )+"]" );
@@ -69,10 +65,10 @@ public class ImageParse {
 	        img.setThumbnail( base64String );
 			log.info( "ImageParse = " + img.getUrl( ) );
 			
-		} catch (MalformedURLException e) {
+		} catch ( MalformedURLException e ) {
 			log.error( "[ImageParse][getPropImage] get image from url[" + img.getUrl( ) + "] error = " , e );
 			return null;
-		} catch (IOException e) {
+		} catch ( IOException e ) {
 			log.error( "[ImageParse][getPropImage] e = " , e );
 			return null;
 		}
