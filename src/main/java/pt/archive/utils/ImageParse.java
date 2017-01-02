@@ -1,11 +1,6 @@
 package pt.archive.utils;
 
-import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.Image;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -63,7 +58,6 @@ public class ImageParse {
 			bao.close( );
 	 
 	        img.setThumbnail( base64String );
-			log.info( "ImageParse = " + img.getUrl( ) );
 			
 		} catch ( MalformedURLException e ) {
 			log.error( "[ImageParse][getPropImage] get image from url[" + img.getUrl( ) + "] error = " , e );
