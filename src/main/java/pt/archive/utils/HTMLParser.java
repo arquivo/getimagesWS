@@ -169,7 +169,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 					log.info( "[ImageParse] imgResult ["+imgResult.getWidth()+"*"+imgResult.getHeight()+"]" );
 				}
 					
-				log.info( "scoreImg [" + scoreImg + "] digest " + itemCDX.getImgCDX().getDigest() + " thumbnail["+imgResult.getThumbnail()+"]" );
+				log.debug( "scoreImg [" + scoreImg + "] digest " + itemCDX.getImgCDX().getDigest() + " thumbnail["+imgResult.getThumbnail()+"]" );
 				resultsImg.add( imgResult );
 				log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
 				          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) + " score = " + rank.getScore( ) );

@@ -1,6 +1,11 @@
 package pt.archive.utils;
 
+import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -8,9 +13,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 //import com.sun.org.apache.xml.internal.security.utils.Base64;
 //import org.apache.commons.codec.binary.Base64;
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import javax.imageio.ImageIO;
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,24 +36,29 @@ public class ImageParse {
 	public ImageSearchResult getPropImage( ImageSearchResult img , int widthThumbnail , int heightThumbnail ) {
 		BufferedImage bimg;
 		try {
-			bimg = ImageIO.read( new URL( img.getUrl() ) );
+			bimg = ImageIO.read( new URL( img.getUrl( ) ) );
 			
-			float width          = bimg.getWidth();
-			float height         = bimg.getHeight();
+			float width          = bimg.getWidth( );
+			float height         = bimg.getHeight( );
 			Image thumbnail = bimg.getScaledInstance( widthThumbnail , heightThumbnail , BufferedImage.SCALE_SMOOTH );
 			img.setHeight( Float.toString( height ) );
 			img.setWidth( Float.toString( width ) );
 			
+			BufferedImage scaled = scale( bimg , 0.5 ); // Create thumbnail
+			
 			// Prepare buffered image.
-	        BufferedImage buffer = toBufferedImage( thumbnail );
+	        BufferedImage buffer = toBufferedImage( scaled );
 	        log.info( "thumbnail => " + thumbnail.getSource( ) );
 			// Create a byte array output stream.
-	        ByteArrayOutputStream bao = new ByteArrayOutputStream();
-	        
+	        ByteArrayOutputStream bao = new ByteArrayOutputStream( );
+	        log.info( "create thumbnail mime["+img.getMime( ).substring( 6 )+"]" );
 	        // Write to output stream
-	        ImageIO.write( buffer , img.getMime( ) , bao );
-	        String encoded = Base64.encodeBase64String( bao.toByteArray( ) );
-	        img.setThumbnail( encoded );
+	        ImageIO.write( scaled , img.getMime().substring( 6 ) , bao );
+	        bao.flush( );
+	        String base64String = Base64.encode( bao.toByteArray( ) );
+			bao.close();
+	 
+	        img.setThumbnail( base64String );
 			log.info( "ImageParse = " + img.getUrl( ) );
 			
 		} catch (MalformedURLException e) {
@@ -62,6 +72,27 @@ public class ImageParse {
 	}
 	
 	
+	private BufferedImage scale( BufferedImage source , double ratio ) {
+		int w = ( int ) ( source.getWidth( ) * ratio );
+		int h = (int) (source.getHeight() * ratio);
+		BufferedImage bi = getCompatibleImage(w, h);
+		Graphics2D g2d = bi.createGraphics();
+		double xScale = (double) w / source.getWidth();
+		double yScale = (double) h / source.getHeight();
+		AffineTransform at = AffineTransform.getScaleInstance(xScale,yScale);
+		g2d.drawRenderedImage(source, at);
+		g2d.dispose();
+		return bi;
+	}
+
+	private BufferedImage getCompatibleImage( int w , int h ) {
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice gd = ge.getDefaultScreenDevice();
+		GraphicsConfiguration gc = gd.getDefaultConfiguration();
+		BufferedImage image = gc.createCompatibleImage(w, h);
+		return image;
+	}
+		
 	/**
 	 * Converts a given Image into a BufferedImage
 	 *
