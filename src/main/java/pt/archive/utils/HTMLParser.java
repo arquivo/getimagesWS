@@ -177,6 +177,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				if( numImgsbyUrl != -1 ) countImg++;
 			} catch( Exception e ) {
 				log.warn( "[Image] Error get resource["+src+"] " );
+				log.error( "[Image] e = " , e );
 				continue;
 			}
 		}

@@ -16,6 +16,8 @@ import java.net.URL;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import javax.imageio.ImageIO;
 
+import org.imgscalr.Scalr;
+import org.imgscalr.Scalr.Method;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,19 +46,25 @@ public class ImageParse {
 			img.setHeight( Float.toString( height ) );
 			img.setWidth( Float.toString( width ) );
 			
-			BufferedImage scaled = scale( bimg , 0.5 ); // Create thumbnail
-			
+			//BufferedImage scaled = scale( bimg , 0.5 ); // Create thumbnail
+			BufferedImage scaledImg = Scalr.resize( bimg, 
+									Method.SPEED, 
+									Scalr.Mode.AUTOMATIC, 
+									widthThumbnail, 
+									heightThumbnail, 
+									Scalr.OP_ANTIALIAS);
+
 			// Prepare buffered image.
-	        BufferedImage buffer = toBufferedImage( scaled );
+	        BufferedImage buffer = toBufferedImage( thumbnail );
 	        log.info( "thumbnail => " + thumbnail.getSource( ) );
 			// Create a byte array output stream.
 	        ByteArrayOutputStream bao = new ByteArrayOutputStream( );
 	        log.info( "create thumbnail mime["+img.getMime( ).substring( 6 )+"]" );
 	        // Write to output stream
-	        ImageIO.write( scaled , img.getMime().substring( 6 ) , bao );
+	        ImageIO.write( scaledImg , img.getMime().substring( 6 ) , bao );
 	        bao.flush( );
 	        String base64String = Base64.encode( bao.toByteArray( ) );
-			bao.close();
+			bao.close( );
 	 
 	        img.setThumbnail( base64String );
 			log.info( "ImageParse = " + img.getUrl( ) );
@@ -71,28 +79,7 @@ public class ImageParse {
 		return img;
 	}
 	
-	
-	private BufferedImage scale( BufferedImage source , double ratio ) {
-		int w = ( int ) ( source.getWidth( ) * ratio );
-		int h = (int) (source.getHeight() * ratio);
-		BufferedImage bi = getCompatibleImage(w, h);
-		Graphics2D g2d = bi.createGraphics();
-		double xScale = (double) w / source.getWidth();
-		double yScale = (double) h / source.getHeight();
-		AffineTransform at = AffineTransform.getScaleInstance(xScale,yScale);
-		g2d.drawRenderedImage(source, at);
-		g2d.dispose();
-		return bi;
-	}
-
-	private BufferedImage getCompatibleImage( int w , int h ) {
-		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		GraphicsDevice gd = ge.getDefaultScreenDevice();
-		GraphicsConfiguration gc = gd.getDefaultConfiguration();
-		BufferedImage image = gc.createCompatibleImage(w, h);
-		return image;
-	}
-		
+			
 	/**
 	 * Converts a given Image into a BufferedImage
 	 *
