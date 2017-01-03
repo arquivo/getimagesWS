@@ -46,17 +46,17 @@ public class ImageParse {
 									Scalr.Mode.AUTOMATIC, 
 									widthThumbnail, 
 									heightThumbnail, 
-									Scalr.OP_ANTIALIAS);
-
+									Scalr.OP_ANTIALIAS );
+			
 			// Create a byte array output stream.
 	        ByteArrayOutputStream bao = new ByteArrayOutputStream( );
-	        log.info( "create thumbnail mime["+img.getMime( ).substring( 6 )+"]" );
+	        log.info( "create thumbnail mime[" + img.getMime( ).substring( 6 ) + "]" );
 	        // Write to output stream
-	        ImageIO.write( scaledImg , img.getMime().substring( 6 ) , bao );
+	        ImageIO.write( scaledImg , img.getMime( ).substring( 6 ) , bao );
 	        bao.flush( );
 	        String base64String = Base64.encode( bao.toByteArray( ) );
 			bao.close( );
-	 
+			
 	        img.setThumbnail( base64String );
 			
 		} catch ( MalformedURLException e ) {

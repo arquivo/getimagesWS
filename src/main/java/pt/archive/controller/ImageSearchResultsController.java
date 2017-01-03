@@ -137,9 +137,11 @@ public class ImageSearchResultsController {
     									 @RequestParam(value="stamp", defaultValue="19960101000000-20151022163016") String stamtp,
     									 @RequestParam(value="start", defaultValue="0") String _startIndex ) {
     	log.info( "New request query[" + query + "] stamp["+ stamtp +"] start["+ _startIndex +"]" );
+    	long start = System.currentTimeMillis( );
     	startIndex = _startIndex;
     	List< ImageSearchResult > imageResults = getImageResults( query , stamtp ); 
-    	log.info( "Results = " + imageResults.size( ) );
+    	long elapsedTime = System.currentTimeMillis( ) - start;
+    	log.info( "Serarc ["+query+"] Results = [" + imageResults.size( ) +"] time = [" + elapsedTime + "] milliseconds.");
     	return new ImageSearchResults( imageResults , imageResults.size( ) );
     }
     
@@ -151,7 +153,7 @@ public class ImageSearchResultsController {
      * @param stamp
      * @return
      */
-    public List<ImageSearchResult> getImageResults( String query , String stamp ) {
+    public List< ImageSearchResult > getImageResults( String query , String stamp ) {
     	String url;
     	ExecutorService pool = Executors.newFixedThreadPool( NThreads );
     	CountDownLatch doneSignal;
@@ -173,7 +175,7 @@ public class ImageSearchResultsController {
  			log.info( "query final => " + queryWithoutTerm );
  			printTerms( );
  			types = getTypes( query );
- 			log.info( "****** Types ***** " );
+ 			log.info( "****** Types *****" );
  			log.info( "  " + types );
  			log.info( "******************" );
  			

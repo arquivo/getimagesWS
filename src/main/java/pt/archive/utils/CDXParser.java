@@ -52,6 +52,7 @@ public class CDXParser {
 		ItemCDXServer  imgCDX = null;
 
 		String urlCDX = getLink( img.getUrl( ) , img.getTimestamp( ) );
+		//log.info( "[urlCDX] url = " + urlCDX );
 		try{
 			List< JSONObject > jsonValues = readJsonFromUrl( urlCDX );
 			//printDebug( jsonValues );
@@ -59,7 +60,7 @@ public class CDXParser {
 			if( jsonValues == null )
 				return null;
 			
-			if( jsonValues.size( ) > 1 )
+			/*if( jsonValues.size( ) > 1 ) //Not necessary with closest...
 				Collections.sort( jsonValues , new Comparator< JSONObject >( ) {
 			       
 			        private static final String KEY_NAME = "timestamp"; //sort desc by timestamp
@@ -78,7 +79,7 @@ public class CDXParser {
 	
 			            return Long.compare( valB , valA );
 			        }
-			    } );
+			    } );*/
 			
 			imgCDX = new ItemCDXServer( jsonValues.get( 0 ).get( keyUrl ).toString( ) ,
 										jsonValues.get( 0 ).get( keyTimestamp ).toString( ),
@@ -125,7 +126,11 @@ public class CDXParser {
 					.concat( Constants.andOP )
 					.concat( "fl" )
 					.concat( Constants.equalOP )
-					.concat( flParam );
+					.concat( flParam )
+					.concat( Constants.andOP )
+					.concat( "closest" )
+					.concat( Constants.equalOP )
+					.concat( timestamp );
 	}
 	
 	/**

@@ -298,9 +298,12 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				counterTermsAlt += Constants.altScore;
 		}
 		
-		if( counterTermsAlt == 0 && counterTermssrc == 0 && counterTermsTitle == 0 )
+		if( counterTermsAlt == 0 && counterTermssrc == 0 && counterTermsTitle == 0 ) {
+			//log.info( "Rejected images = " + src );
 			return 0;
+		}
 		
+			
 		log.debug( "checkTerms countersrc["+ counterTermssrc +"] title["+ counterTermsTitle +"] alt["+ counterTermsAlt +"] src["+src+"]" );
 		if( counterTermssrc >= counterTermsTitle &&  counterTermssrc >= counterTermsAlt ) {
 			return counterTermssrc;

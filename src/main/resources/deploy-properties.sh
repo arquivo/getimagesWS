@@ -1,0 +1,15 @@
+#!/bin/sh
+echo "log file directory"
+# export logFileDir="/opt/tomcat/logs/application-getimagesWS.log"
+set logFileDir "/opt/tomcat/logs/application-getimagesWS.log"
+echo "stop-words fiel directory"
+#export stopwordDir="/home/joao/workspaceMelo/getimagesWS/stopWords"
+set stopwordDir "/home/joao/workspaceMelo/getimagesWS/stopWords"
+echo "URL blacklis file directory"
+#export blacklistURLDir="/home/joao/workspaceMelo/getimagesWS/blacklistUrl"
+set blacklistURLDir "/home/joao/workspaceMelo/getimagesWS/blacklistUrl"
+echo "Domain blacklist file directory"
+#export blacklistDir="/home/joao/workspaceMelo/getimagesWS/blacklistDomain"
+set blacklistDir "/home/joao/workspaceMelo/getimagesWS/blacklistDomain"
+
+echo "Export file location  done"
