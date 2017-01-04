@@ -141,10 +141,10 @@ public class CDXParser {
 	 * @throws ParseException
 	 */
 	private  ArrayList< JSONObject > readAll( BufferedReader rd ) throws IOException, ParseException {
-		ArrayList<JSONObject> json=new ArrayList<JSONObject>();
+		ArrayList< JSONObject > json = new ArrayList< JSONObject >( );
 		String line;
 		while ( ( line = rd.readLine( ) ) != null ) {
-			JSONObject obj= (JSONObject) new JSONParser().parse( line );
+			JSONObject obj= ( JSONObject ) new JSONParser( ).parse( line );
 			json.add( obj );
 		}
 		return json;

@@ -112,6 +112,9 @@ public class ImageSearchResultsController {
 	
 	@Value( "${heightThumbnail}" )
 	private int heightThumbnail;
+	
+	@Value( "${adultfilter}" )
+	private int adultfilter;
 	/***************************/
 	
 	private List< ItemOpenSearch > resultOpenSearch;
@@ -141,7 +144,7 @@ public class ImageSearchResultsController {
     	startIndex = _startIndex;
     	List< ImageSearchResult > imageResults = getImageResults( query , stamtp ); 
     	long elapsedTime = System.currentTimeMillis( ) - start;
-    	log.info( "Serarc ["+query+"] Results = [" + imageResults.size( ) +"] time = [" + elapsedTime + "] milliseconds.");
+    	log.info( "Search ["+query+"] Results = [" + imageResults.size( ) +"] time = [" + elapsedTime + "] milliseconds.");
     	return new ImageSearchResults( imageResults , imageResults.size( ) );
     }
     
@@ -196,7 +199,7 @@ public class ImageSearchResultsController {
 	 		
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
 	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
- 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail ) );
+ 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail , adultfilter ) );
 	 			submittedJobs.add( job );
 	 		}
 	 		try {

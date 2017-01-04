@@ -41,8 +41,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private int imgParseflag;
 	private int widthThumbnail;
 	private int heightThumbnail; 
-	 
-	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail ) { 
+	private int adultfilter;
+	
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail , int adultfilter ) { 
 		this.itemtoSearch 		= itemtoSearch;
 		this.numImgsbyUrl 		= numImgsbyUrl;
 		this.hostImage			= hostImage;
@@ -60,6 +61,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.imgParseflag 		= imgParseflag;
 		this.widthThumbnail		= widthThumbnail;
 		this.heightThumbnail	= heightThumbnail;
+		this.adultfilter		= adultfilter;
 	}
 	
 	
@@ -161,6 +163,10 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 					continue;
 				}
 				
+				if( adultfilter == 1 ) { //adult image filter
+					//TODO 
+				}
+				
 				imgResult = new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) );
 				if( imgParseflag == 1 ) { //TODO return thumbnail
 					ImageParse imgParse = new ImageParse( );
@@ -168,7 +174,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 					if( imgResult == null ) continue;
 					log.info( "[ImageParse] imgResult ["+imgResult.getWidth()+"*"+imgResult.getHeight()+"]" );
 				}
-					
+				
 				log.debug( "scoreImg [" + scoreImg + "] digest " + itemCDX.getImgCDX().getDigest() + " thumbnail["+imgResult.getThumbnail()+"]" );
 				resultsImg.add( imgResult );
 				log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 

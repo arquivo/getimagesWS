@@ -2,6 +2,7 @@ package pt.archive.utils;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImagingOpException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -35,28 +36,32 @@ public class ImageParse {
 		try {
 			bimg = ImageIO.read( new URL( img.getUrl( ) ) );
 			
-			float width          = bimg.getWidth( );
-			float height         = bimg.getHeight( );
+			double width          	= bimg.getWidth( );
+			double height         	= bimg.getHeight( );
+			double wThumbnail		= width * 0.5 ;
+			double hThumbnail		= height * 0.5;
+			
 			//Image thumbnail = bimg.getScaledInstance( widthThumbnail , heightThumbnail , BufferedImage.SCALE_SMOOTH );
-			img.setHeight( Float.toString( height ) );
-			img.setWidth( Float.toString( width ) );
-			
-			BufferedImage scaledImg = Scalr.resize( bimg, 
-									Method.SPEED, 
-									Scalr.Mode.AUTOMATIC, 
-									widthThumbnail, 
-									heightThumbnail, 
-									Scalr.OP_ANTIALIAS );
-			
+			img.setHeight( Double.toString( height ) );
+			img.setWidth( Double.toString( width ) );
+			BufferedImage scaledImg = null;
+			scaledImg = Scalr.resize( bimg, 
+					Method.SPEED, 
+					Scalr.Mode.AUTOMATIC, 
+					IntegralPart( wThumbnail ), 
+					IntegralPart( hThumbnail ), 
+					Scalr.OP_ANTIALIAS ); //create thumbnail
+		
 			// Create a byte array output stream.
-	        ByteArrayOutputStream bao = new ByteArrayOutputStream( );
-	        log.info( "create thumbnail mime[" + img.getMime( ).substring( 6 ) + "]" );
-	        // Write to output stream
+			ByteArrayOutputStream bao = new ByteArrayOutputStream( );
+			// Write to output stream
 	        ImageIO.write( scaledImg , img.getMime( ).substring( 6 ) , bao );
 	        bao.flush( );
 	        String base64String = Base64.encode( bao.toByteArray( ) );
 			bao.close( );
-			
+			log.info( "create thumbnail mime[" + img.getMime( ).substring( 6 ) + "] "
+					+ "["+wThumbnail+"*"+hThumbnail+"]"
+					+ " original size ["+width+"*"+height+"]");
 	        img.setThumbnail( base64String );
 			
 		} catch ( MalformedURLException e ) {
@@ -65,11 +70,18 @@ public class ImageParse {
 		} catch ( IOException e ) {
 			log.error( "[ImageParse][getPropImage] e = " , e );
 			return null;
+		} catch( IllegalArgumentException | ImagingOpException e ) {
+			log.error( "[ImageParse][getPropImage] e = " , e );
+			return null;
 		}
 		return img;
 	}
 	
-			
+	public int IntegralPart( Double number ) {
+		double fractionalPart 	= ( number - 0.5 ) % 1;
+		return ( int ) ( number - fractionalPart );
+	}
+	
 	/**
 	 * Converts a given Image into a BufferedImage
 	 *
