@@ -161,8 +161,8 @@ public class CDXParser {
 		try {
 			URL url = new URL( strurl );
 			URLConnection con = url.openConnection( );
-			con.setConnectTimeout( Constants.timeoutConn ); // 5 sec
-			con.setReadTimeout( Constants.timeoutreadConn ); //10 sec
+			con.setConnectTimeout( Constants.timeoutConn ); // 3 sec
+			con.setReadTimeout( Constants.timeoutreadConn ); //5 sec
 			is = con.getInputStream( );
 			BufferedReader rd = new BufferedReader( new InputStreamReader( is , Charset.forName( "UTF-8" ) ) );
 			jsonResponse = readAll( rd );

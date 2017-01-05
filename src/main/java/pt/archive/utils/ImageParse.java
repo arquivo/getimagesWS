@@ -5,13 +5,13 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImagingOpException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-//import com.sun.org.apache.xml.internal.security.utils.Base64;
-//import org.apache.commons.codec.binary.Base64;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import javax.imageio.ImageIO;
 
+import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
 import org.imgscalr.Scalr.Method;
 import org.slf4j.Logger;
@@ -31,36 +31,63 @@ public class ImageParse {
 	 * @param heightThumbnail
 	 * @return
 	 */
-	public ImageSearchResult getPropImage( ImageSearchResult img , int widthThumbnail , int heightThumbnail ) {
+	public ImageSearchResult getPropImage( ImageSearchResult img , int thumbWidth , int thumbHeight , String mimetype ) {
 		BufferedImage bimg;
+		ByteArrayOutputStream bao = new ByteArrayOutputStream( );
+		String base64String;	
+		
 		try {
-			bimg = ImageIO.read( new URL( img.getUrl( ) ) );
-			
-			double width          	= bimg.getWidth( );
-			double height         	= bimg.getHeight( );
+			InputStream inImg =  new URL( img.getUrl( ) ).openConnection( ).getInputStream( );
+			bimg = ImageIO.read( inImg );
+			int width          	= bimg.getWidth( null );
+			int height         	= bimg.getHeight( null );
+			img.setHeight( Double.toString( height ) );
+			img.setWidth( Double.toString( width ) );
+
+			if( mimetype.equals( "image/gif" ) ) {
+				byte[] bytesImgOriginal = IOUtils.toByteArray( new URL( img.getUrl( ) ).openConnection( ).getInputStream( ) );
+				base64String = Base64.encode( bytesImgOriginal );
+				img.setThumbnail( base64String );
+				return img;
+			}
 			double wThumbnail		= width * 0.5 ;
 			double hThumbnail		= height * 0.5;
 			
+			double thumbRatio = (double) thumbWidth / (double) thumbHeight;
+			double imageRatio = (double) width / (double) height;
+			if ( thumbRatio < imageRatio ) 
+				thumbHeight = (int)( thumbWidth / imageRatio );
+			else 
+				thumbWidth = (int)( thumbHeight * imageRatio );
+			
+			if( width < thumbWidth && height < thumbHeight ) {
+				thumbWidth  = width;
+				thumbHeight = height;
+			} else if( width < thumbWidth )
+				thumbWidth = width;
+			else if( height < thumbHeight )
+				thumbHeight = height;
+
 			//Image thumbnail = bimg.getScaledInstance( widthThumbnail , heightThumbnail , BufferedImage.SCALE_SMOOTH );
-			img.setHeight( Double.toString( height ) );
-			img.setWidth( Double.toString( width ) );
 			BufferedImage scaledImg = null;
-			scaledImg = Scalr.resize( bimg, 
-					Method.SPEED, 
-					Scalr.Mode.AUTOMATIC, 
-					IntegralPart( wThumbnail ), 
-					IntegralPart( hThumbnail ), 
-					Scalr.OP_ANTIALIAS ); //create thumbnail
-		
-			// Create a byte array output stream.
-			ByteArrayOutputStream bao = new ByteArrayOutputStream( );
+			if( width < thumbWidth || height < thumbHeight )
+				scaledImg = bimg;
+			else
+				scaledImg = Scalr.resize( bimg, 
+						Method.SPEED, 
+						Scalr.Mode.AUTOMATIC, 
+						thumbWidth, 
+						thumbHeight, 
+						Scalr.OP_ANTIALIAS ); //create thumbnail
+			
 			// Write to output stream
 	        ImageIO.write( scaledImg , img.getMime( ).substring( 6 ) , bao );
 	        bao.flush( );
-	        String base64String = Base64.encode( bao.toByteArray( ) );
+	        // Create a byte array output stream.
+	        base64String = Base64.encode( bao.toByteArray( ) );
 			bao.close( );
 			log.info( "create thumbnail mime[" + img.getMime( ).substring( 6 ) + "] "
-					+ "["+wThumbnail+"*"+hThumbnail+"]"
+					+ "["+thumbWidth+"*"+thumbHeight+"]"
 					+ " original size ["+width+"*"+height+"]");
 	        img.setThumbnail( base64String );
 			

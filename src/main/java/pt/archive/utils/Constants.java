@@ -14,10 +14,11 @@ public class Constants {
 	public static final String siteSearch		= "site:";
 	public static final float  titleScore 	 	= 2.0f;
 	public static final float  altScore 	 	= 2.0f;
+	public static final float  longdescScore	= 2.0f;
 	public static final float  incrementSrcMore = 3;
 	public static final float  incrScoreSrcLess = 0.5f;
 	public static final int timeoutConn 		= 3000;
-	public static final int timeoutreadConn 	= 10000;
+	public static final int timeoutreadConn 	= 5000;
 	public static final String sortCriteria 	= "sort:";
 	public static final String typeSearch 		= "type:";
 	public static final String sizeSearch 		= "size:";

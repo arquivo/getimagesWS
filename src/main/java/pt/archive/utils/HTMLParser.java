@@ -134,6 +134,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			String width 	= getAttribute( imgItem , "width" );
 			String height 	= getAttribute( imgItem , "height" );
 			String alt 		= getAttribute( imgItem , "alt" );
+			String longdesc = getAttribute( imgItem , "longdesc" );
 			
 			if( !onlyContainsNumbers( timestamp ) )
 				continue;
@@ -141,7 +142,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			//log.info( "Parent : " + imgItem.parent( ).tagName( ) );
 			
 			log.debug( "[Tag Images] title["+titleImg+"] width["+width+"] height["+height+"] alt["+alt+"]" );
-			float scoreImg = checkTerms( src , titleImg , alt );
+			float scoreImg = checkTerms( src , titleImg , alt , longdesc );
 			if( scoreImg == 0 )
 				continue;
 			
@@ -153,7 +154,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			
 			try {
 				log.debug( " [CDXParser] URL = " + itemtoSearch.getUrl( ) + " src = " + src );
-				CDXParser itemCDX = new CDXParser( urlBaseCDX , outputCDX , flParam , new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , null , null ) );
+				CDXParser itemCDX = new CDXParser( urlBaseCDX , outputCDX , flParam , new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , null , null , longdesc ) );
 				resultCDXServer = itemCDX.getImgCDX( );
 				if( resultCDXServer == null )
 					continue;
@@ -165,12 +166,14 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				
 				if( adultfilter == 1 ) { //adult image filter
 					//TODO 
+					AdultFilter filter = new AdultFilter( );
+					
 				}
 				
-				imgResult = new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) );
-				if( imgParseflag == 1 ) { //TODO return thumbnail
+				imgResult = new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) , longdesc );
+				if( imgParseflag == 1 ) { //return thumbnail
 					ImageParse imgParse = new ImageParse( );
-					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail);
+					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail , resultCDXServer.getMime( ) );
 					if( imgResult == null ) continue;
 					log.info( "[ImageParse] imgResult ["+imgResult.getWidth()+"*"+imgResult.getHeight()+"]" );
 				}
@@ -182,7 +185,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 
 				if( numImgsbyUrl != -1 ) countImg++;
 			} catch( Exception e ) {
-				log.warn( "[Image] Error get resource["+src+"] " );
+				log.warn( "[Image] Error get resource[" + src + "] " );
 				log.error( "[Image] e = " , e );
 				continue;
 			}
@@ -266,10 +269,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	 * @param alt
 	 * @return
 	 */
-	private float checkTerms( String src , String titleImg , String alt ) {
+	private float checkTerms( String src , String titleImg , String alt , String longdesc ) {
 		float counterTermssrc 		= 0;
 		float counterTermsTitle 	= 0;
 		float counterTermsAlt 		= 0;
+		float counterTermslongdesc  = 0;
 		URL urlSrc = null;
 		List< String > urlTerms;
 		
@@ -302,24 +306,18 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			
 			if( alt.toLowerCase( ).contains( term.toLowerCase( ) ) ) 
 				counterTermsAlt += Constants.altScore;
+			
+			if( longdesc.toLowerCase( ).contains( term.toLowerCase( ) ) )
+				counterTermslongdesc += Constants.longdescScore;
 		}
 		
-		if( counterTermsAlt == 0 && counterTermssrc == 0 && counterTermsTitle == 0 ) {
+		if( counterTermsAlt == 0 && counterTermssrc == 0 && counterTermsTitle == 0 && counterTermslongdesc == 0 ) {
 			//log.info( "Rejected images = " + src );
 			return 0;
 		}
 		
-			
 		log.debug( "checkTerms countersrc["+ counterTermssrc +"] title["+ counterTermsTitle +"] alt["+ counterTermsAlt +"] src["+src+"]" );
-		if( counterTermssrc >= counterTermsTitle &&  counterTermssrc >= counterTermsAlt ) {
-			return counterTermssrc;
-		} else if( counterTermsTitle >= counterTermssrc &&  counterTermsTitle >= counterTermsAlt ) {
-			return counterTermsTitle;
-		} else if( counterTermsAlt >= counterTermssrc &&  counterTermsAlt >= counterTermsTitle ) {
-			return counterTermsAlt;
-		}
-		
-		return 0.0f;
+		return Math.max( Math.max( counterTermssrc , counterTermsTitle ) , Math.max( counterTermsAlt , counterTermslongdesc ) );
 	}
 	
 	/**

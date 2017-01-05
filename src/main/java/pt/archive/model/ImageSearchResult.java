@@ -1,7 +1,5 @@
 package pt.archive.model;
 
-import java.awt.Image;
-
 import pt.archive.utils.Constants;
 
 public class ImageSearchResult implements Comparable< ImageSearchResult > {
@@ -17,10 +15,11 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
     String timestamp;
 	String mime;
 	String thumbnail;
+	String longdesc;
 	
     public ImageSearchResult( ) { }
     
-	public ImageSearchResult( String url, String width, String height, String alt, String title, String urlOriginal, String timestamp, Ranking score, String digest , String mime){
+	public ImageSearchResult( String url, String width, String height, String alt, String title, String urlOriginal, String timestamp, Ranking score, String digest , String mime , String longdesc){
         this.url 			= url;
         this.width 			= width;
         this.height 		= height;
@@ -31,7 +30,8 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
         this.score 			= score;
         this.digest			= digest;
         this.mime 			= mime;
-    }
+        this.longdesc		= longdesc;
+	}
 
 	public Ranking getScore() {
 		return score;
@@ -96,9 +96,14 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	public String getThumbnail() {
 		return thumbnail;
 	}
-
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
+	}
+	public String getLongdesc() {
+		return longdesc;
+	}
+	public void setLongdesc(String longdesc) {
+		this.longdesc = longdesc;
 	}
 
 	@Override

@@ -194,6 +194,7 @@ public class ImageSearchResultsController {
 	 		if( resultOpenSearch == null || resultOpenSearch.size( ) == 0 )  //No results in OpenSearch
 	 			return  Collections.emptyList( );
 	 		
+	 		
 	 		log.info( "[ImageSearchResultsController][getImageResults] OpenSearch result : " + resultOpenSearch.size( ) );
 	 		doneSignal = new CountDownLatch( resultOpenSearch.size( ) );
 	 		
