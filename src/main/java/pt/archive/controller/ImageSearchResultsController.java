@@ -115,6 +115,9 @@ public class ImageSearchResultsController {
 	
 	@Value( "${adultfilter}" )
 	private int adultfilter;
+	
+	 @Value("#{'${interval.size.image}'.split(',')}") 
+	 private int[] sizeInterval;
 	/***************************/
 	
 	private List< ItemOpenSearch > resultOpenSearch;
@@ -127,6 +130,14 @@ public class ImageSearchResultsController {
 	  printProperties( );
 	  printStopWords( );
 	  printBlackList( );
+	  printIntervalSize( );
+	}
+	
+	public void printIntervalSize( ) {
+		log.info( "**** Interval Sizes ****" );
+		for( int size: sizeInterval  )
+			log.info( "   size: " + size );
+		log.info( "******************" );
 	}
 	
 	/**
@@ -162,7 +173,10 @@ public class ImageSearchResultsController {
     	CountDownLatch doneSignal;
     	List< ImageSearchResult > imageResults 	= new ArrayList< >( );
     	List< ImageSearchResult > resultImages 	= new ArrayList< >( );
-    	List< String > types = new ArrayList< >( ); 
+    	List< String > types = new ArrayList< >( );
+    	List< String > sizes = new ArrayList< >( );
+    	
+    	
     	boolean isAllDone = false;
     	String queryWithoutTerm;
     	if( query == null || query.trim( ).equals( "" ) ) {
@@ -177,7 +191,8 @@ public class ImageSearchResultsController {
  			queryWithoutTerm = prepareTerms( query );
  			log.info( "query final => " + queryWithoutTerm );
  			printTerms( );
- 			types = getTypes( query );
+ 			types = getQueryTerms( query , Constants.typeSearch );
+ 			sizes = getQueryTerms( query , Constants.sizeSearch );
  			log.info( "****** Types *****" );
  			log.info( "  " + types );
  			log.info( "******************" );
@@ -200,7 +215,7 @@ public class ImageSearchResultsController {
 	 		
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
 	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
- 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail , adultfilter ) );
+ 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail , adultfilter , sizes , sizeInterval ) );
 	 			submittedJobs.add( job );
 	 		}
 	 		try {
@@ -374,16 +389,20 @@ public class ImageSearchResultsController {
     }
     
     /**
-     * return types of the images (Advanced search)
+     * return advanced terms of the images (Advanced search)
      * @param query
      * @return
      */
-    private List< String > getTypes( String query ) {
-    	List< String > resultTypes = new ArrayList< >( );
+    private List< String > getQueryTerms( String query , String queryTerm ) {
+    	List< String > resultTerms = new ArrayList< >( );
     	for( String term : allterms ) 
-    		if( term.startsWith( Constants.typeSearch ) )
-    			resultTypes.add( Constants.mimeTypestr.concat( term.substring( term.indexOf( Constants.typeSearch ) + Constants.typeSearch.length( ) ) ) );
-    	return resultTypes;
+    		if( term.startsWith( queryTerm ) ) {
+    			if( queryTerm.equals( Constants.typeSearch ) )
+    				resultTerms.add( Constants.mimeTypestr.concat( term.substring( term.indexOf( Constants.typeSearch ) + Constants.typeSearch.length( ) ) ) );
+    			else
+    				resultTerms.add( term.substring( term.indexOf( Constants.sizeSearch ) + Constants.sizeSearch.length( ) ) );
+    		}
+    	return resultTerms;
     }
     
     /**

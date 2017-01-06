@@ -42,8 +42,10 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private int widthThumbnail;
 	private int heightThumbnail; 
 	private int adultfilter;
+	private List< String > sizes;
+	private int[] sizeInterval;
 	
-	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail , int adultfilter ) { 
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail , int adultfilter , List< String > sizes ,  int[] sizeInterval ) { 
 		this.itemtoSearch 		= itemtoSearch;
 		this.numImgsbyUrl 		= numImgsbyUrl;
 		this.hostImage			= hostImage;
@@ -62,6 +64,8 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.widthThumbnail		= widthThumbnail;
 		this.heightThumbnail	= heightThumbnail;
 		this.adultfilter		= adultfilter;
+		this.sizes				= sizes;
+		this.sizeInterval		= sizeInterval;
 	}
 	
 	
@@ -173,7 +177,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				imgResult = new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) , longdesc );
 				if( imgParseflag == 1 ) { //return thumbnail
 					ImageParse imgParse = new ImageParse( );
-					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail , resultCDXServer.getMime( ) );
+					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail , resultCDXServer.getMime( ) , sizes , sizeInterval );
 					if( imgResult == null ) continue;
 					log.info( "[ImageParse] imgResult ["+imgResult.getWidth()+"*"+imgResult.getHeight()+"]" );
 				}

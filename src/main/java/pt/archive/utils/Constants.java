@@ -23,6 +23,11 @@ public class Constants {
 	public static final String typeSearch 		= "type:";
 	public static final String sizeSearch 		= "size:";
 	public static final String mimeTypestr 		= "image/";
+	public static final String sizeIcon			= "icon";
+	public static final String sizeSmall		= "small";
+	public static final String sizeMedium		= "medium";
+	public static final String sizeLarge		= "large";
+	public static final String sizeAll			= "all";
 	public static enum criteriaRank implements Serializable {
 		SCORE,
 		NEW,
