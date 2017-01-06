@@ -90,6 +90,7 @@ public class ImageParse {
 			// Write to output stream
 	        ImageIO.write( scaledImg , img.getMime( ).substring( 6 ) , bao );
 	        bao.flush( );
+	        
 	        // Create a byte array output stream.
 	        base64String = Base64.encode( bao.toByteArray( ) );
 			bao.close( );
