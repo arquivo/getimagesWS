@@ -118,6 +118,9 @@ public class ImageSearchResultsController {
 	
 	 @Value("#{'${interval.size.image}'.split(',')}") 
 	 private int[] sizeInterval;
+	 
+	 @Value( "${safeImage}" )
+	 private String safeImageHost;
 	/***************************/
 	
 	private List< ItemOpenSearch > resultOpenSearch;
@@ -215,7 +218,7 @@ public class ImageSearchResultsController {
 	 		
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
 	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
- 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail , adultfilter , sizes , sizeInterval ) );
+ 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail , adultfilter , sizes , sizeInterval , safeImageHost ) );
 	 			submittedJobs.add( job );
 	 		}
 	 		try {

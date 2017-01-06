@@ -44,8 +44,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private int adultfilter;
 	private List< String > sizes;
 	private int[] sizeInterval;
+	private String safeImageHost;
 	
-	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail , int adultfilter , List< String > sizes ,  int[] sizeInterval ) { 
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail , int adultfilter , List< String > sizes ,  int[] sizeInterval , String safeImageHost ) { 
 		this.itemtoSearch 		= itemtoSearch;
 		this.numImgsbyUrl 		= numImgsbyUrl;
 		this.hostImage			= hostImage;
@@ -66,6 +67,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.adultfilter		= adultfilter;
 		this.sizes				= sizes;
 		this.sizeInterval		= sizeInterval;
+		this.safeImageHost		= safeImageHost;
 	}
 	
 	
@@ -170,8 +172,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				
 				if( adultfilter == 1 ) { //adult image filter
 					//TODO 
-					AdultFilter filter = new AdultFilter( );
-					
+					char safe = SafeImageClient.getSafeImage( "ola" , safeImageHost );
+					if( safe == 45 )
+						continue;
 				}
 				
 				imgResult = new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) , longdesc );
@@ -199,7 +202,8 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		log.debug( "Number of results = [" + resultsImg.size( ) + "] to url[" + link + "]" );
 		
 	}
-	
+
+
 	/**
 	 * check mimetypes is equals from the request
 	 * @param mimeType
