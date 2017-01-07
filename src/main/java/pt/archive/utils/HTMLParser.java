@@ -45,8 +45,8 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private List< String > sizes;
 	private int[] sizeInterval;
 	private String safeImageHost;
-	
-	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail , int adultfilter , List< String > sizes ,  int[] sizeInterval , String safeImageHost ) { 
+	private float safeValue;
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail , int adultfilter , List< String > sizes ,  int[] sizeInterval , String safeImageHost , float safeValue ) { 
 		this.itemtoSearch 		= itemtoSearch;
 		this.numImgsbyUrl 		= numImgsbyUrl;
 		this.hostImage			= hostImage;
@@ -68,6 +68,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.sizes				= sizes;
 		this.sizeInterval		= sizeInterval;
 		this.safeImageHost		= safeImageHost;
+		this.safeValue 			= safeValue;
 	}
 	
 	
@@ -172,7 +173,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				
 				if( adultfilter == 1 ) { //adult image filter
 					//TODO 
-					char safe = SafeImageClient.getSafeImage( "ola" , safeImageHost );
+					char safe = SafeImageClient.getSafeImage( "ola" , safeImageHost , safeValue , log );
 					if( safe == 45 )
 						continue;
 				}

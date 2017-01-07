@@ -2,32 +2,32 @@ package pt.archive.utils;
 
 public class AdultFilter {
 	
-	private String safe;
-	private String notSafe;
+	private float safe;
+	private float notSafe;
 	
 	
-	public AdultFilter( String safe , String notSafe  ) {
+	public AdultFilter( float safe , float notSafe  ) {
 		this.safe 		= safe;
 		this.notSafe 	= notSafe;
 	}
 
 
-	public String getSafe() {
+	public float getSafe() {
 		return safe;
 	}
 
 
-	public void setSafe(String safe) {
+	public void setSafe(float safe) {
 		this.safe = safe;
 	}
 
 
-	public String getNotSafe() {
+	public float getNotSafe() {
 		return notSafe;
 	}
 
 
-	public void setNotSafe(String notSafe) {
+	public void setNotSafe(float notSafe) {
 		this.notSafe = notSafe;
 	}
 	

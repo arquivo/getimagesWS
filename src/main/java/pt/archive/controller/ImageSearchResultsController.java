@@ -116,11 +116,14 @@ public class ImageSearchResultsController {
 	@Value( "${adultfilter}" )
 	private int adultfilter;
 	
-	 @Value("#{'${interval.size.image}'.split(',')}") 
-	 private int[] sizeInterval;
+	@Value( "${safeValue}" )
+	private float safeValue;
+	
+	@Value("#{'${interval.size.image}'.split(',')}") 
+	private int[] sizeInterval;
 	 
-	 @Value( "${safeImage}" )
-	 private String safeImageHost;
+	@Value( "${safeImage}" )
+	private String safeImageHost;
 	/***************************/
 	
 	private List< ItemOpenSearch > resultOpenSearch;
@@ -218,7 +221,7 @@ public class ImageSearchResultsController {
 	 		
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
 	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
- 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail , adultfilter , sizes , sizeInterval , safeImageHost ) );
+ 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail , adultfilter , sizes , sizeInterval , safeImageHost , safeValue ) );
 	 			submittedJobs.add( job );
 	 		}
 	 		try {

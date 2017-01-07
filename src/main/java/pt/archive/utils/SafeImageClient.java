@@ -9,27 +9,31 @@ import com.sun.jersey.api.client.WebResource;
 public class SafeImageClient {
 
 	
-	public SafeImageClient( ) {
-		
-	}
-	
-	
-	public static char getSafeImage( String imgBase64 , String host , Logger log ) {
-		Client client = Client.create( );
-		WebResource webResource = client.resource( host );
-		ClientResponse response = webResource.type( "application/json" )
-					.post( ClientResponse.class , imgBase64 );
+	public static char getSafeImage( String imgBase64 , String host , float safeValue , Logger log ) {
+		try{
+			Client client = Client.create( );
+			WebResource webResource = client.resource( host );
+			ClientResponse response = webResource.type( "application/json" )
+						.post( ClientResponse.class , imgBase64 );
 
-		if ( response.getStatus() != 200 ) {
-			throw new RuntimeException("Failed : HTTP error code : "
-			     + response.getStatus());
+			if ( response.getStatus() != 200 ) {
+				throw new RuntimeException("Failed : HTTP error code : "+ response.getStatus( ) );
+			}
+
+			log.info( "Output from Server .... \n" );
+			AdultFilter output = response.getEntity( AdultFilter.class );
+			log.info( "SafeImage api return safe[" + output.getSafe( ) + "] notSafe[" + output.getNotSafe( ) + "]" );
+			
+			if( output.getSafe( ) > safeValue )
+				return 45;
+			else
+				return 46;
+			
+		} catch( Exception e ) {
+			log.error( "[getSafeImage] error " , e );
+			return 46;
 		}
-
-		log.info( "Output from Server .... \n" );
-		String output = response.getEntity( String.class );
-		log.info( output );
 		
-		return 45;
-	}
+		}
 	
 }
