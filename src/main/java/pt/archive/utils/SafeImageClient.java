@@ -16,7 +16,7 @@ public class SafeImageClient {
 			ClientResponse response = webResource.type( "application/json" )
 						.post( ClientResponse.class , imgBase64 );
 
-			if ( response.getStatus() != 200 ) {
+			if ( response.getStatus( ) != 200 ) {
 				throw new RuntimeException("Failed : HTTP error code : "+ response.getStatus( ) );
 			}
 
@@ -34,6 +34,6 @@ public class SafeImageClient {
 			return 46;
 		}
 		
-		}
+	}
 	
 }

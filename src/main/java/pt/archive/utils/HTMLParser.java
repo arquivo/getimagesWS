@@ -90,6 +90,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	 */
 	public void buildResponse( ) {
 		int countImg = 0;
+		int countImgPerSite = 0;
 		ItemCDXServer resultCDXServer;
 		String link = getLink( itemtoSearch.getUrl( ) , itemtoSearch.getTstamp( ) , hostImage.concat( urldirect ) );
 		Ranking rank = new Ranking( );
@@ -153,6 +154,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			if( scoreImg == 0 )
 				continue;
 			
+			if( links.size( ) == 1 ) 
+				scoreImg += Constants.incrCountImg;
+			
+			scoreImg += checkTextAround( imgItem );
+			
 			rank.setScore( scoreImg );
 			rank.setRank( criteriaRank );
 			
@@ -204,6 +210,35 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		
 	}
 
+	
+	private float checkTextAround( Element imgtag ) {
+		float countScore = 0;
+		if( imgtag.parents( ) != null  ) {
+			log.info( "[Text img]  nextElementSibling" + html2text( imgtag.parents( ).toString( ) ) );
+			countScore = getFrequencyofTerms( html2text( imgtag.parents( ).toString( ) ) );
+		}
+		
+		if( imgtag.nextSibling( ) != null ) {
+			log.info( "[Text img] nextSibling = " + html2text( imgtag.nextSibling( ).toString( ) ) ) ;
+			countScore += getFrequencyofTerms( html2text( imgtag.nextSibling( ).toString( ) ) );
+		}
+		
+		return countScore;
+	}
+	
+	public String html2text( String html ) {
+	    return Jsoup.parse( html ).text( );
+	}
+	
+	public float getFrequencyofTerms( String text ) {
+		float countScore = 0;
+		for( String term: terms ) {
+			if( text.toLowerCase( ).contains( term ) ) {
+				countScore += Constants.incrTextArround;
+			}
+		}
+		return countScore;
+	}
 
 	/**
 	 * check mimetypes is equals from the request
