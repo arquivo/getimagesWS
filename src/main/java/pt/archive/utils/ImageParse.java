@@ -44,8 +44,6 @@ public class ImageParse {
 			int width          	= bimg.getWidth( null );
 			int height         	= bimg.getHeight( null );
 			
-			
-			
 			if( !checkSize( width , height , sizes , sizeInterval ) ){
 				log.info( "Size out of range ["+width+"*"+height+"]" );
 				return null;

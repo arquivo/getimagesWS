@@ -1,5 +1,8 @@
 package pt.archive.utils;
 
+import java.math.BigDecimal;
+
+import org.json.JSONObject;
 import org.slf4j.Logger;
 
 import com.sun.jersey.api.client.Client;
@@ -23,12 +26,19 @@ public class SafeImageClient {
 			if ( response.getStatus( ) != 200 ) {
 				throw new RuntimeException("Failed : HTTP error code : "+ response.getStatus( ) );
 			}
+			
+			JSONObject input = new JSONObject( );
+			input.put( "image", imgBase64 );
 
 			log.info( "Output from Server response-status["+response.getStatus()+"].... \n" );
-			AdultFilter output = response.getEntity( AdultFilter.class );
-			log.info( "SafeImage api return safe[" + output.getSafe( ) + "] notSafe[" + output.getNotSafe( ) + "]" );
+			String outputJS = response.getEntity( String.class );
+			JSONObject output = new JSONObject(  outputJS.substring( 1, outputJS.length( ) - 2 ).replace( "\\" , "" ) ); 
+		    float safe = BigDecimal.valueOf( output.getDouble( "Safe" ) ).floatValue( );
+		    float notSafe = BigDecimal.valueOf( output.getDouble( "NotSafe" ) ).floatValue( );
+		    
+			log.info( "SafeImage api return safe[" + safe + "] notSafe[" + notSafe + "]" );
 			
-			if( output.getSafe( ) > safeValue )
+			if( safe > safeValue )
 				return 45;
 			else
 				return 46;
