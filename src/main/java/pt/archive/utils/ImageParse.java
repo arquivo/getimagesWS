@@ -33,7 +33,7 @@ public class ImageParse {
 	 * @param heightThumbnail
 	 * @return
 	 */
-	public ImageSearchResult getPropImage( ImageSearchResult img , int thumbWidth , int thumbHeight , String mimetype , List< String > sizes , int[] sizeInterval ) {
+	public ImageSearchResult getPropImage( ImageSearchResult img , int thumbWidth , int thumbHeight , String mimetype , List< String > sizes , int[] sizeInterval , int flagSafeImage, String hostSafeImage , float safeValue ) {
 		BufferedImage bimg;
 		ByteArrayOutputStream bao = new ByteArrayOutputStream( );
 		String base64String;	
@@ -43,6 +43,8 @@ public class ImageParse {
 			bimg = ImageIO.read( inImg );
 			int width          	= bimg.getWidth( null );
 			int height         	= bimg.getHeight( null );
+			
+			
 			
 			if( !checkSize( width , height , sizes , sizeInterval ) ){
 				log.info( "Size out of range ["+width+"*"+height+"]" );
@@ -97,7 +99,13 @@ public class ImageParse {
 			log.info( "create thumbnail mime[" + img.getMime( ).substring( 6 ) + "] "
 					+ "["+thumbWidth+"*"+thumbHeight+"]"
 					+ " original size ["+width+"*"+height+"]");
-	        img.setThumbnail( base64String );
+			if( flagSafeImage == 1 ) { //adult image filter
+				//TODO 
+				char safe = SafeImageClient.getSafeImage( base64String , hostSafeImage , safeValue , log );
+				if( safe == 45 )
+					return null;
+			}
+			img.setThumbnail( base64String );
 			
 		} catch ( MalformedURLException e ) {
 			log.error( "[ImageParse][getPropImage] get image from url[" + img.getUrl( ) + "] error = " , e );

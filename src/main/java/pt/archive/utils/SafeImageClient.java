@@ -11,7 +11,11 @@ public class SafeImageClient {
 	
 	public static char getSafeImage( String imgBase64 , String host , float safeValue , Logger log ) {
 		try{
+			log.info( "Call safeImage API host["+host+"]" );
+			
 			Client client = Client.create( );
+		    client.setConnectTimeout( Constants.timeoutConn );
+		    client.setReadTimeout( Constants.timeoutreadConn );
 			WebResource webResource = client.resource( host );
 			ClientResponse response = webResource.type( "application/json" )
 						.post( ClientResponse.class , imgBase64 );
@@ -20,7 +24,7 @@ public class SafeImageClient {
 				throw new RuntimeException("Failed : HTTP error code : "+ response.getStatus( ) );
 			}
 
-			log.info( "Output from Server .... \n" );
+			log.info( "Output from Server response-status["+response.getStatus()+"].... \n" );
 			AdultFilter output = response.getEntity( AdultFilter.class );
 			log.info( "SafeImage api return safe[" + output.getSafe( ) + "] notSafe[" + output.getNotSafe( ) + "]" );
 			

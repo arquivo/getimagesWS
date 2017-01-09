@@ -177,19 +177,13 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 					continue;
 				}
 				
-				if( adultfilter == 1 ) { //adult image filter
-					//TODO 
-					char safe = SafeImageClient.getSafeImage( "ola" , safeImageHost , safeValue , log );
-					if( safe == 45 )
-						continue;
-				}
 				
 				imgResult = new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) , longdesc );
 				if( imgParseflag == 1 ) { //return thumbnail
 					ImageParse imgParse = new ImageParse( );
-					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail , resultCDXServer.getMime( ) , sizes , sizeInterval );
+					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail , resultCDXServer.getMime( ) , sizes , sizeInterval , adultfilter , safeImageHost , safeValue );
 					if( imgResult == null ) continue;
-					log.info( "[ImageParse] imgResult ["+imgResult.getWidth()+"*"+imgResult.getHeight()+"]" );
+					log.debug( "[ImageParse] imgResult ["+imgResult.getWidth()+"*"+imgResult.getHeight()+"]" );
 				}
 				
 				log.debug( "scoreImg [" + scoreImg + "] digest " + itemCDX.getImgCDX().getDigest() + " thumbnail["+imgResult.getThumbnail()+"]" );
@@ -214,12 +208,12 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private float checkTextAround( Element imgtag ) {
 		float countScore = 0;
 		if( imgtag.parents( ) != null  ) {
-			log.info( "[Text img]  nextElementSibling" + html2text( imgtag.parents( ).toString( ) ) );
+			log.debug( "[Text img]  nextElementSibling" + html2text( imgtag.parents( ).toString( ) ) );
 			countScore = getFrequencyofTerms( html2text( imgtag.parents( ).toString( ) ) );
 		}
 		
 		if( imgtag.nextSibling( ) != null ) {
-			log.info( "[Text img] nextSibling = " + html2text( imgtag.nextSibling( ).toString( ) ) ) ;
+			log.debug( "[Text img] nextSibling = " + html2text( imgtag.nextSibling( ).toString( ) ) ) ;
 			countScore += getFrequencyofTerms( html2text( imgtag.nextSibling( ).toString( ) ) );
 		}
 		

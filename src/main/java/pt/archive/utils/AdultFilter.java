@@ -12,22 +12,22 @@ public class AdultFilter {
 	}
 
 
-	public float getSafe() {
+	public float getSafe( ) {
 		return safe;
 	}
 
 
-	public void setSafe(float safe) {
+	public void setSafe( float safe ) {
 		this.safe = safe;
 	}
 
 
-	public float getNotSafe() {
+	public float getNotSafe( ) {
 		return notSafe;
 	}
 
 
-	public void setNotSafe(float notSafe) {
+	public void setNotSafe( float notSafe ) {
 		this.notSafe = notSafe;
 	}
 	
