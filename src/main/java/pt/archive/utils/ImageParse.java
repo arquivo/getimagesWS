@@ -45,6 +45,8 @@ public class ImageParse {
 			int width          	= bimg.getWidth( null );
 			int height         	= bimg.getHeight( null );
 			
+			if( img.getUrl( ).contains( "jenna-jameson_15af8357" ) ) 
+				log.info( "BUG FIX!!!!!" );
 			if( !checkSize( width , height , sizes , sizeInterval ) ){
 				log.info( "Size out of range [" + width + "*" + height + "]" );
 				return null;
@@ -95,10 +97,12 @@ public class ImageParse {
 	        // Create a byte array output stream.
 	        base64String = Base64.encode( bao.toByteArray( ) );
 			bao.close( );
-			log.debug( "create thumbnail mime[" + img.getMime( ).substring( 6 ) + "] "
-					+ "["+thumbWidth+"*"+thumbHeight+"]"
-					+ " original size ["+width+"*"+height+"]");
+			if( img.getUrl( ).contains( "jenna-jameson_15af8357" ) )
+				log.info( "AQUI!!!!!!!!!!!!!!!! create thumbnail mime[" + img.getMime( ) + "] "
+						+ "["+thumbWidth+"*"+thumbHeight+"]"
+						+ " original size ["+width+"*"+height+"] img[" + img.getUrl( ) + "]");
 			img.setThumbnail( base64String );
+			
 			
 			if( flagSafeImage == 1  && !safeImageType.toLowerCase( ).equals( "all" ) ) { //adult image filter
 				//TODO 
@@ -117,10 +121,10 @@ public class ImageParse {
 			log.error( "[ImageParse][getPropImage] get image from url[" + img.getUrl( ) + "] error = " , e );
 			return null;
 		} catch ( IOException e ) {
-			log.error( "[ImageParse][getPropImage] e = " , e );
+			log.error( "[ImageParse][getPropImage] [" + img.getUrl( ) + "] e = " , e );
 			return null;
 		} catch( IllegalArgumentException | ImagingOpException e ) {
-			log.error( "[ImageParse][getPropImage] e = " , e );
+			log.error( "[ImageParse][getPropImage] [" + img.getUrl( ) + "] e = " , e );
 			return null;
 		}
 		return img;
