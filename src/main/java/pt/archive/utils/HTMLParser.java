@@ -1,5 +1,6 @@
 package pt.archive.utils;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.util.ArrayList;
@@ -45,8 +46,10 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private List< String > sizes;
 	private int[] sizeInterval;
 	private String safeImageHost;
-	private float safeValue;
-	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail , int adultfilter , List< String > sizes ,  int[] sizeInterval , String safeImageHost , float safeValue ) { 
+	private BigDecimal safeValue;
+	private String safeImage;
+	
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail , int adultfilter , List< String > sizes ,  int[] sizeInterval , String safeImageHost , BigDecimal safeValue , String safeImage ) { 
 		this.itemtoSearch 		= itemtoSearch;
 		this.numImgsbyUrl 		= numImgsbyUrl;
 		this.hostImage			= hostImage;
@@ -69,6 +72,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.sizeInterval		= sizeInterval;
 		this.safeImageHost		= safeImageHost;
 		this.safeValue 			= safeValue;
+		this.safeImage			= safeImage;
 	}
 	
 	
@@ -179,10 +183,27 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				
 				
 				imgResult = new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) , longdesc );
-				if( imgParseflag == 1 ) { //return thumbnail
+				if( imgParseflag == 1) { //return thumbnail
 					ImageParse imgParse = new ImageParse( );
-					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail , resultCDXServer.getMime( ) , sizes , sizeInterval , adultfilter , safeImageHost , safeValue );
-					if( imgResult == null ) continue;
+					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail , resultCDXServer.getMime( ) , sizes , sizeInterval , adultfilter , safeImageHost , safeValue , safeImage );
+					if( imgResult == null  )
+						continue;
+					if( safeImage.toLowerCase().equals( "yes" ) || safeImage.toLowerCase().equals( "no" ) ) {
+						if( imgResult.getSafe( ).compareTo( BigDecimal.ZERO ) < 0 ){
+							log.info( "getSafe["+imgResult.getSafe( )+"] is null = " + (imgResult.getSafe( ).compareTo( BigDecimal.ZERO ) < 0 ) );
+							continue;
+						}
+						
+						log.info( "safeImage["+safeImage+"] getsafe["+imgResult.getSafe().floatValue( )+"] safeValue["+safeValue.floatValue( )+"] compareTo["+(imgResult.getSafe( ).compareTo( safeValue ) < 0)+"]" );
+						if( safeImage.toLowerCase( ).equals( "yes" ) ) { //show images safe
+							if( imgResult.getSafe( ).compareTo( safeValue ) < 0 )
+								continue;
+						} else if( safeImage.toLowerCase( ).equals( "no" ) ) { //Only show images not safe
+							if( imgResult.getSafe( ).compareTo( safeValue ) >= 0 )
+								continue;
+						}	
+					}
+						
 					log.debug( "[ImageParse] imgResult ["+imgResult.getWidth()+"*"+imgResult.getHeight()+"]" );
 				}
 				

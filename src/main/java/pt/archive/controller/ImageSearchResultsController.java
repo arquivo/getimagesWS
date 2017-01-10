@@ -22,6 +22,7 @@ import pt.archive.utils.UserHandler;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -117,7 +118,7 @@ public class ImageSearchResultsController {
 	private int adultfilter;
 	
 	@Value( "${safeValue}" )
-	private float safeValue;
+	private BigDecimal safeValue;
 	
 	@Value("#{'${interval.size.image}'.split(',')}") 
 	private int[] sizeInterval;
@@ -155,25 +156,27 @@ public class ImageSearchResultsController {
     @RequestMapping( value = "/" , method = RequestMethod.GET )
     public ImageSearchResults getImages( @RequestParam(value="query", defaultValue="") String query,
     									 @RequestParam(value="stamp", defaultValue="19960101000000-20151022163016") String stamtp,
-    									 @RequestParam(value="start", defaultValue="0") String _startIndex ) {
+    									 @RequestParam(value="start", defaultValue="0") String _startIndex,
+    									 @RequestParam(value="safeImage", defaultValue="all") String _safeImage ) {
     	log.info( "New request query[" + query + "] stamp["+ stamtp +"] start["+ _startIndex +"]" );
     	long start = System.currentTimeMillis( );
     	startIndex = _startIndex;
-    	List< ImageSearchResult > imageResults = getImageResults( query , stamtp ); 
+    	List< ImageSearchResult > imageResults = getImageResults( query , stamtp , _safeImage ); 
     	long elapsedTime = System.currentTimeMillis( ) - start;
     	log.info( "Search ["+query+"] Results = [" + imageResults.size( ) +"] time = [" + elapsedTime + "] milliseconds.");
     	return new ImageSearchResults( imageResults , imageResults.size( ) );
     }
     
-    
+   
     /**
      * Method that calls the OpenSearchAPI to get the first N urls of the query
      * and Returns a list of Images
      * @param query
      * @param stamp
+     * @param safeImage
      * @return
      */
-    public List< ImageSearchResult > getImageResults( String query , String stamp ) {
+    public List< ImageSearchResult > getImageResults( String query , String stamp , String safeImage ) {
     	String url;
     	ExecutorService pool = Executors.newFixedThreadPool( NThreads );
     	CountDownLatch doneSignal;
@@ -221,7 +224,7 @@ public class ImageSearchResultsController {
 	 		
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
 	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
- 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail , adultfilter , sizes , sizeInterval , safeImageHost , safeValue ) );
+ 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail , adultfilter , sizes , sizeInterval , safeImageHost , safeValue , safeImage ) );
 	 			submittedJobs.add( job );
 	 		}
 	 		try {

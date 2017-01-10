@@ -1,5 +1,7 @@
 package pt.archive.model;
 
+import java.math.BigDecimal;
+
 import pt.archive.utils.Constants;
 
 public class ImageSearchResult implements Comparable< ImageSearchResult > {
@@ -16,10 +18,10 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	String mime;
 	String thumbnail;
 	String longdesc;
-	
+	BigDecimal safe;
     public ImageSearchResult( ) { }
     
-	public ImageSearchResult( String url, String width, String height, String alt, String title, String urlOriginal, String timestamp, Ranking score, String digest , String mime , String longdesc){
+	public ImageSearchResult( String url, String width, String height, String alt, String title, String urlOriginal, String timestamp, Ranking score, String digest , String mime , String longdesc ){
         this.url 			= url;
         this.width 			= width;
         this.height 		= height;
@@ -105,6 +107,13 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	public void setLongdesc(String longdesc) {
 		this.longdesc = longdesc;
 	}
+	public BigDecimal getSafe() {
+		return safe;
+	}
+	public void setSafe(BigDecimal safe) {
+		this.safe = safe;
+	}
+
 
 	@Override
 	public boolean equals( Object o ) {
