@@ -9,10 +9,15 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.util.Iterator;
 import java.util.List;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
+import javax.activation.MimetypesFileTypeMap;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
 
 import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
@@ -39,18 +44,23 @@ public class ImageParse {
 		ByteArrayOutputStream bao = new ByteArrayOutputStream( );
 		String base64String, 
 			base64StringOriginal;	
-		
+		String type = null;
+		URLConnection uc = null;
 		try {
-			InputStream inImg =  new URL( img.getUrl( ) ).openConnection( ).getInputStream( );
+			uc = new URL( img.getUrl( ) ).openConnection( );
+			InputStream inImg =  uc.getInputStream( );
 			bimg = ImageIO.read( inImg );
+			type = getMimeType( uc );
 			int width          	= bimg.getWidth( null );
 			int height         	= bimg.getHeight( null );
-			
+			log.info( "Mimetyp = " + img.getMime( ) + " format = " + bimg.getType() );
 			if( !checkSize( width , height , sizes , sizeInterval ) ){
 				log.info( "Size out of range [" + width + "*" + height + "]" );
 				return null;
 			}
-			
+			Iterator< ImageReader > imageReaders = ImageIO.getImageReaders( inImg );
+			log.info( "TYPE => " + type );
+			img.setMime( type );
 			img.setHeight( Double.toString( height ) );
 			img.setWidth( Double.toString( width ) );
 			byte[ ] bytesImgOriginal = IOUtils.toByteArray( new URL( img.getUrl( ) ).openConnection( ).getInputStream( ) );
@@ -58,7 +68,8 @@ public class ImageParse {
 			
 			if( mimetype.equals( "image/gif" ) ) {
 				img.setThumbnail( base64StringOriginal );
-				img.setSafe( checkSafeImage( flagSafeImage , safeImageType , base64StringOriginal , hostSafeImage , log , img ) );
+				if( flagSafeImage == 1  )
+					img.setSafe( checkSafeImage( safeImageType , base64StringOriginal , hostSafeImage , log , img ) );
 				return img;
 			}
 			
@@ -97,7 +108,7 @@ public class ImageParse {
 	        base64String = Base64.encode( bao.toByteArray( ) );
 			bao.close( );
 			
-			log.debug( "AQUI!!!!!!!!!!!!!!!! create thumbnail mime[" + img.getMime( ) + "] "
+			log.debug( "Create thumbnail mime[" + img.getMime( ) + "] "
 						+ "["+thumbWidth+"*"+thumbHeight+"]"
 						+ " original size ["+width+"*"+height+"] img[" + img.getUrl( ) + "]");
 			img.setThumbnail( base64String );
@@ -113,7 +124,8 @@ public class ImageParse {
 				img.setSafe( safe );
 			} else 
 				img.setSafe( new BigDecimal( -1 ) );*/
-			img.setSafe( checkSafeImage( flagSafeImage , safeImageType , base64StringOriginal , hostSafeImage , log , img ) );
+			if( flagSafeImage == 1  )
+				img.setSafe( checkSafeImage(  safeImageType , base64StringOriginal , hostSafeImage , log , img ) );
 			
 			
 		} catch ( MalformedURLException e ) {
@@ -125,13 +137,40 @@ public class ImageParse {
 		} catch( IllegalArgumentException | ImagingOpException e ) {
 			log.error( "[ImageParse][getPropImage] [" + img.getUrl( ) + "] e = " , e );
 			return null;
+		} finally {
+			try {
+				if( bao != null )
+					bao.close( );
+			} catch( IOException e2 ) {
+				log.error( "[getPropImage] " );
+			}
+			
 		}
 		return img;
 	}
 	
+	/**
+	 * @param uc
+	 * @return
+	 * @throws java.io.IOException
+	 * @throws MalformedURLException
+	 */
+	public static String getMimeType( URLConnection uc ) throws java.io.IOException, MalformedURLException {
+		return uc.getContentType( );
+    }
+
 	
-	public BigDecimal checkSafeImage( int flagSafeImage,  String safeImageType , String base64String , String hostSafeImage , Logger log , ImageSearchResult img ) {
-		if( flagSafeImage == 1  && !safeImageType.toLowerCase( ).equals( "all" ) ) { //adult image filter
+	/**
+	 * Call safe image API
+	 * @param safeImageType
+	 * @param base64String
+	 * @param hostSafeImage
+	 * @param log
+	 * @param img
+	 * @return
+	 */
+	public BigDecimal checkSafeImage(  String safeImageType , String base64String , String hostSafeImage , Logger log , ImageSearchResult img ) {
+		if( !safeImageType.toLowerCase( ).equals( "all" ) ) { //adult image filter
 			//TODO 
 			BigDecimal safe = SafeImageClient.getSafeImage( base64String , hostSafeImage , log , img.getUrl( ) );
 			if( safe.compareTo( BigDecimal.ZERO ) < 0 ) {
