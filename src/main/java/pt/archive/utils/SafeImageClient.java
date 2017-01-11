@@ -32,13 +32,14 @@ public class SafeImageClient {
 			log.debug( "Output from Server .... \n" );
 			String outputJS = response.getEntity( String.class );
 			JSONObject output = new JSONObject(  outputJS.substring( 1, outputJS.length( ) - 2 ).replace( "\\" , "" ) ); 
-			BigDecimal safe = new BigDecimal( output.getDouble( "Safe" ) );
-			BigDecimal notSafe = new BigDecimal( output.getDouble( "NotSafe" ) );
-		    
+			BigDecimal safe =  output.getBigDecimal( "Safe" );
+			BigDecimal notSafe = output.getBigDecimal( "NotSafe" );
+			
 		    if( safe.compareTo( BigDecimal.ZERO ) == 0 && notSafe.compareTo( BigDecimal.ZERO ) == 0 )
 		    	return new BigDecimal( -1 );
 		    
-			//log.info( "SafeImage api return safe[" + safe.floatValue() + "] notSafe[" + notSafe.floatValue() + "] to url["+urlDebug+"]" );
+			log.info( "SafeImage api  return safe[" + safe.floatValue() + "] notSafe[" 
+						+ notSafe.floatValue() + "]  to url["+urlDebug+"]" );
 			return safe;
 			
 		} catch( Exception e ) {

@@ -37,7 +37,8 @@ public class ImageParse {
 	public ImageSearchResult getPropImage( ImageSearchResult img , int thumbWidth , int thumbHeight , String mimetype , List< String > sizes , int[] sizeInterval , int flagSafeImage, String hostSafeImage , BigDecimal safeValue , String safeImageType ) {
 		BufferedImage bimg;
 		ByteArrayOutputStream bao = new ByteArrayOutputStream( );
-		String base64String;	
+		String base64String, 
+			base64StringOriginal;	
 		
 		try {
 			InputStream inImg =  new URL( img.getUrl( ) ).openConnection( ).getInputStream( );
@@ -45,8 +46,6 @@ public class ImageParse {
 			int width          	= bimg.getWidth( null );
 			int height         	= bimg.getHeight( null );
 			
-			if( img.getUrl( ).contains( "jenna-jameson_15af8357" ) ) 
-				log.info( "BUG FIX!!!!!" );
 			if( !checkSize( width , height , sizes , sizeInterval ) ){
 				log.info( "Size out of range [" + width + "*" + height + "]" );
 				return null;
@@ -54,12 +53,12 @@ public class ImageParse {
 			
 			img.setHeight( Double.toString( height ) );
 			img.setWidth( Double.toString( width ) );
+			byte[ ] bytesImgOriginal = IOUtils.toByteArray( new URL( img.getUrl( ) ).openConnection( ).getInputStream( ) );
+			base64StringOriginal = Base64.encode( bytesImgOriginal );
 			
 			if( mimetype.equals( "image/gif" ) ) {
-				byte[ ] bytesImgOriginal = IOUtils.toByteArray( new URL( img.getUrl( ) ).openConnection( ).getInputStream( ) );
-				
-				base64String = Base64.encode( bytesImgOriginal );
-				img.setThumbnail( base64String );
+				img.setThumbnail( base64StringOriginal );
+				img.setSafe( checkSafeImage( flagSafeImage , safeImageType , base64StringOriginal , hostSafeImage , log , img ) );
 				return img;
 			}
 			
@@ -97,24 +96,24 @@ public class ImageParse {
 	        // Create a byte array output stream.
 	        base64String = Base64.encode( bao.toByteArray( ) );
 			bao.close( );
-			if( img.getUrl( ).contains( "jenna-jameson_15af8357" ) )
-				log.info( "AQUI!!!!!!!!!!!!!!!! create thumbnail mime[" + img.getMime( ) + "] "
+			
+			log.debug( "AQUI!!!!!!!!!!!!!!!! create thumbnail mime[" + img.getMime( ) + "] "
 						+ "["+thumbWidth+"*"+thumbHeight+"]"
 						+ " original size ["+width+"*"+height+"] img[" + img.getUrl( ) + "]");
 			img.setThumbnail( base64String );
 			
 			
-			if( flagSafeImage == 1  && !safeImageType.toLowerCase( ).equals( "all" ) ) { //adult image filter
+		/*	if( flagSafeImage == 1  && !safeImageType.toLowerCase( ).equals( "all" ) ) { //adult image filter
 				//TODO 
 				BigDecimal safe = SafeImageClient.getSafeImage( base64String , hostSafeImage , log , img.getUrl( ) );
-				if( safe.compareTo( BigDecimal.ZERO ) < 0 ){
+				if( safe.compareTo( BigDecimal.ZERO ) < 0 ) {
 					log.info( "Reject image!!!!! url["+img.getUrl( )+"]" );
 					return null;
 				} 
 				img.setSafe( safe );
 			} else 
-				img.setSafe( new BigDecimal( -1 ) );
-			
+				img.setSafe( new BigDecimal( -1 ) );*/
+			img.setSafe( checkSafeImage( flagSafeImage , safeImageType , base64StringOriginal , hostSafeImage , log , img ) );
 			
 			
 		} catch ( MalformedURLException e ) {
@@ -130,6 +129,20 @@ public class ImageParse {
 		return img;
 	}
 	
+	
+	public BigDecimal checkSafeImage( int flagSafeImage,  String safeImageType , String base64String , String hostSafeImage , Logger log , ImageSearchResult img ) {
+		if( flagSafeImage == 1  && !safeImageType.toLowerCase( ).equals( "all" ) ) { //adult image filter
+			//TODO 
+			BigDecimal safe = SafeImageClient.getSafeImage( base64String , hostSafeImage , log , img.getUrl( ) );
+			if( safe.compareTo( BigDecimal.ZERO ) < 0 ) {
+				log.info( "Reject image!!!!! url["+img.getUrl( )+"]" );
+				return null;
+			} 
+			return safe;
+		} else 
+			return new BigDecimal( -1 );
+
+	}
 	
 	/**
 	 * return integral part of the number
