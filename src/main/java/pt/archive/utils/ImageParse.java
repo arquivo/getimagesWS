@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,34 +41,39 @@ public class ImageParse {
 	 * @param heightThumbnail
 	 * @return
 	 */
-	public ImageSearchResult getPropImage( ImageSearchResult img , int thumbWidth , int thumbHeight , String mimetype , List< String > sizes , int[] sizeInterval , int flagSafeImage, String hostSafeImage , BigDecimal safeValue , String safeImageType ) {
+	public ImageSearchResult getPropImage( ImageSearchResult img , int thumbWidth , int thumbHeight , List< String > sizes , int[] sizeInterval , int flagSafeImage, String hostSafeImage , BigDecimal safeValue , String safeImageType ) {
 		BufferedImage bimg;
 		ByteArrayOutputStream bao = new ByteArrayOutputStream( );
 		String base64String, 
 			base64StringOriginal;	
 		String type = null;
 		URLConnection uc = null;
+		MessageDigest digest = null;
 		try {
 			uc = new URL( img.getUrl( ) ).openConnection( );
 			InputStream inImg =  uc.getInputStream( );
 			bimg = ImageIO.read( inImg );
 			type = getMimeType( uc );
+			digest = MessageDigest.getInstance( "SHA-256" );
+			
 			int width          	= bimg.getWidth( null );
 			int height         	= bimg.getHeight( null );
-			log.info( "Mimetyp = " + img.getMime( ) + " format = " + bimg.getType() );
-			if( !checkSize( width , height , sizes , sizeInterval ) ){
+			if( !checkSize( width , height , sizes , sizeInterval ) ) {
 				log.info( "Size out of range [" + width + "*" + height + "]" );
 				return null;
 			}
 			Iterator< ImageReader > imageReaders = ImageIO.getImageReaders( inImg );
-			log.info( "TYPE => " + type );
 			img.setMime( type );
 			img.setHeight( Double.toString( height ) );
 			img.setWidth( Double.toString( width ) );
 			byte[ ] bytesImgOriginal = IOUtils.toByteArray( new URL( img.getUrl( ) ).openConnection( ).getInputStream( ) );
 			base64StringOriginal = Base64.encode( bytesImgOriginal );
+			//calculate digest
+			digest.update( bytesImgOriginal );
+			byte byteDigest[ ] = digest.digest();
+			img.setDigest( convertByteArrayToHexString( byteDigest ) );
 			
-			if( mimetype.equals( "image/gif" ) ) {
+			if( type.equals( "image/gif" ) ) {
 				img.setThumbnail( base64StringOriginal );
 				if( flagSafeImage == 1  )
 					img.setSafe( checkSafeImage( safeImageType , base64StringOriginal , hostSafeImage , log , img ) );
@@ -87,7 +94,7 @@ public class ImageParse {
 				thumbWidth = width;
 			else if( height < thumbHeight )
 				thumbHeight = height;
-
+			
 			//Image thumbnail = bimg.getScaledInstance( widthThumbnail , heightThumbnail , BufferedImage.SCALE_SMOOTH );
 			BufferedImage scaledImg = null;
 			if( width < thumbWidth || height < thumbHeight )
@@ -113,21 +120,12 @@ public class ImageParse {
 						+ " original size ["+width+"*"+height+"] img[" + img.getUrl( ) + "]");
 			img.setThumbnail( base64String );
 			
-			
-		/*	if( flagSafeImage == 1  && !safeImageType.toLowerCase( ).equals( "all" ) ) { //adult image filter
-				//TODO 
-				BigDecimal safe = SafeImageClient.getSafeImage( base64String , hostSafeImage , log , img.getUrl( ) );
-				if( safe.compareTo( BigDecimal.ZERO ) < 0 ) {
-					log.info( "Reject image!!!!! url["+img.getUrl( )+"]" );
-					return null;
-				} 
-				img.setSafe( safe );
-			} else 
-				img.setSafe( new BigDecimal( -1 ) );*/
 			if( flagSafeImage == 1  )
 				img.setSafe( checkSafeImage(  safeImageType , base64StringOriginal , hostSafeImage , log , img ) );
 			
-			
+		} catch ( NoSuchAlgorithmException e ) {
+			log.error( "[ImageParse][getPropImage] Digest error, e = " );
+			return null;
 		} catch ( MalformedURLException e ) {
 			log.error( "[ImageParse][getPropImage] get image from url[" + img.getUrl( ) + "] error = " , e );
 			return null;
@@ -150,6 +148,23 @@ public class ImageParse {
 	}
 	
 	/**
+	 * convert the byte to hex format method (digest imgge)
+	 * @param arrayBytes
+	 * @return
+	 */
+	private static String convertByteArrayToHexString( byte[ ] byteData ) {
+        StringBuffer hexString = new StringBuffer( );
+    	for ( int i = 0 ; i < byteData.length ; i++ ) {
+    		String hex = Integer.toHexString( 0xff & byteData[ i ] );
+   	     	if( hex.length( ) == 1 ) hexString.append( '0' );
+   	     	hexString.append( hex );
+    	}
+    	
+    	return hexString.toString( );
+	}
+	
+	/**
+	 * Get mimetype from url
 	 * @param uc
 	 * @return
 	 * @throws java.io.IOException

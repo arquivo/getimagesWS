@@ -21,7 +21,7 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	BigDecimal safe;
     public ImageSearchResult( ) { }
     
-	public ImageSearchResult( String url, String width, String height, String alt, String title, String urlOriginal, String timestamp, Ranking score, String digest , String mime , String longdesc ){
+	public ImageSearchResult( String url, String width, String height, String alt, String title, String urlOriginal, String timestamp, Ranking score, String longdesc ){
         this.url 			= url;
         this.width 			= width;
         this.height 		= height;
@@ -30,8 +30,6 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
         this.urlOriginal 	= urlOriginal;
         this.timestamp 		= timestamp;
         this.score 			= score;
-        this.digest			= digest;
-        this.mime 			= mime;
         this.longdesc		= longdesc;
 	}
 

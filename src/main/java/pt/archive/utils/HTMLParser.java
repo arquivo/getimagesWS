@@ -171,21 +171,16 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			
 			try {
 				log.debug( " [CDXParser] URL = " + itemtoSearch.getUrl( ) + " src = " + src );
-				CDXParser itemCDX = new CDXParser( urlBaseCDX , outputCDX , flParam , new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , null , null , longdesc ) );
+				/*CDXParser itemCDX = new CDXParser( urlBaseCDX , outputCDX , flParam , new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , longdesc ) );
 				resultCDXServer = itemCDX.getImgCDX( );
 				if( resultCDXServer == null )
 					continue;
+				*/
 				
-				if( !typeExists( resultCDXServer.getMime( ) ) ) {
-					log.info( " type [" + resultCDXServer.getMime( ) + "] not exists " );
-					continue;
-				}
-				
-				
-				imgResult = new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , resultCDXServer.getDigest( ) , resultCDXServer.getMime( ) , longdesc );
+				imgResult = new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , longdesc );
 				if( imgParseflag == 1) { //return thumbnail
 					ImageParse imgParse = new ImageParse( );
-					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail , resultCDXServer.getMime( ) , sizes , sizeInterval , adultfilter , safeImageHost , safeValue , safeImage );
+					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail ,  sizes , sizeInterval , adultfilter , safeImageHost , safeValue , safeImage );
 					if( imgResult == null  )
 						continue;
 					if( safeImage.toLowerCase().equals( "yes" ) || safeImage.toLowerCase().equals( "no" ) ) {
@@ -207,7 +202,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 					log.debug( "[ImageParse] imgResult ["+imgResult.getWidth()+"*"+imgResult.getHeight()+"]" );
 				}
 				
-				log.debug( "scoreImg [" + scoreImg + "] digest " + itemCDX.getImgCDX().getDigest() + " thumbnail["+imgResult.getThumbnail()+"]" );
+				if( !typeExists( imgResult.getMime( ) ) ) {
+					log.info( " type [" + imgResult.getMime( ) + "] not exists " );
+					continue;
+				}
+				log.debug( "scoreImg [" + scoreImg + "] digest " + imgResult.getDigest( ) + " thumbnail["+imgResult.getThumbnail()+"]" );
 				resultsImg.add( imgResult );
 				log.debug( "[Images] source = " + imgItem.attr( "src" ) + " alt = " + imgItem.attr( "alt" ) 
 				          + " height = " + imgItem.attr( "height" ) + " width = " + imgItem.attr( "width" ) + " urlOriginal = " + itemtoSearch.getUrl( ) + " score = " + rank.getScore( ) );
