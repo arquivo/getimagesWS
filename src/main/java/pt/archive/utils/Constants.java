@@ -19,8 +19,8 @@ public class Constants {
 	public static final float  incrScoreSrcLess = 0.5f;
 	public static final float  incrCountImg		= 0.2f;
 	public static final float  incrTextArround  = 0.5f;
-	public static final int timeoutConn 		= 3000;
-	public static final int timeoutreadConn 	= 5000;
+	public static final int timeoutConn 		= 5000;
+	public static final int timeoutreadConn 	= 10000;
 	public static final String sortCriteria 	= "sort:";
 	public static final String typeSearch 		= "type:";
 	public static final String sizeSearch 		= "size:";

@@ -183,7 +183,8 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail ,  sizes , sizeInterval , adultfilter , safeImageHost , safeValue , safeImage );
 					if( imgResult == null  )
 						continue;
-					if( safeImage.toLowerCase().equals( "yes" ) || safeImage.toLowerCase().equals( "no" ) ) {
+					
+					if( adultfilter == 1 && ( safeImage.toLowerCase().equals( "yes" ) || safeImage.toLowerCase().equals( "no" ) ) ) {
 						if( imgResult.getSafe( ).compareTo( BigDecimal.ZERO ) < 0 ){
 							log.info( "getSafe["+imgResult.getSafe( )+"] is null = " + (imgResult.getSafe( ).compareTo( BigDecimal.ZERO ) < 0 ) );
 							continue;

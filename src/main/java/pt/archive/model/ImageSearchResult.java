@@ -123,6 +123,8 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
             return false;
         }
         ImageSearchResult other = ( ImageSearchResult ) o;
+        /*if( this.digest.equals( other.digest ) )
+        	System.out.println( " Equal this["+this.getDigest()+"]["+this.getUrl()+"] other["+other.getDigest()+"]["+other.getUrl()+"]\n\n" );*/
         return this.digest.equals( other.digest );
         
 	}

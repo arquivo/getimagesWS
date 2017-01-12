@@ -129,6 +129,10 @@ public class ImageSearchResultsController {
 	
 	private List< ItemOpenSearch > resultOpenSearch;
 	
+	/**
+	 * Initialize init 
+	 * @throws Exception
+	 */
 	@PostConstruct
 	public void initIt( ) throws Exception {
 	  log.info("Init method after properties are set : blacklistUrlFile[" + blackListUrlFileLocation +"] & blacklistDomainFile[" + blacklistDomainFileLocation + "]");
@@ -140,6 +144,9 @@ public class ImageSearchResultsController {
 	  printIntervalSize( );
 	}
 	
+	/**
+	 * print size interval (debug) 
+	 */
 	public void printIntervalSize( ) {
 		log.info( "**** Interval Sizes ****" );
 		for( int size: sizeInterval  )
@@ -158,13 +165,13 @@ public class ImageSearchResultsController {
     									 @RequestParam(value="stamp", defaultValue="19960101000000-20151022163016") String stamtp,
     									 @RequestParam(value="start", defaultValue="0") String _startIndex,
     									 @RequestParam(value="safeImage", defaultValue="all") String _safeImage ) {
-    	log.info( "New request query[" + query + "] stamp["+ stamtp +"] start["+ _startIndex +"]" );
+    	log.info( "New request query[" + query + "] stamp["+ stamtp +"] start["+ _startIndex +"] safeImage["+ _safeImage +"]" );
     	long start = System.currentTimeMillis( );
     	startIndex = _startIndex;
     	List< ImageSearchResult > imageResults = getImageResults( query , stamtp , _safeImage ); 
     	long elapsedTime = System.currentTimeMillis( ) - start;
     	log.info( "Search ["+query+"] Results = [" + imageResults.size( ) +"] time = [" + elapsedTime + "] milliseconds.");
-    	return new ImageSearchResults( imageResults , imageResults.size( ) );
+    	return new ImageSearchResults( imageResults , imageResults.size( ) , query );
     }
     
    
@@ -184,7 +191,6 @@ public class ImageSearchResultsController {
     	List< ImageSearchResult > resultImages 	= new ArrayList< >( );
     	List< String > types = new ArrayList< >( );
     	List< String > sizes = new ArrayList< >( );
-    	
     	
     	boolean isAllDone = false;
     	String queryWithoutTerm;

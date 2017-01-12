@@ -1,6 +1,11 @@
 package pt.archive.utils;
 
+import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImagingOpException;
 import java.io.ByteArrayOutputStream;
@@ -12,6 +17,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,6 +26,8 @@ import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import javax.activation.MimetypesFileTypeMap;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import javax.imageio.stream.ImageOutputStream;
 
 import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
@@ -40,8 +48,9 @@ public class ImageParse {
 	 * @param widthThumbnail 
 	 * @param heightThumbnail
 	 * @return
+	 * @throws InterruptedException 
 	 */
-	public ImageSearchResult getPropImage( ImageSearchResult img , int thumbWidth , int thumbHeight , List< String > sizes , int[] sizeInterval , int flagSafeImage, String hostSafeImage , BigDecimal safeValue , String safeImageType ) {
+	public ImageSearchResult getPropImage( ImageSearchResult img , int thumbWidth , int thumbHeight , List< String > sizes , int[] sizeInterval , int flagSafeImage, String hostSafeImage , BigDecimal safeValue , String safeImageType ) throws InterruptedException {
 		BufferedImage bimg;
 		ByteArrayOutputStream bao = new ByteArrayOutputStream( );
 		String base64String, 
@@ -62,7 +71,7 @@ public class ImageParse {
 				log.info( "Size out of range [" + width + "*" + height + "]" );
 				return null;
 			}
-			Iterator< ImageReader > imageReaders = ImageIO.getImageReaders( inImg );
+			
 			img.setMime( type );
 			img.setHeight( Double.toString( height ) );
 			img.setWidth( Double.toString( width ) );
@@ -72,13 +81,6 @@ public class ImageParse {
 			digest.update( bytesImgOriginal );
 			byte byteDigest[ ] = digest.digest();
 			img.setDigest( convertByteArrayToHexString( byteDigest ) );
-			
-			if( type.equals( "image/gif" ) ) {
-				img.setThumbnail( base64StringOriginal );
-				if( flagSafeImage == 1  )
-					img.setSafe( checkSafeImage( safeImageType , base64StringOriginal , hostSafeImage , log , img ) );
-				return img;
-			}
 			
 			double thumbRatio = (double) thumbWidth / (double) thumbHeight;
 			double imageRatio = (double) width / (double) height;
@@ -99,13 +101,26 @@ public class ImageParse {
 			BufferedImage scaledImg = null;
 			if( width < thumbWidth || height < thumbHeight )
 				scaledImg = bimg;
-			else
-				scaledImg = Scalr.resize( bimg, 
-						Method.SPEED, 
+			else {
+				if( type.equals( "image/gif" ) ) {
+					
+					byte[] output = getThumbnailGif( img.getUrl( ) , thumbWidth , thumbHeight );
+					 // Create a byte array output stream.
+			        base64String = Base64.encode( output );
+					bao.close( );
+					img.setThumbnail( base64String );
+					if( flagSafeImage == 1  )
+						img.setSafe( checkSafeImage( safeImageType , base64StringOriginal , hostSafeImage , log , img ) );
+					return img;
+				} else
+					scaledImg = Scalr.resize( bimg, 
+						Method.QUALITY, 
 						Scalr.Mode.AUTOMATIC, 
 						thumbWidth, 
 						thumbHeight, 
 						Scalr.OP_ANTIALIAS ); //create thumbnail
+			}
+				
 			
 			// Write to output stream
 	        ImageIO.write( scaledImg , img.getMime( ).substring( 6 ) , bao );
@@ -145,6 +160,51 @@ public class ImageParse {
 			
 		}
 		return img;
+	}
+	
+	/**
+	 * 
+	 * @param gif
+	 * @return
+	 * @throws IOException
+	 */
+	public byte[] getThumbnailGif( String gif , int thumbWidth , int thumbHeight ) throws IOException{
+		//BufferedImage output;
+		log.info( "gif = " + gif.toString( ) );
+		List< BufferedImage > images = new ArrayList< >( );
+		GifDecoder d = new GifDecoder();
+		d.read( gif );
+		
+		int n = d.getFrameCount();
+		log.info( "n => " + n );
+		for (int i = 0; i < n; i++) {
+			BufferedImage frame = d.getFrame(i);  // frame i
+			//int t = d.getDelay(i);  // display duration of frame in milliseconds
+			BufferedImage image = Scalr.resize( frame, 
+					Method.QUALITY, 
+					Scalr.Mode.AUTOMATIC, 
+					thumbWidth, 
+					thumbHeight, 
+					Scalr.OP_ANTIALIAS ); //create thumbnail
+			images.add( image );
+		}
+		//encode gif
+		final ByteArrayOutputStream out = new ByteArrayOutputStream( );
+		ImageOutputStream output = ImageIO.createImageOutputStream( out );
+		byte[ ] imageBytes = null;
+		
+	    GifSequenceWriter writer = 
+	    	      new GifSequenceWriter(output, images.get( 0 ).getType(), 1, false);
+
+	    // write out the first image to our sequence...
+	    writer.writeToSequence( images.get( 0 ) );
+	    for(int i=1; i < images.size( ) - 1 ; i++) {
+	      writer.writeToSequence( images.get( i ) );
+	    }
+	    writer.close( );
+	    output.close( );
+	    imageBytes=out.toByteArray();
+		return imageBytes;
 	}
 	
 	/**
@@ -292,6 +352,27 @@ public class ImageParse {
 	    // Return the buffered image
 	    return bimage;
 	}
+	
+	private BufferedImage scale(BufferedImage source,double ratio) {
+		  int w = (int) (source.getWidth() * ratio);
+		  int h = (int) (source.getHeight() * ratio);
+		  BufferedImage bi = getCompatibleImage(w, h);
+		  Graphics2D g2d = bi.createGraphics();
+		  double xScale = (double) w / source.getWidth();
+		  double yScale = (double) h / source.getHeight();
+		  AffineTransform at = AffineTransform.getScaleInstance(xScale,yScale);
+		  g2d.drawRenderedImage(source, at);
+		  g2d.dispose();
+		  return bi;
+	}
+	
+	private BufferedImage getCompatibleImage(int w, int h) {
+		  GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		  GraphicsDevice gd = ge.getDefaultScreenDevice();
+		  GraphicsConfiguration gc = gd.getDefaultConfiguration();
+		  BufferedImage image = gc.createCompatibleImage(w, h);
+		  return image;
+		}
 	
 
 }

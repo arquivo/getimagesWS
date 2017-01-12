@@ -52,41 +52,17 @@ public class CDXParser {
 		ItemCDXServer  imgCDX = null;
 
 		String urlCDX = getLink( img.getUrl( ) , img.getTimestamp( ) );
-		//log.info( "[urlCDX] url = " + urlCDX );
 		try{
 			List< JSONObject > jsonValues = readJsonFromUrl( urlCDX );
-			//printDebug( jsonValues );
 			
 			if( jsonValues == null )
 				return null;
-			
-			/*if( jsonValues.size( ) > 1 ) //Not necessary with closest...
-				Collections.sort( jsonValues , new Comparator< JSONObject >( ) {
-			       
-			        private static final String KEY_NAME = "timestamp"; //sort desc by timestamp
-	
-			        @Override
-			        public int compare( JSONObject a , JSONObject b ) {
-			            long valA = 0;
-			            long valB = 0;
-	
-			            try {
-			                valA = Long.valueOf( ( String ) a.get( KEY_NAME ) );
-			                valB = Long.valueOf( ( String ) b.get( KEY_NAME ) );
-			            } catch ( JSONException e ) {
-			                log.error( "[getuniqueResults][compare] e = " , e );
-			            }
-	
-			            return Long.compare( valB , valA );
-			        }
-			    } );*/
 			
 			imgCDX = new ItemCDXServer( jsonValues.get( 0 ).get( keyUrl ).toString( ) ,
 										jsonValues.get( 0 ).get( keyTimestamp ).toString( ),
 										jsonValues.get( 0 ).get( keyDigest ).toString( ),
 										jsonValues.get( 0 ).get( keyMimeType ).toString( ) );
-			/*log.info( "Depois de ordenado => " );
-			printDebug( jsonValues );*/
+			//printDebug( jsonValues );
 		} catch( JSONException e ) {
 			log.debug( "[CDXParser][GetuniqueResults] URL["+urlCDX+"] JSONParser e " , e );
 			return null;
