@@ -18,14 +18,17 @@ import java.net.URLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
+import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.stream.ImageInputStream;
 import javax.imageio.stream.ImageOutputStream;
 
@@ -34,6 +37,9 @@ import org.imgscalr.Scalr;
 import org.imgscalr.Scalr.Method;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import pt.archive.model.ImageSearchResult;
 
@@ -104,7 +110,7 @@ public class ImageParse {
 			else {
 				if( type.equals( "image/gif" ) ) {
 					
-					byte[] output = getThumbnailGif( img.getUrl( ) , thumbWidth , thumbHeight );
+					byte[] output = getThumbnailGif( inImg , thumbWidth , thumbHeight );
 					 // Create a byte array output stream.
 			        base64String = Base64.encode( output );
 					bao.close( );
@@ -168,17 +174,18 @@ public class ImageParse {
 	 * @return
 	 * @throws IOException
 	 */
-	public byte[] getThumbnailGif( String gif , int thumbWidth , int thumbHeight ) throws IOException{
+	public byte[] getThumbnailGif( InputStream gif , int thumbWidth , int thumbHeight ) throws IOException{
 		//BufferedImage output;
 		log.info( "gif = " + gif.toString( ) );
-		List< BufferedImage > images = new ArrayList< >( );
-		GifDecoder d = new GifDecoder();
+		List< BufferedImage > frames = getFrameGif( gif );
+		log.info( "number of frames => " + frames.size() );
+		/*GifDecoder d = new GifDecoder();
 		d.read( gif );
 		
 		int n = d.getFrameCount();
-		log.info( "n => " + n );
+		
 		for (int i = 0; i < n; i++) {
-			BufferedImage frame = d.getFrame(i);  // frame i
+			BufferedImage frame = d.getFrame( i );  // frame i
 			//int t = d.getDelay(i);  // display duration of frame in milliseconds
 			BufferedImage image = Scalr.resize( frame, 
 					Method.QUALITY, 
@@ -187,19 +194,21 @@ public class ImageParse {
 					thumbHeight, 
 					Scalr.OP_ANTIALIAS ); //create thumbnail
 			images.add( image );
-		}
+		}*/
 		//encode gif
 		final ByteArrayOutputStream out = new ByteArrayOutputStream( );
 		ImageOutputStream output = ImageIO.createImageOutputStream( out );
 		byte[ ] imageBytes = null;
+		if( frames == null || frames.size( ) == 0 )
+			return null;
 		
 	    GifSequenceWriter writer = 
-	    	      new GifSequenceWriter(output, images.get( 0 ).getType(), 1, false);
+	    	      new GifSequenceWriter(output, frames.get( 0 ).getType(), 1, false);
 
 	    // write out the first image to our sequence...
-	    writer.writeToSequence( images.get( 0 ) );
-	    for(int i=1; i < images.size( ) - 1 ; i++) {
-	      writer.writeToSequence( images.get( i ) );
+	    writer.writeToSequence( frames.get( 0 ) );
+	    for(int i=1; i < frames.size( ) - 1 ; i++) {
+	      writer.writeToSequence( frames.get( i ) );
 	    }
 	    writer.close( );
 	    output.close( );
@@ -207,12 +216,66 @@ public class ImageParse {
 		return imageBytes;
 	}
 	
+	private List< BufferedImage > getFrameGif( InputStream gif ) {
+		try {
+		    String[] imageatt = new String[]{
+		            "imageLeftPosition",
+		            "imageTopPosition",
+		            "imageWidth",
+		            "imageHeight"
+		    };    
+		    List< BufferedImage > frames = new ArrayList< >( );
+		    ImageReader reader = ( ImageReader ) ImageIO.getImageReadersByFormatName( "gif" ).next( );
+		    ImageInputStream ciis = ImageIO.createImageInputStream( gif );
+		    reader.setInput( ciis , false );
+
+		    int noi = reader.getNumImages( true );
+		    BufferedImage master = null;
+		    log.info( "noi == " + noi );
+		    for (int i = 0; i < noi; i++) { 
+		        BufferedImage image = reader.read(i);
+		        IIOMetadata metadata = reader.getImageMetadata(i);
+
+		        Node tree = metadata.getAsTree("javax_imageio_gif_image_1.0");
+		        NodeList children = tree.getChildNodes();
+		        if( image == null )
+		        	log.info( "reader.read is null" );
+		        if( metadata == null )
+		        	log.info( "metadata is null" );
+		        
+		        for (int j = 0; j < children.getLength(); j++) {
+		            Node nodeItem = children.item(j);
+
+		            if(nodeItem.getNodeName().equals("ImageDescriptor")){
+		                Map<String, Integer> imageAttr = new HashMap<String, Integer>();
+
+		                for (int k = 0; k < imageatt.length; k++) {
+		                    NamedNodeMap attr = nodeItem.getAttributes();
+		                    Node attnode = attr.getNamedItem(imageatt[k]);
+		                    imageAttr.put(imageatt[k], Integer.valueOf(attnode.getNodeValue()));
+		                }
+		                if(i==0){
+		                    master = new BufferedImage(imageAttr.get("imageWidth"), imageAttr.get("imageHeight"), BufferedImage.TYPE_INT_ARGB);
+		                }
+		                master.getGraphics().drawImage(image, imageAttr.get("imageLeftPosition"), imageAttr.get("imageTopPosition"), null);
+		            }
+		        }
+		        //ImageIO.write(master, "GIF", new File( i + ".gif"));
+		        frames.add( master );
+		    }
+		    return frames;
+		} catch (IOException e) {
+		    e.printStackTrace();
+		    return null;
+		}
+	}
+	
 	/**
 	 * convert the byte to hex format method (digest imgge)
 	 * @param arrayBytes
 	 * @return
 	 */
-	private static String convertByteArrayToHexString( byte[ ] byteData ) {
+	private String convertByteArrayToHexString( byte[ ] byteData ) {
         StringBuffer hexString = new StringBuffer( );
     	for ( int i = 0 ; i < byteData.length ; i++ ) {
     		String hex = Integer.toHexString( 0xff & byteData[ i ] );

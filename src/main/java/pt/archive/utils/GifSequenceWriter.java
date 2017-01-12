@@ -39,15 +39,13 @@ public class GifSequenceWriter {
 	  int imageType,
 	  int timeBetweenFramesMS,
 	  boolean loopContinuously) throws IIOException, IOException {
-	// my method to create a writer
-	gifWriter = getWriter(); 
-	imageWriteParam = gifWriter.getDefaultWriteParam();
-	ImageTypeSpecifier imageTypeSpecifier =
+	  // my method to create a writer
+	  gifWriter = getWriter(); 
+	  imageWriteParam = gifWriter.getDefaultWriteParam();
+	  ImageTypeSpecifier imageTypeSpecifier =
 	  ImageTypeSpecifier.createFromBufferedImageType(imageType);
 	
-	imageMetaData =
-	  gifWriter.getDefaultImageMetadata(imageTypeSpecifier,
-	  imageWriteParam);
+	  imageMetaData = gifWriter.getDefaultImageMetadata(imageTypeSpecifier, imageWriteParam);
 	
 	String metaFormatName = imageMetaData.getNativeMetadataFormatName();
 	
