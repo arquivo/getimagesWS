@@ -194,6 +194,9 @@ public class ImageSearchResultsController {
     	
     	boolean isAllDone = false;
     	String queryWithoutTerm;
+    	if( query == null ) 
+    		return Collections.emptyList( );
+    	
     	if( query == null || query.trim( ).equals( "" ) ) {
  			log.warn("[ImageSearchResultsController][getImageResults] Query empty!");
  			imageResults.add( getErrorCode( "-1: query empty" ) ); 
@@ -211,6 +214,7 @@ public class ImageSearchResultsController {
  			log.info( "****** Types *****" );
  			log.info( "  " + types );
  			log.info( "******************" );
+ 			
  			
  			url = buildURL( queryWithoutTerm , stamp );
  			log.info( "Request to OpenSearch["+ url +"]" );
@@ -512,6 +516,7 @@ public class ImageSearchResultsController {
     private void loadStopWords( ) {
     	Scanner s = null;
     	try{
+    		
     		s = new Scanner( new File( stopWordsFileLocation ) );
     		stopwords = new ArrayList< String >( );
     		while( s.hasNext( ) ) {

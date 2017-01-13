@@ -219,12 +219,15 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			}
 		}
 		countImg = 0;
-		
 		log.debug( "Number of results = [" + resultsImg.size( ) + "] to url[" + link + "]" );
 		
 	}
 
-	
+	/**
+	 * 
+	 * @param imgtag
+	 * @return
+	 */
 	private float checkTextAround( Element imgtag ) {
 		float countScore = 0;
 		if( imgtag.parents( ) != null  ) {
