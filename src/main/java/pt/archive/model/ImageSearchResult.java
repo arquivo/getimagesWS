@@ -19,6 +19,7 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	String thumbnail;
 	String longdesc;
 	BigDecimal safe;
+	BigDecimal notSafe;
     public ImageSearchResult( ) { }
     
 	public ImageSearchResult( String url, String width, String height, String alt, String title, String urlOriginal, String timestamp, Ranking score, String longdesc ){
@@ -110,6 +111,12 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	}
 	public void setSafe(BigDecimal safe) {
 		this.safe = safe;
+	}
+	public BigDecimal getNotSafe() {
+		return notSafe;
+	}
+	public void setNotSafe(BigDecimal notSafe) {
+		this.notSafe = notSafe;
 	}
 
 

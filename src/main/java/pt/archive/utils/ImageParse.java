@@ -111,12 +111,17 @@ public class ImageParse {
 				if( type.equals( "image/gif" ) ) {
 					
 					//byte[] output = getThumbnailGif( inImg , thumbWidth , thumbHeight );
-					 // Create a byte array output stream.
+					// Create a byte array output stream.
 			        base64String = Base64.encode( bytesImgOriginal );
 					bao.close( );
 					img.setThumbnail( base64String );
-					if( flagSafeImage == 1  )
-						img.setSafe( checkSafeImage( safeImageType , base64StringOriginal , hostSafeImage , log , img ) );
+					if( flagSafeImage == 1  ) {
+						SafeImage safeImage = checkSafeImage(  safeImageType , base64StringOriginal , hostSafeImage , log , img );
+						if( safeImage != null ) {
+							img.setSafe( safeImage.getSafe( ) );
+							img.setNotSafe( safeImage.getNotSafe( ) );
+						}
+					}	
 					return img;
 				} else
 					scaledImg = Scalr.resize( bimg, 
@@ -141,8 +146,15 @@ public class ImageParse {
 						+ " original size ["+width+"*"+height+"] img[" + img.getUrl( ) + "]");
 			img.setThumbnail( base64String );
 			
-			if( flagSafeImage == 1  )
-				img.setSafe( checkSafeImage(  safeImageType , base64StringOriginal , hostSafeImage , log , img ) );
+			if( flagSafeImage == 1  ){
+				SafeImage safeImage = checkSafeImage(  safeImageType , base64StringOriginal , hostSafeImage , log , img );
+				if( safeImage != null ) {
+					img.setSafe( safeImage.getSafe( ) );
+					img.setNotSafe( safeImage.getNotSafe( ) );
+				}
+				
+			}
+			
 			
 		} catch ( NoSuchAlgorithmException e ) {
 			log.error( "[ImageParse][getPropImage] Digest error, e = " );
@@ -232,9 +244,9 @@ public class ImageParse {
 		    int noi = reader.getNumImages( true );
 		    BufferedImage master = null;
 		    log.info( "noi == " + noi );
-		    for (int i = 0; i < noi; i++) { 
-		        BufferedImage image = reader.read(i);
-		        IIOMetadata metadata = reader.getImageMetadata(i);
+		    for ( int i = 0 ; i < noi ; i++ ) { 
+		        BufferedImage image = reader.read( i );
+		        IIOMetadata metadata = reader.getImageMetadata( i );
 
 		        Node tree = metadata.getAsTree("javax_imageio_gif_image_1.0");
 		        NodeList children = tree.getChildNodes();
@@ -243,8 +255,8 @@ public class ImageParse {
 		        if( metadata == null )
 		        	log.info( "metadata is null" );
 		        
-		        for (int j = 0; j < children.getLength(); j++) {
-		            Node nodeItem = children.item(j);
+		        for ( int j = 0 ; j < children.getLength( ) ; j++ ) {
+		            Node nodeItem = children.item( j );
 
 		            if(nodeItem.getNodeName().equals("ImageDescriptor")){
 		                Map<String, Integer> imageAttr = new HashMap<String, Integer>();
@@ -307,17 +319,17 @@ public class ImageParse {
 	 * @param img
 	 * @return
 	 */
-	public BigDecimal checkSafeImage(  String safeImageType , String base64String , String hostSafeImage , Logger log , ImageSearchResult img ) {
+	public SafeImage checkSafeImage(  String safeImageType , String base64String , String hostSafeImage , Logger log , ImageSearchResult img ) {
 		if( !safeImageType.toLowerCase( ).equals( "all" ) ) { //adult image filter
 			//TODO 
-			BigDecimal safe = SafeImageClient.getSafeImage( base64String , hostSafeImage , log , img.getUrl( ) );
-			if( safe.compareTo( BigDecimal.ZERO ) < 0 ) {
+			SafeImage safeImage = SafeImageClient.getSafeImage( base64String , hostSafeImage , log , img.getUrl( ) );
+			if( safeImage == null ) {
 				log.info( "Reject image!!!!! url["+img.getUrl( )+"]" );
 				return null;
 			} 
-			return safe;
+			return safeImage;
 		} else 
-			return new BigDecimal( -1 );
+			return null;
 
 	}
 	

@@ -12,7 +12,7 @@ import com.sun.jersey.api.client.WebResource;
 public class SafeImageClient {
 
 	
-	public static BigDecimal getSafeImage( String imgBase64 , String host , Logger log , String urlDebug) {
+	public static SafeImage getSafeImage( String imgBase64 , String host , Logger log , String urlDebug) {
 		try{
 			log.debug( "Call safeImage API host[" + host + "]" );
 			
@@ -34,17 +34,16 @@ public class SafeImageClient {
 			JSONObject output = new JSONObject(  outputJS.substring( 1, outputJS.length( ) - 2 ).replace( "\\" , "" ) ); 
 			BigDecimal safe =  output.getBigDecimal( "Safe" );
 			BigDecimal notSafe = output.getBigDecimal( "NotSafe" );
+			SafeImage safeImage = new SafeImage( safe, notSafe );
 			
-		    if( safe.compareTo( BigDecimal.ZERO ) == 0 && notSafe.compareTo( BigDecimal.ZERO ) == 0 )
-		    	return new BigDecimal( -1 );
 		    
 			log.info( "SafeImage api  return safe[" + safe.floatValue() + "] notSafe[" 
 						+ notSafe.floatValue() + "]  to url["+urlDebug+"]" );
-			return safe;
+			return safeImage;
 			
 		} catch( Exception e ) {
 			log.error( "[getSafeImage] error " , e );
-			return new BigDecimal( -1 );
+			return null;
 		}
 	}
 	

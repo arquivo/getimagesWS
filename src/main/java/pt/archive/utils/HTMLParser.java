@@ -192,10 +192,10 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 						
 						log.info( "safeImage["+safeImage+"] getsafe["+imgResult.getSafe().floatValue( )+"] safeValue["+safeValue.floatValue( )+"] compareTo["+(imgResult.getSafe( ).compareTo( safeValue ) < 0)+"]" );
 						if( safeImage.toLowerCase( ).equals( "yes" ) ) { //show images safe
-							if( imgResult.getSafe( ).compareTo( safeValue ) < 0 )
+							if( imgResult.getSafe( ).compareTo( imgResult.getNotSafe( ) ) <= 0 )
 								continue;
 						} else if( safeImage.toLowerCase( ).equals( "no" ) ) { //Only show images not safe
-							if( imgResult.getSafe( ).compareTo( safeValue ) >= 0 )
+							if( imgResult.getSafe( ).compareTo( imgResult.getNotSafe( ) ) > 0 )
 								continue;
 						}	
 					}
