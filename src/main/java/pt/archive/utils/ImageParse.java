@@ -110,7 +110,7 @@ public class ImageParse {
 			if( width < thumbWidth || height < thumbHeight )
 				scaledImg = bimg;
 			else {
-				if( type.equals( "image/gif" ) ) {
+				if( type.equals( "image/gif" )  ) {
 					
 					//byte[] output = getThumbnailGif( inImg , thumbWidth , thumbHeight );
 					// Create a byte array output stream.

@@ -37,7 +37,7 @@ public class SafeImageClient {
 			SafeImage safeImage = new SafeImage( safe, notSafe );
 			
 		    
-			log.info( "SafeImage api  return safe[" + safe.floatValue() + "] notSafe[" 
+			log.debug( "SafeImage api  return safe[" + safe.floatValue() + "] notSafe[" 
 						+ notSafe.floatValue() + "]  to url["+urlDebug+"]" );
 			return safeImage;
 			

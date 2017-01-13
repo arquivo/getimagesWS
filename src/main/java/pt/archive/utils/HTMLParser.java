@@ -104,11 +104,14 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		
 		log.debug( "[HTMLParser][buildResponse] URL search = " + link );
 		try {
+			long start = System.currentTimeMillis( );
 			Connection.Response resp = Jsoup.connect( link )
 					.userAgent( "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.21 (KHTML, like Gecko) Chrome/19.0.1042.0 Safari/535.21" )
 					.timeout( Constants.timeoutConn )
+					//.header("Connection", "close")
 					.ignoreHttpErrors( true )
 					.execute( );
+			
 			doc = null;
 			if( resp.statusCode( ) == 200 ) 
 				doc = resp.parse( );
@@ -116,7 +119,8 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 				log.info( "[HTMLParser] return url["+ link +"] statusCode == " + resp.statusCode( ) );
 				return;
 			}
-			
+			long elapsedTime = System.currentTimeMillis( ) - start;
+			log.info( "Time jsoup connect = " + elapsedTime );
 		} catch( Exception e ) {
 			log.error( "[Jsoup] get response link["+ link +"] orignalURL["+ itemtoSearch.getUrl( ) +"] exception = ", e );
 			return;
@@ -124,7 +128,10 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		
 		String title = doc.title( ); //get page title
 		Elements links = doc.select( "img" ); //get all tag <img />
-		for( Element imgItem : links ) {
+		int i;
+		Element imgItem;
+		for( i = 0 ; i < links.size( ) ; i++ ) {
+			imgItem = links.get( i );
 			if( numImgsbyUrl != -1 ) 
 				if( countImg == numImgsbyUrl ) break; 
 			

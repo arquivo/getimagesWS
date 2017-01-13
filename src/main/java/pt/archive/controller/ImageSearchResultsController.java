@@ -120,8 +120,8 @@ public class ImageSearchResultsController {
 	@Value( "${safeValue}" )
 	private BigDecimal safeValue;
 	
-	@Value("#{'${interval.size.image}'.split(',')}") 
-	private int[] sizeInterval;
+	@Value( "#{'${interval.size.image}'.split(',')}" ) 
+	private int[ ] sizeInterval;
 	 
 	@Value( "${safeImage}" )
 	private String safeImageHost;
