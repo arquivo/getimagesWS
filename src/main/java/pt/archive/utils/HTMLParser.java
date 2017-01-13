@@ -198,8 +198,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 							if( imgResult.getSafe( ).compareTo( imgResult.getNotSafe( ) ) > 0 )
 								continue;
 						}	
-					}
-						
+					}	
 					log.debug( "[ImageParse] imgResult ["+imgResult.getWidth()+"*"+imgResult.getHeight()+"]" );
 				}
 				

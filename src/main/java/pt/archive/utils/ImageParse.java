@@ -66,6 +66,7 @@ public class ImageParse {
 		MessageDigest digest = null;
 		try {
 			uc = new URL( img.getUrl( ) ).openConnection( );
+			
 			InputStream inImg =  uc.getInputStream( );
 			bimg = ImageIO.read( inImg );
 			type = getMimeType( uc );
@@ -73,16 +74,17 @@ public class ImageParse {
 			
 			int width          	= bimg.getWidth( null );
 			int height         	= bimg.getHeight( null );
-			if( !checkSize( width , height , sizes , sizeInterval ) ) {
+			if( !checkSizeRatio( width , height , sizes , sizeInterval ) ) {
 				log.info( "Size out of range [" + width + "*" + height + "]" );
 				return null;
 			}
-			
 			img.setMime( type );
 			img.setHeight( Double.toString( height ) );
 			img.setWidth( Double.toString( width ) );
-			byte[ ] bytesImgOriginal = IOUtils.toByteArray( new URL( img.getUrl( ) ).openConnection( ).getInputStream( ) );
+			byte[ ] bytesImgOriginal = IOUtils.toByteArray( new URL( img.getUrl( ) ).openConnection( ) );
 			base64StringOriginal = Base64.encode( bytesImgOriginal );
+			//img.setImgBase64( base64StringOriginal );
+			
 			//calculate digest
 			digest.update( bytesImgOriginal );
 			byte byteDigest[ ] = digest.digest();
@@ -258,7 +260,7 @@ public class ImageParse {
 		        for ( int j = 0 ; j < children.getLength( ) ; j++ ) {
 		            Node nodeItem = children.item( j );
 
-		            if(nodeItem.getNodeName().equals("ImageDescriptor")){
+		            if(nodeItem.getNodeName().equals("ImageDescriptor") ) {
 		                Map<String, Integer> imageAttr = new HashMap<String, Integer>();
 
 		                for (int k = 0; k < imageatt.length; k++) {
@@ -330,7 +332,6 @@ public class ImageParse {
 			return safeImage;
 		} else 
 			return null;
-
 	}
 	
 	/**
@@ -400,13 +401,60 @@ public class ImageParse {
 	}
 	
 	/**
+	 * Check if image size is within the desired range
+	 * @param width
+	 * @param heigth
+	 * @param sizes
+	 * @return
+	 */
+	public boolean checkSizeRatio( int width , int heigth , List< String > sizes , int[] sizeInterval ) {
+		int indSize = 0;
+		if( sizes == null || sizes.isEmpty( ) ){
+			return true;
+		}
+		long ratio = width * heigth;
+		log.debug( "Ratio image ["+width+"*"+heigth+"]= " + ratio );
+		for( String size : sizes ) {
+			
+			if( size.toLowerCase( ).equals( Constants.sizeAll ) )
+				return true;
+			if( size.toLowerCase( ).equals( Constants.sizeIcon ) ) {
+				log.debug( "small width["+ratio+"] to ["+sizeInterval[indSize]+","+sizeInterval[indSize+1]+"]" );
+				if( betweenInclusive( ratio , sizeInterval[indSize] , sizeInterval[++indSize] ) )
+					return true;
+			}
+			indSize = 1;
+			if( size.toLowerCase( ).equals( Constants.sizeSmall ) ) {
+				log.debug( "small width["+ratio+"] to ["+sizeInterval[indSize]+","+sizeInterval[indSize+1]+"]" );
+				if( betweenInclusive( ratio , sizeInterval[indSize] , sizeInterval[++indSize] ) )
+					return true;
+			}
+			indSize = 2;
+			if( size.toLowerCase( ).equals( Constants.sizeMedium ) ) {
+				log.debug( "medium width["+ratio+"] to ["+sizeInterval[indSize]+","+sizeInterval[indSize+1]+"]" );
+				if( betweenInclusive( ratio , sizeInterval[indSize] , sizeInterval[++indSize] ) )
+					return true;
+			}
+			indSize = 3;
+			if( size.toLowerCase( ).equals( Constants.sizeLarge ) ) {
+				log.debug( "large heigth["+ratio+"] to ["+sizeInterval[indSize]+","+sizeInterval[indSize+1]+"]" );
+				if( betweenInclusive( ratio , sizeInterval[indSize] , sizeInterval[++indSize] ) )
+					return true;
+			}
+			indSize = 0;
+		}
+		
+		return false;
+	}
+	
+	/**
 	 * check x in range [lowerBound,upperBound]
 	 * @param x
 	 * @param lowerBound
 	 * @param upperBoound
 	 * @return
 	 */
-	private boolean betweenInclusive( int x , int lowerBound , int upperBoound ) {
+	private boolean betweenInclusive( long x , int lowerBound , int upperBoound ) {
 	       return x >= lowerBound && x <= upperBoound;    
 	}
 	

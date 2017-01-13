@@ -18,6 +18,7 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	String mime;
 	String thumbnail;
 	String longdesc;
+	String imgBase64;
 	BigDecimal safe;
 	BigDecimal notSafe;
     public ImageSearchResult( ) { }
@@ -118,7 +119,12 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	public void setNotSafe(BigDecimal notSafe) {
 		this.notSafe = notSafe;
 	}
-
+	public String getImgBase64() {
+		return imgBase64;
+	}
+	public void setImgBase64(String imgBase64) {
+		this.imgBase64 = imgBase64;
+	}
 
 	@Override
 	public boolean equals( Object o ) {
