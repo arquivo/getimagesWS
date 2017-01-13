@@ -110,9 +110,9 @@ public class ImageParse {
 			else {
 				if( type.equals( "image/gif" ) ) {
 					
-					byte[] output = getThumbnailGif( inImg , thumbWidth , thumbHeight );
+					//byte[] output = getThumbnailGif( inImg , thumbWidth , thumbHeight );
 					 // Create a byte array output stream.
-			        base64String = Base64.encode( output );
+			        base64String = Base64.encode( bytesImgOriginal );
 					bao.close( );
 					img.setThumbnail( base64String );
 					if( flagSafeImage == 1  )
