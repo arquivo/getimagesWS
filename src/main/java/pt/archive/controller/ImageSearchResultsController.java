@@ -452,7 +452,7 @@ public class ImageSearchResultsController {
     	for( Iterator< String > iterator = terms.iterator( ) ; iterator.hasNext( ); ) {
     		String term = iterator.next( );
     		for( String stopWord : stopwords ) {
-    			if( term.equals( stopWord ) ) {
+    			if( term.toLowerCase( ).equals( stopWord ) ) {
     				log.info( "[StopWords] Remove term["+term+"] to ranking" );
     				iterator.remove( );
     			}
