@@ -72,6 +72,9 @@ public class ImageParse {
 			type = getMimeType( uc );
 			digest = MessageDigest.getInstance( "SHA-256" );
 			
+			/*Metadata meta = new Metadata( );
+			meta.readAndDisplayMetadata( img.getUrl( ) );*/
+			
 			int width          	= bimg.getWidth( null );
 			int height         	= bimg.getHeight( null );
 			if( !checkSizeRatio( width , height , sizes , sizeInterval ) ) {
@@ -156,7 +159,6 @@ public class ImageParse {
 				}
 				
 			}
-			
 			
 		} catch ( NoSuchAlgorithmException e ) {
 			log.error( "[ImageParse][getPropImage] Digest error, e = " );
@@ -446,6 +448,34 @@ public class ImageParse {
 		
 		return false;
 	}
+	
+	
+	/**
+	 * @throws IOException 
+	 * @throws ImageProcessingException 
+	 * 
+	 */
+	/*private void printMetadados( InputStream in ) {
+		try{
+		
+			Metadata metadata = ImageMetadataReader.readMetadata( in );
+	
+			for (Directory directory : metadata.getDirectories() ) {
+			    for (Tag tag : directory.getTags( ) ) {
+			        log.info("[%s] - %s = %s",
+			            directory.getName(), tag.getTagName(), tag.getDescription());
+			    }
+			    if (directory.hasErrors()) {
+			        for (String error : directory.getErrors()) {
+			        	log.error("ERROR: %s", error);
+			        }
+			    }
+			}
+		} catch( Exception e ){
+			log.error( "Exception e = " + e );
+		}
+		
+	}*/
 	
 	/**
 	 * check x in range [lowerBound,upperBound]

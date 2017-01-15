@@ -21,7 +21,7 @@ public class UserHandler extends DefaultHandler{
    private boolean bLink    = false;
    
    @Override
-   public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+   public void startElement( String uri, String localName, String qName, Attributes attributes ) throws SAXException {
 	   log.debug( "Start Element = " + qName );
 	   if ( qName.equalsIgnoreCase( "item" ) ) {
          item = new ItemOpenSearch( ); // create a new item and put it in Map
@@ -42,7 +42,7 @@ public class UserHandler extends DefaultHandler{
    }
 
    @Override
-   public void endElement(String uri, String localName, String qName) throws SAXException {
+   public void endElement( String uri, String localName, String qName ) throws SAXException {
        log.debug( "[End Element] Name = " + qName );
 	   if (qName.equalsIgnoreCase( "item" )) {
          items.add( item );
@@ -50,7 +50,7 @@ public class UserHandler extends DefaultHandler{
    }
 
    @Override
-   public void characters(char ch[], int start, int length) throws SAXException {
+   public void characters( char ch[], int start, int length ) throws SAXException {
 	   
 	   if( bId ) {
 		   log.debug( "[ID Element] contents = " + new String( ch , start , length ) );
