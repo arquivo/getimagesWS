@@ -191,9 +191,10 @@ public class ImageSearchResultsController {
     	List< ImageSearchResult > resultImages 	= new ArrayList< >( );
     	List< String > types = new ArrayList< >( );
     	List< String > sizes = new ArrayList< >( );
-    	
+    	int counter = 0;
     	boolean isAllDone = false;
     	String queryWithoutTerm;
+    	
     	if( query == null ) 
     		return Collections.emptyList( );
     	
@@ -215,7 +216,6 @@ public class ImageSearchResultsController {
  			log.info( "  " + types );
  			log.info( "******************" );
  			
- 			
  			url = buildURL( queryWithoutTerm , stamp );
  			log.info( "Request to OpenSearch["+ url +"]" );
  			// the SAX parser
@@ -228,14 +228,18 @@ public class ImageSearchResultsController {
 	 		if( resultOpenSearch == null || resultOpenSearch.size( ) == 0 )  //No results in OpenSearch
 	 			return  Collections.emptyList( );
 	 		
-	 		
 	 		log.info( "[ImageSearchResultsController][getImageResults] OpenSearch result : " + resultOpenSearch.size( ) );
 	 		doneSignal = new CountDownLatch( resultOpenSearch.size( ) );
 	 		
 	 		List< Future< List< ImageSearchResult > > > submittedJobs = new ArrayList< >( );
 	 		for( ItemOpenSearch item : resultOpenSearch ) { //Search information tag <img>
- 				Future< List< ImageSearchResult > > job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , urlBaseCDX, outputCDX, flParam , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail , adultfilter , sizes , sizeInterval , safeImageHost , safeValue , safeImage ) );
-	 			submittedJobs.add( job );
+	 			Future< List< ImageSearchResult > > job = null;
+	 			if( counter < 10 ) 
+ 					job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail , adultfilter , sizes , sizeInterval , safeImageHost , safeValue , safeImage , Constants.incrTopResults ) );
+ 				else
+ 					job = pool.submit( new HTMLParser( doneSignal , item,  numImgsbyUrl , hostGetImage , urldirectoriesImage , terms , blacklListUrls , blackListDomain , criteriaRank , types , imgParseflag , widthThumbnail , heightThumbnail , adultfilter , sizes , sizeInterval , safeImageHost , safeValue , safeImage , 0 ) );
+ 				submittedJobs.add( job );
+ 				counter++;
 	 		}
 	 		try {
 	 			isAllDone = doneSignal.await( timeout , TimeUnit.SECONDS );

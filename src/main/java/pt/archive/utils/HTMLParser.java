@@ -32,9 +32,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private List< ImageSearchResult > resultsImg;
 	private CountDownLatch doneSignal;
 	private List< String > terms;
+	/**TODO cdxServer data remove? **/
 	private String urlBaseCDX;
 	private String outputCDX;
 	private String flParam;
+	/******************************/
 	private String criteriaRank;
 	private List< String > blacklistUrls;
 	private List< String > blacklistDomain;
@@ -48,8 +50,9 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 	private String safeImageHost;
 	private BigDecimal safeValue;
 	private String safeImage;
+	private float incrScoreTopResults;
 	
-	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , String urlBaseCDX, String outputCDX, String flParam, List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail , int adultfilter , List< String > sizes ,  int[] sizeInterval , String safeImageHost , BigDecimal safeValue , String safeImage ) { 
+	public HTMLParser( CountDownLatch doneSignal , ItemOpenSearch itemtoSearch , int numImgsbyUrl , String hostImage , String urldirct , List< String > terms , List< String > blacklistUrls, List< String > blacklistDomain , String criteriaRank , List< String > mimetypes , int imgParseflag , int widthThumbnail , int heightThumbnail , int adultfilter , List< String > sizes ,  int[] sizeInterval , String safeImageHost , BigDecimal safeValue , String safeImage , float incrScore ) { 
 		this.itemtoSearch 		= itemtoSearch;
 		this.numImgsbyUrl 		= numImgsbyUrl;
 		this.hostImage			= hostImage;
@@ -57,9 +60,6 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.resultsImg 		= new ArrayList< >( ); 
 		this.doneSignal 		= doneSignal;
 		this.terms				= terms;
-		this.urlBaseCDX			= urlBaseCDX;
-		this.outputCDX			= outputCDX;
-		this.flParam			= flParam;
 		this.blacklistUrls  	= blacklistUrls;
 		this.blacklistDomain 	= blacklistDomain;
 		this.criteriaRank		= criteriaRank;
@@ -73,6 +73,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 		this.safeImageHost		= safeImageHost;
 		this.safeValue 			= safeValue;
 		this.safeImage			= safeImage;
+		this.incrScoreTopResults 			= incrScore;
 	}
 	
 	
@@ -165,9 +166,10 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 			if( scoreImg == 0 )
 				continue;
 			
-			if( links.size( ) == 1 ) 
+			if( links.size( ) == 1 ) //if archive page is only one image 
 				scoreImg += Constants.incrCountImg;
 			
+			scoreImg += incrScoreTopResults;
 			scoreImg += checkTextAround( imgItem );
 			
 			rank.setScore( scoreImg );
