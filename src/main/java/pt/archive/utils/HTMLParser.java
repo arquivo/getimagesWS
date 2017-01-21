@@ -195,11 +195,11 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 					
 					if( adultfilter == 1 && ( safeImage.toLowerCase().equals( "yes" ) || safeImage.toLowerCase().equals( "no" ) ) ) {
 						if( imgResult.getSafe( ).compareTo( BigDecimal.ZERO ) < 0 ){
-							log.info( "getSafe["+imgResult.getSafe( )+"] is null = " + (imgResult.getSafe( ).compareTo( BigDecimal.ZERO ) < 0 ) );
+							log.debug( "getSafe["+imgResult.getSafe( )+"] is null = " + (imgResult.getSafe( ).compareTo( BigDecimal.ZERO ) < 0 ) );
 							continue;
 						}
 						
-						log.info( "safeImage["+safeImage+"] getsafe["+imgResult.getSafe().floatValue( )+"] safeValue["+safeValue.floatValue( )+"] compareTo["+(imgResult.getSafe( ).compareTo( safeValue ) < 0)+"]" );
+						log.debug( "safeImage["+safeImage+"] getsafe["+imgResult.getSafe().floatValue( )+"] safeValue["+safeValue.floatValue( )+"] compareTo["+(imgResult.getSafe( ).compareTo( safeValue ) < 0)+"]" );
 						if( safeImage.toLowerCase( ).equals( "yes" ) ) { //show images safe
 							if( imgResult.getSafe( ).compareTo( imgResult.getNotSafe( ) ) <= 0 )
 								continue;

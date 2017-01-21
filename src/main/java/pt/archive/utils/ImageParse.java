@@ -19,13 +19,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
-import javax.activation.MimetypesFileTypeMap;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.metadata.IIOMetadata;
@@ -65,6 +63,7 @@ public class ImageParse {
 		URLConnection uc = null;
 		MessageDigest digest = null;
 		try {
+			long start = System.currentTimeMillis( );
 			uc = new URL( img.getUrl( ) ).openConnection( );
 			
 			InputStream inImg =  uc.getInputStream( );
@@ -150,14 +149,17 @@ public class ImageParse {
 						+ "["+thumbWidth+"*"+thumbHeight+"]"
 						+ " original size ["+width+"*"+height+"] img[" + img.getUrl( ) + "]");
 			img.setThumbnail( base64String );
-			
+			long elapsedTime = System.currentTimeMillis( ) - start;
+			log.info( "[Load image] = " + elapsedTime );
 			if( flagSafeImage == 1  ){
+				start = System.currentTimeMillis( );
 				SafeImage safeImage = checkSafeImage(  safeImageType , base64StringOriginal , hostSafeImage , log , img );
 				if( safeImage != null ) {
 					img.setSafe( safeImage.getSafe( ) );
 					img.setNotSafe( safeImage.getNotSafe( ) );
 				}
-				
+				elapsedTime = System.currentTimeMillis( ) - start;
+				log.info( "[Safe Image] = " + elapsedTime );
 			}
 			
 		} catch ( NoSuchAlgorithmException e ) {

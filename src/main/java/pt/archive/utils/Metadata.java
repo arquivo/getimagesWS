@@ -21,8 +21,7 @@ public class Metadata {
 
     void readAndDisplayMetadata( String image ) {
         try {
-        	System.out.println( "ENTRA!!!!!!!!!!!!!!!!!!!! imga = " + image );
-            ImageInputStream iis = ImageIO.createImageInputStream( image );
+        	ImageInputStream iis = ImageIO.createImageInputStream( image );
             Iterator<ImageReader> readers = ImageIO.getImageReaders(iis);
             if (readers.hasNext()) {
 
