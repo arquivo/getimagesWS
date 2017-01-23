@@ -1,0 +1,735 @@
+2017-01-23 11:38:13.264  INFO 12185 --- [localhost-startStop-5] pt.archive.Application                   : Starting Application v0.1 on p18.arquivo.pt with PID 12185 (/home/wayback/searcher/apache-tomcat-8.0.30/webapps/getimagesWS/WEB-INF/classes started by jnobre in /home/wayback/searcher/apache-tomcat-8.0.30/bin)
+2017-01-23 11:38:13.270  INFO 12185 --- [localhost-startStop-5] pt.archive.Application                   : No active profile set, falling back to default profiles: default
+2017-01-23 11:38:13.298  INFO 12185 --- [localhost-startStop-5] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@31dc676d: startup date [Mon Jan 23 11:38:13 GMT 2017]; root of context hierarchy
+2017-01-23 11:38:14.372  INFO 12185 --- [localhost-startStop-5] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Initializing Spring embedded WebApplicationContext
+2017-01-23 11:38:14.372  INFO 12185 --- [localhost-startStop-5] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1074 ms
+2017-01-23 11:38:15.122  INFO 12185 --- [localhost-startStop-5] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-01-23 11:38:15.123  INFO 12185 --- [localhost-startStop-5] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-01-23 11:38:15.124  INFO 12185 --- [localhost-startStop-5] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-01-23 11:38:15.124  INFO 12185 --- [localhost-startStop-5] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-01-23 11:38:15.124  INFO 12185 --- [localhost-startStop-5] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-01-23 11:38:15.478  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : Init method after properties are set : blacklistUrlFile[/home/jnobre/workspaceImages/getimagesWS/blacklistUrl] & blacklistDomainFile[/home/jnobre/workspaceImages/getimagesWS/blacklistDomain]
+2017-01-23 11:38:15.480  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : ********* Properties *********
+2017-01-23 11:38:15.481  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : 	urlBase=http://preprod.arquivo.pt/opensearch?query=
+2017-01-23 11:38:15.481  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : 	type=text/html
+2017-01-23 11:38:15.481  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : 	hitsPerSite=1
+2017-01-23 11:38:15.481  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : 	hitsPerPage=50
+2017-01-23 11:38:15.481  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : 	NThreads=12
+2017-01-23 11:38:15.481  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : 	NumImgsbyUrl=-1
+2017-01-23 11:38:15.481  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : 	HostGetImage=http://preprod.arquivo.pt
+2017-01-23 11:38:15.481  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : 	urldirectoriesImage=/noFrame/replay/
+2017-01-23 11:38:15.481  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : 	NThreads=12
+2017-01-23 11:38:15.482  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : ******************************
+2017-01-23 11:38:15.482  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : ******* StopWords Urls *******
+2017-01-23 11:38:15.482  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   a
+2017-01-23 11:38:15.482  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   e
+2017-01-23 11:38:15.482  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   o
+2017-01-23 11:38:15.482  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   é
+2017-01-23 11:38:15.482  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   à
+2017-01-23 11:38:15.482  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   s
+2017-01-23 11:38:15.482  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   n
+2017-01-23 11:38:15.482  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   d
+2017-01-23 11:38:15.483  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   c
+2017-01-23 11:38:15.483  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   i
+2017-01-23 11:38:15.483  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   p
+2017-01-23 11:38:15.483  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   de
+2017-01-23 11:38:15.483  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   do
+2017-01-23 11:38:15.483  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   da
+2017-01-23 11:38:15.483  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   para
+2017-01-23 11:38:15.483  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   em
+2017-01-23 11:38:15.483  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   os
+2017-01-23 11:38:15.483  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   com
+2017-01-23 11:38:15.484  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   no
+2017-01-23 11:38:15.484  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   por
+2017-01-23 11:38:15.484  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   que
+2017-01-23 11:38:15.484  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   um
+2017-01-23 11:38:15.484  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   as
+2017-01-23 11:38:15.484  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   se
+2017-01-23 11:38:15.484  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   na
+2017-01-23 11:38:15.484  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   uma
+2017-01-23 11:38:15.484  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   não
+2017-01-23 11:38:15.484  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   dos
+2017-01-23 11:38:15.484  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   pt
+2017-01-23 11:38:15.485  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   ao
+2017-01-23 11:38:15.485  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   mais
+2017-01-23 11:38:15.485  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   ou
+2017-01-23 11:38:15.485  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   das
+2017-01-23 11:38:15.485  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   nos
+2017-01-23 11:38:15.485  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   como
+2017-01-23 11:38:15.485  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   you
+2017-01-23 11:38:15.485  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   estes
+2017-01-23 11:38:15.485  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   te
+2017-01-23 11:38:15.485  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   it
+2017-01-23 11:38:15.485  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   your
+2017-01-23 11:38:15.486  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   então
+2017-01-23 11:38:15.486  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   essa
+2017-01-23 11:38:15.486  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   esse
+2017-01-23 11:38:15.486  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   estas
+2017-01-23 11:38:15.486  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   are
+2017-01-23 11:38:15.486  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   an
+2017-01-23 11:38:15.486  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   not
+2017-01-23 11:38:15.486  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   that
+2017-01-23 11:38:15.486  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   sob
+2017-01-23 11:38:15.486  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   am
+2017-01-23 11:38:15.487  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   out
+2017-01-23 11:38:15.487  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   seu
+2017-01-23 11:38:15.487  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   este
+2017-01-23 11:38:15.487  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   ser
+2017-01-23 11:38:15.487  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   sua
+2017-01-23 11:38:15.487  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   são
+2017-01-23 11:38:15.487  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   aos
+2017-01-23 11:38:15.487  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   esta
+2017-01-23 11:38:15.487  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   já
+2017-01-23 11:38:15.487  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   the
+2017-01-23 11:38:15.487  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   tem
+2017-01-23 11:38:15.488  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   sem
+2017-01-23 11:38:15.488  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   está
+2017-01-23 11:38:15.488  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   pela
+2017-01-23 11:38:15.488  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   pelo
+2017-01-23 11:38:15.488  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   foi
+2017-01-23 11:38:15.488  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   mas
+2017-01-23 11:38:15.488  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   às
+2017-01-23 11:38:15.488  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   pode
+2017-01-23 11:38:15.488  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   para-a
+2017-01-23 11:38:15.488  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   ter
+2017-01-23 11:38:15.489  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   to
+2017-01-23 11:38:15.489  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   nas
+2017-01-23 11:38:15.489  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   me
+2017-01-23 11:38:15.489  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   só
+2017-01-23 11:38:15.489  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   www
+2017-01-23 11:38:15.489  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   of
+2017-01-23 11:38:15.489  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   here
+2017-01-23 11:38:15.489  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   &
+2017-01-23 11:38:15.489  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   seus
+2017-01-23 11:38:15.489  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   by
+2017-01-23 11:38:15.489  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   and
+2017-01-23 11:38:15.490  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   on
+2017-01-23 11:38:15.490  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   for
+2017-01-23 11:38:15.490  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   há
+2017-01-23 11:38:15.490  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :   és
+2017-01-23 11:38:15.490  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : ***************************
+2017-01-23 11:38:15.490  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : ******* BlackList Urls *******
+2017-01-23 11:38:15.490  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : ***************************
+2017-01-23 11:38:15.490  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : **** Interval Sizes ****
+2017-01-23 11:38:15.490  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :    size: 0
+2017-01-23 11:38:15.490  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :    size: 40000
+2017-01-23 11:38:15.491  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :    size: 120000
+2017-01-23 11:38:15.491  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :    size: 786432
+2017-01-23 11:38:15.491  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b :    size: 2097152
+2017-01-23 11:38:15.491  INFO 12185 --- [localhost-startStop-5] troller$$EnhancerBySpringCGLIB$$d7447e2b : ******************
+2017-01-23 11:38:16.719  INFO 12185 --- [localhost-startStop-5] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@31dc676d: startup date [Mon Jan 23 11:38:13 GMT 2017]; root of context hierarchy
+2017-01-23 11:38:16.788  INFO 12185 --- [localhost-startStop-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public pt.archive.model.ImageSearchResults pt.archive.controller.ImageSearchResultsController.getImages(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2017-01-23 11:38:16.793  INFO 12185 --- [localhost-startStop-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-01-23 11:38:16.793  INFO 12185 --- [localhost-startStop-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-01-23 11:38:16.839  INFO 12185 --- [localhost-startStop-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-23 11:38:16.839  INFO 12185 --- [localhost-startStop-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-23 11:38:16.894  INFO 12185 --- [localhost-startStop-5] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-23 11:38:17.204  INFO 12185 --- [localhost-startStop-5] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-01-23 11:38:17.222  INFO 12185 --- [localhost-startStop-5] pt.archive.Application                   : Started Application in 4.638 seconds (JVM running for 594930.166)
+2017-01-23 11:38:27.441  INFO 12185 --- [ajp-nio-8009-exec-8] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-01-23 11:38:27.442  INFO 12185 --- [ajp-nio-8009-exec-8] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-01-23 11:38:27.459  INFO 12185 --- [ajp-nio-8009-exec-8] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 17 ms
+2017-01-23 11:38:27.485  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : New request query[antonio costa] stamp[19960101000000-20151022163016] start[0] safeImage[yes]
+2017-01-23 11:38:27.485  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : criteriaRank[score]
+2017-01-23 11:38:27.485  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : TERM => antonio
+2017-01-23 11:38:27.486  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : TERM => costa
+2017-01-23 11:38:27.486  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : query no final do remove => antonio costa
+2017-01-23 11:38:27.486  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : query final => antonio costa
+2017-01-23 11:38:27.486  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : ****** Terms List ******
+2017-01-23 11:38:27.486  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b :  antonio
+2017-01-23 11:38:27.486  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b :  costa
+2017-01-23 11:38:27.486  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : ***********************
+2017-01-23 11:38:27.486  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : ****** Types *****
+2017-01-23 11:38:27.486  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b :   []
+2017-01-23 11:38:27.486  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : ******************
+2017-01-23 11:38:27.487  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : [buildURL] input => antonio costa
+2017-01-23 11:38:27.487  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : Request to OpenSearch[http://preprod.arquivo.pt/opensearch?query=antonio%20costa+type:text/html+date:19960101000000-20151022163016&hitsPerSite=1&hitsPerPage=50&start=0]
+2017-01-23 11:38:29.943  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : [ImageSearchResultsController][getImageResults] OpenSearch result : 50
+2017-01-23 11:38:31.701  INFO 12185 --- [pool-33-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 1754
+2017-01-23 11:38:31.701  INFO 12185 --- [pool-33-thread-10] pt.archive.utils.HTMLParser              : Time jsoup connect = 1754
+2017-01-23 11:38:31.974  INFO 12185 --- [pool-33-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 2026
+2017-01-23 11:38:32.273  INFO 12185 --- [pool-33-thread-6] pt.archive.utils.HTMLParser              : Time jsoup connect = 2326
+2017-01-23 11:38:32.391  INFO 12185 --- [pool-33-thread-1] pt.archive.utils.HTMLParser              : Time jsoup connect = 2443
+2017-01-23 11:38:32.472  INFO 12185 --- [pool-33-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 2525
+2017-01-23 11:38:32.580  INFO 12185 --- [pool-33-thread-11] pt.archive.utils.HTMLParser              : Time jsoup connect = 2633
+2017-01-23 11:38:32.585  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.HTMLParser              : Time jsoup connect = 2638
+2017-01-23 11:38:32.680  INFO 12185 --- [pool-33-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 2733
+2017-01-23 11:38:32.691  INFO 12185 --- [pool-33-thread-12] pt.archive.utils.HTMLParser              : Time jsoup connect = 2744
+2017-01-23 11:38:32.764  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.HTMLParser              : [HTMLParser] return url[http://preprod.arquivo.pt/noFrame/replay/19961013163010000/http://zeca.uminho.pt/~costa/] statusCode == 404
+2017-01-23 11:38:33.044  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [Load image] = 228
+2017-01-23 11:38:33.533  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.HTMLParser              : Time jsoup connect = 3586
+2017-01-23 11:38:33.547  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [Safe Image] = 503
+2017-01-23 11:38:33.710  INFO 12185 --- [pool-33-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 2008
+2017-01-23 11:38:33.716  INFO 12185 --- [pool-33-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 1742
+2017-01-23 11:38:33.737  INFO 12185 --- [pool-33-thread-6] pt.archive.utils.HTMLParser              : Time jsoup connect = 1463
+2017-01-23 11:38:33.745 ERROR 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20150922115849im_/http://www.imprensafalsa.com/wp-content/uploads/2015/02/Ant%C3%83%C2%B3nio-Costa1-635x250.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20150922115849im_/http://www.imprensafalsa.com/wp-content/uploads/2015/02/Ant%C3%83%C2%B3nio-Costa1-635x250.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:34.049  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [Load image] = 180
+2017-01-23 11:38:34.472  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [Safe Image] = 423
+2017-01-23 11:38:34.507  INFO 12185 --- [pool-33-thread-10] pt.archive.utils.HTMLParser              : Time jsoup connect = 2803
+2017-01-23 11:38:34.528 ERROR 12185 --- [pool-33-thread-10] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080312000610im_/http://www.antoniocosta.pt/osbonecos.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080312000610im_/http://www.antoniocosta.pt/osbonecos.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:35.806  INFO 12185 --- [pool-33-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 2090
+2017-01-23 11:38:35.848  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.HTMLParser              : Time jsoup connect = 3084
+2017-01-23 11:38:35.935 ERROR 12185 --- [pool-33-thread-1] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311230138im_/http://images04.olx.com/ui/94/80/t_7999480_1.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311230138im_/http://images04.olx.com/ui/94/80/t_7999480_1.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:36.034  INFO 12185 --- [pool-33-thread-11] pt.archive.utils.HTMLParser              : Time jsoup connect = 3453
+2017-01-23 11:38:36.073 ERROR 12185 --- [pool-33-thread-1] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311230138im_/http://images01.olx.com/ui/94/80/7999480_1.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311230138im_/http://images01.olx.com/ui/94/80/7999480_1.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:36.087  INFO 12185 --- [pool-33-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 3406
+2017-01-23 11:38:36.094  INFO 12185 --- [pool-33-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 3622
+2017-01-23 11:38:36.204  INFO 12185 --- [pool-33-thread-6] pt.archive.utils.HTMLParser              : Time jsoup connect = 2467
+2017-01-23 11:38:36.234  INFO 12185 --- [pool-33-thread-4] pt.archive.utils.ImageParse              : [Load image] = 117
+2017-01-23 11:38:36.257  INFO 12185 --- [pool-33-thread-12] pt.archive.utils.HTMLParser              : Time jsoup connect = 3565
+2017-01-23 11:38:36.361  INFO 12185 --- [pool-33-thread-9] pt.archive.utils.ImageParse              : [Load image] = 199
+2017-01-23 11:38:36.400  INFO 12185 --- [pool-33-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 2684
+2017-01-23 11:38:36.618  INFO 12185 --- [pool-33-thread-11] pt.archive.utils.HTMLParser              : Time jsoup connect = 584
+2017-01-23 11:38:36.678  INFO 12185 --- [pool-33-thread-1] pt.archive.utils.HTMLParser              : Time jsoup connect = 605
+2017-01-23 11:38:36.725  INFO 12185 --- [pool-33-thread-4] pt.archive.utils.ImageParse              : [Safe Image] = 490
+2017-01-23 11:38:36.843  INFO 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [Load image] = 132
+2017-01-23 11:38:36.853  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.HTMLParser              : Time jsoup connect = 3320
+2017-01-23 11:38:36.904  INFO 12185 --- [pool-33-thread-1] pt.archive.utils.ImageParse              : [Load image] = 94
+2017-01-23 11:38:36.909  INFO 12185 --- [pool-33-thread-9] pt.archive.utils.ImageParse              : [Safe Image] = 547
+2017-01-23 11:38:37.066  INFO 12185 --- [pool-33-thread-9] pt.archive.utils.ImageParse              : [Load image] = 89
+2017-01-23 11:38:37.236  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.HTMLParser              : Time jsoup connect = 2763
+2017-01-23 11:38:37.264  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.HTMLParser              : Time jsoup connect = 1415
+2017-01-23 11:38:37.325  INFO 12185 --- [pool-33-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 1519
+2017-01-23 11:38:37.460 ERROR 12185 --- [pool-33-thread-3] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141123060103im_/http://www.jouwpagina.nl/fotos4/rondreis-costa-rica/vakantie-costa-rica-pura-vida.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141123060103im_/http://www.jouwpagina.nl/fotos4/rondreis-costa-rica/vakantie-costa-rica-pura-vida.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:37.500 ERROR 12185 --- [pool-33-thread-3] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141123060103im_/http://www.jouwpagina.nl/fotos4/rondreis-costa-rica/P3280039.JPG] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141123060103im_/http://www.jouwpagina.nl/fotos4/rondreis-costa-rica/P3280039.JPG
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:37.503  INFO 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [Safe Image] = 658
+2017-01-23 11:38:37.575  INFO 12185 --- [pool-33-thread-1] pt.archive.utils.ImageParse              : [Safe Image] = 670
+2017-01-23 11:38:37.612  INFO 12185 --- [pool-33-thread-10] pt.archive.utils.HTMLParser              : Time jsoup connect = 3084
+2017-01-23 11:38:37.678  INFO 12185 --- [pool-33-thread-9] pt.archive.utils.ImageParse              : [Safe Image] = 612
+2017-01-23 11:38:37.887  INFO 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [Load image] = 152
+2017-01-23 11:38:37.899  INFO 12185 --- [pool-33-thread-12] pt.archive.utils.HTMLParser              : Time jsoup connect = 1642
+2017-01-23 11:38:38.029  INFO 12185 --- [pool-33-thread-1] pt.archive.utils.ImageParse              : [Load image] = 108
+2017-01-23 11:38:38.141  INFO 12185 --- [pool-33-thread-6] pt.archive.utils.HTMLParser              : Time jsoup connect = 1934
+2017-01-23 11:38:38.245  INFO 12185 --- [pool-33-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 745
+2017-01-23 11:38:38.297  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.HTMLParser              : Time jsoup connect = 1032
+2017-01-23 11:38:38.500  INFO 12185 --- [pool-33-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 2098
+2017-01-23 11:38:38.574  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.ImageParse              : [Load image] = 1257
+2017-01-23 11:38:38.596  INFO 12185 --- [pool-33-thread-3] pt.archive.utils.ImageParse              : [Load image] = 292
+2017-01-23 11:38:38.752  INFO 12185 --- [pool-33-thread-9] pt.archive.utils.ImageParse              : [Load image] = 132
+2017-01-23 11:38:38.967  INFO 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [Safe Image] = 1079
+2017-01-23 11:38:39.034  INFO 12185 --- [pool-33-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 534
+2017-01-23 11:38:39.058  INFO 12185 --- [pool-33-thread-1] pt.archive.utils.ImageParse              : [Safe Image] = 1029
+2017-01-23 11:38:39.220 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9716/azuline-bergantin-hotel-san-antonio-bay-79415.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9716/azuline-bergantin-hotel-san-antonio-bay-79415.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:39.461 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9717/azuline-costa-mar-apartments-san-antonio-bay-79423.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9717/azuline-costa-mar-apartments-san-antonio-bay-79423.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:39.515  INFO 12185 --- [pool-33-thread-1] pt.archive.utils.ImageParse              : [Load image] = 106
+2017-01-23 11:38:39.570 ERROR 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311171555im_/http://images03.olx.com/ui/84/62/t_8088262_1.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311171555im_/http://images03.olx.com/ui/84/62/t_8088262_1.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:39.602 ERROR 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311171555im_/http://images03.olx.com/ui/84/62/t_8088262_2.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311171555im_/http://images03.olx.com/ui/84/62/t_8088262_2.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:39.634 ERROR 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311171555im_/http://images03.olx.com/ui/84/62/t_8088262_3.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311171555im_/http://images03.olx.com/ui/84/62/t_8088262_3.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:39.649  INFO 12185 --- [pool-33-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 2923
+2017-01-23 11:38:39.704 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9693/bahia-de-san-antonio-apartments-san-antonio-bay-79244.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9693/bahia-de-san-antonio-apartments-san-antonio-bay-79244.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:39.719  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.ImageParse              : [Safe Image] = 1145
+2017-01-23 11:38:39.743 ERROR 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311171555im_/http://images02.olx.com/ui/84/62/t_8088262_4.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311171555im_/http://images02.olx.com/ui/84/62/t_8088262_4.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:39.787 ERROR 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311171555im_/http://images03.olx.com/ui/84/62/t_8088262_5.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311171555im_/http://images03.olx.com/ui/84/62/t_8088262_5.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:39.821 ERROR 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311171555im_/http://images02.olx.com/ui/84/62/8088262_1.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311171555im_/http://images02.olx.com/ui/84/62/8088262_1.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:39.823  INFO 12185 --- [pool-33-thread-3] pt.archive.utils.ImageParse              : [Safe Image] = 1227
+2017-01-23 11:38:39.920  INFO 12185 --- [pool-33-thread-9] pt.archive.utils.ImageParse              : [Safe Image] = 1168
+2017-01-23 11:38:40.049  INFO 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [Load image] = 110
+2017-01-23 11:38:40.069  INFO 12185 --- [pool-33-thread-12] pt.archive.utils.HTMLParser              : Time jsoup connect = 2169
+2017-01-23 11:38:40.099  INFO 12185 --- [pool-33-thread-3] pt.archive.utils.ImageParse              : [Load image] = 193
+2017-01-23 11:38:40.167  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.HTMLParser              : Time jsoup connect = 2930
+2017-01-23 11:38:40.193 ERROR 12185 --- [pool-33-thread-7] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311195751im_/http://images02.olx.com/ui/96/18/t_8138818_1.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311195751im_/http://images02.olx.com/ui/96/18/t_8138818_1.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:40.225 ERROR 12185 --- [pool-33-thread-7] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311195751im_/http://images02.olx.com/ui/96/18/t_8138818_2.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311195751im_/http://images02.olx.com/ui/96/18/t_8138818_2.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:40.256 ERROR 12185 --- [pool-33-thread-7] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311195751im_/http://images02.olx.com/ui/96/18/t_8138818_3.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311195751im_/http://images02.olx.com/ui/96/18/t_8138818_3.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:40.310 ERROR 12185 --- [pool-33-thread-7] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311195751im_/http://images04.olx.com/ui/96/18/t_8138818_4.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311195751im_/http://images04.olx.com/ui/96/18/t_8138818_4.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:40.334  INFO 12185 --- [pool-33-thread-1] pt.archive.utils.ImageParse              : [Safe Image] = 819
+2017-01-23 11:38:40.342 ERROR 12185 --- [pool-33-thread-7] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080311195751im_/http://images02.olx.com/ui/96/18/8138818_1.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080311195751im_/http://images02.olx.com/ui/96/18/8138818_1.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:40.807  INFO 12185 --- [pool-33-thread-1] pt.archive.utils.ImageParse              : [Load image] = 137
+2017-01-23 11:38:41.060  INFO 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [Safe Image] = 1011
+2017-01-23 11:38:41.092  INFO 12185 --- [pool-33-thread-3] pt.archive.utils.ImageParse              : [Safe Image] = 991
+2017-01-23 11:38:41.313 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9692/blue-star-apartments-san-antonio-bay-79234.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9692/blue-star-apartments-san-antonio-bay-79234.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:41.333  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.HTMLParser              : Time jsoup connect = 1612
+2017-01-23 11:38:41.552 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9694/calas-de-ibiza-apartments-san-antonio-bay-79252.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9694/calas-de-ibiza-apartments-san-antonio-bay-79252.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:41.569  INFO 12185 --- [pool-33-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 476
+2017-01-23 11:38:41.677  INFO 12185 --- [pool-33-thread-1] pt.archive.utils.ImageParse              : [Safe Image] = 870
+2017-01-23 11:38:41.794 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9688/costa-sur-sol-post-complex-san-antonio-bay-79206.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9688/costa-sur-sol-post-complex-san-antonio-bay-79206.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:42.054 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9712/hawaii-ibiza-hotel-san-antonio-bay-79376.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9712/hawaii-ibiza-hotel-san-antonio-bay-79376.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:42.096  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.HTMLParser              : Time jsoup connect = 2275
+2017-01-23 11:38:42.243  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [Load image] = 92
+2017-01-23 11:38:42.619  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 432
+2017-01-23 11:38:42.714 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9705/ibiza-rocks-hotel-san-antonio-bay-79331.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9705/ibiza-rocks-hotel-san-antonio-bay-79331.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:42.771  INFO 12185 --- [pool-33-thread-6] pt.archive.utils.HTMLParser              : Time jsoup connect = 4630
+2017-01-23 11:38:42.952 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9702/osiris-ibiza-hotel-san-antonio-bay-79316.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9702/osiris-ibiza-hotel-san-antonio-bay-79316.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:42.997  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.ImageParse              : [Load image] = 1552
+2017-01-23 11:38:43.110  INFO 12185 --- [pool-33-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 3189
+2017-01-23 11:38:43.189  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [Safe Image] = 945
+2017-01-23 11:38:43.219 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9715/rosamar-aparthotel-san-antonio-bay-79405.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9715/rosamar-aparthotel-san-antonio-bay-79405.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:43.302  INFO 12185 --- [pool-33-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 3652
+2017-01-23 11:38:43.437  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 818
+2017-01-23 11:38:43.469 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9700/san-remo-s-estanyol-complex-san-antonio-bay-79301.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9700/san-remo-s-estanyol-complex-san-antonio-bay-79301.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:43.546  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 78
+2017-01-23 11:38:43.704 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9703/ses-savines-studios-san-antonio-bay-79322.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9703/ses-savines-studios-san-antonio-bay-79322.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:43.871  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.ImageParse              : [Safe Image] = 874
+2017-01-23 11:38:44.043  INFO 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [Load image] = 106
+2017-01-23 11:38:44.132  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.ImageParse              : [Load image] = 91
+2017-01-23 11:38:44.574  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 1028
+2017-01-23 11:38:44.685  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 80
+2017-01-23 11:38:45.127  INFO 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [Safe Image] = 1084
+2017-01-23 11:38:45.202  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.ImageParse              : [Safe Image] = 1070
+2017-01-23 11:38:45.364 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9698/torrent-bay-apartments-san-antonio-bay-79284.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9698/torrent-bay-apartments-san-antonio-bay-79284.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:45.612 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9714/barcelo-pueblo-ibiza-hotel-san-antonio-bay-79397.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9714/barcelo-pueblo-ibiza-hotel-san-antonio-bay-79397.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:45.670  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 985
+2017-01-23 11:38:45.777  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 77
+2017-01-23 11:38:45.852 ERROR 12185 --- [pool-33-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9696/sol-post-apartments-san-antonio-bay-79268.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141128132146im_/http://pictures.viaromania.eu/accommodation/thumbs/9696/sol-post-apartments-san-antonio-bay-79268.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:45.930  INFO 12185 --- [pool-33-thread-4] pt.archive.utils.ImageParse              : [Load image] = 2485
+2017-01-23 11:38:46.060  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.ImageParse              : [Load image] = 737
+2017-01-23 11:38:46.659  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 881
+2017-01-23 11:38:46.765  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 76
+2017-01-23 11:38:46.959  INFO 12185 --- [pool-33-thread-4] pt.archive.utils.ImageParse              : [Safe Image] = 1028
+2017-01-23 11:38:47.240  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.ImageParse              : [Safe Image] = 1179
+2017-01-23 11:38:47.515  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [Load image] = 90
+2017-01-23 11:38:47.584  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 819
+2017-01-23 11:38:47.692  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.ImageParse              : [Load image] = 320
+2017-01-23 11:38:47.696  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 80
+2017-01-23 11:38:47.883  INFO 12185 --- [pool-33-thread-4] pt.archive.utils.ImageParse              : [Load image] = 800
+2017-01-23 11:38:48.249 ERROR 12185 --- [pool-33-thread-7] pt.archive.utils.HTMLParser              : [Jsoup] get response link[http://preprod.arquivo.pt/noFrame/replay/20140501212643000/http://jregiao-online.webnode.pt/tags/Ant%C3%B3nio%20Costa/] orignalURL[http://jregiao-online.webnode.pt/tags/Ant%C3%B3nio%20Costa/] exception = 
+
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[na:1.7.0_79]
+	at java.net.SocketInputStream.read(SocketInputStream.java:152) ~[na:1.7.0_79]
+	at java.net.SocketInputStream.read(SocketInputStream.java:122) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:275) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334) ~[na:1.7.0_79]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:689) ~[na:1.7.0_79]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:633) ~[na:1.7.0_79]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1324) ~[na:1.7.0_79]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:468) ~[na:1.7.0_79]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:412) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:429) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:393) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:159) ~[jsoup-1.7.1.jar:na]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:114) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:38:48.390  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [Safe Image] = 875
+2017-01-23 11:38:48.480  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [Load image] = 86
+2017-01-23 11:38:48.883  INFO 12185 --- [pool-33-thread-8] pt.archive.utils.ImageParse              : [Safe Image] = 1191
+2017-01-23 11:38:48.980  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 1284
+2017-01-23 11:38:49.049  INFO 12185 --- [pool-33-thread-4] pt.archive.utils.ImageParse              : [Safe Image] = 1166
+2017-01-23 11:38:49.090  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 80
+2017-01-23 11:38:49.287  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [Safe Image] = 806
+2017-01-23 11:38:49.378  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [Load image] = 88
+2017-01-23 11:38:49.852  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 762
+2017-01-23 11:38:49.962  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 79
+2017-01-23 11:38:50.217  INFO 12185 --- [pool-33-thread-5] pt.archive.utils.ImageParse              : [Safe Image] = 838
+2017-01-23 11:38:50.538  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 576
+2017-01-23 11:38:50.648  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 79
+2017-01-23 11:38:51.312  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 663
+2017-01-23 11:38:59.269  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 80
+2017-01-23 11:38:59.787  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 518
+2017-01-23 11:39:01.276  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 354
+2017-01-23 11:39:01.715  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 439
+2017-01-23 11:39:01.834  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 87
+2017-01-23 11:39:02.364  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 530
+2017-01-23 11:39:02.645  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 251
+2017-01-23 11:39:03.124  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 478
+2017-01-23 11:39:03.246  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 87
+2017-01-23 11:39:03.651  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 405
+2017-01-23 11:39:03.761  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 81
+2017-01-23 11:39:04.310  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 549
+2017-01-23 11:39:04.421  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 81
+2017-01-23 11:39:04.872  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 451
+2017-01-23 11:39:04.982  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 81
+2017-01-23 11:39:05.419  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 437
+2017-01-23 11:39:05.545  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 96
+2017-01-23 11:39:06.114  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 569
+2017-01-23 11:39:06.225  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 81
+2017-01-23 11:39:06.635  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 410
+2017-01-23 11:39:07.938  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Load image] = 88
+2017-01-23 11:39:08.337  INFO 12185 --- [pool-33-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 399
+2017-01-23 11:39:15.984  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : Numero de resposta com duplicados: 122
+2017-01-23 11:39:15.984  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : Numero de resposta sem duplicados: 54
+2017-01-23 11:39:15.985  INFO 12185 --- [ajp-nio-8009-exec-8] troller$$EnhancerBySpringCGLIB$$d7447e2b : Search [antonio costa] Results = [54] time = [48500] milliseconds.
+2017-01-23 11:39:47.243  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2017-01-23 11:39:47.244  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Closing Spring root WebApplicationContext
+2017-01-23 11:39:47.244  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@31dc676d: startup date [Mon Jan 23 11:38:13 GMT 2017]; root of context hierarchy
+2017-01-23 11:39:47.252  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown

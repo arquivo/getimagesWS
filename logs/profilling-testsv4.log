@@ -1,0 +1,1715 @@
+2017-01-23 11:40:54.556  INFO 12185 --- [localhost-startStop-7] pt.archive.Application                   : Starting Application v0.1 on p18.arquivo.pt with PID 12185 (/home/wayback/searcher/apache-tomcat-8.0.30/webapps/getimagesWS/WEB-INF/classes started by jnobre in /home/wayback/searcher/apache-tomcat-8.0.30/bin)
+2017-01-23 11:40:54.560  INFO 12185 --- [localhost-startStop-7] pt.archive.Application                   : No active profile set, falling back to default profiles: default
+2017-01-23 11:40:54.591  INFO 12185 --- [localhost-startStop-7] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@21f4cd81: startup date [Mon Jan 23 11:40:54 GMT 2017]; root of context hierarchy
+2017-01-23 11:40:55.625  INFO 12185 --- [localhost-startStop-7] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Initializing Spring embedded WebApplicationContext
+2017-01-23 11:40:55.625  INFO 12185 --- [localhost-startStop-7] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1034 ms
+2017-01-23 11:40:56.360  INFO 12185 --- [localhost-startStop-7] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-01-23 11:40:56.361  INFO 12185 --- [localhost-startStop-7] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-01-23 11:40:56.361  INFO 12185 --- [localhost-startStop-7] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-01-23 11:40:56.361  INFO 12185 --- [localhost-startStop-7] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-01-23 11:40:56.361  INFO 12185 --- [localhost-startStop-7] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-01-23 11:40:56.418  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : Init method after properties are set : blacklistUrlFile[/home/jnobre/workspaceImages/getimagesWS/blacklistUrl] & blacklistDomainFile[/home/jnobre/workspaceImages/getimagesWS/blacklistDomain]
+2017-01-23 11:40:56.420  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : ********* Properties *********
+2017-01-23 11:40:56.420  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : 	urlBase=http://preprod.arquivo.pt/opensearch?query=
+2017-01-23 11:40:56.420  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : 	type=text/html
+2017-01-23 11:40:56.420  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : 	hitsPerSite=1
+2017-01-23 11:40:56.420  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : 	hitsPerPage=50
+2017-01-23 11:40:56.420  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : 	NThreads=12
+2017-01-23 11:40:56.421  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : 	NumImgsbyUrl=-1
+2017-01-23 11:40:56.421  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : 	HostGetImage=http://preprod.arquivo.pt
+2017-01-23 11:40:56.421  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : 	urldirectoriesImage=/noFrame/replay/
+2017-01-23 11:40:56.421  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : 	NThreads=12
+2017-01-23 11:40:56.421  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : ******************************
+2017-01-23 11:40:56.421  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : ******* StopWords Urls *******
+2017-01-23 11:40:56.421  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   a
+2017-01-23 11:40:56.421  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   e
+2017-01-23 11:40:56.421  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   o
+2017-01-23 11:40:56.421  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   é
+2017-01-23 11:40:56.422  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   à
+2017-01-23 11:40:56.422  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   s
+2017-01-23 11:40:56.422  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   n
+2017-01-23 11:40:56.422  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   d
+2017-01-23 11:40:56.422  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   c
+2017-01-23 11:40:56.422  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   i
+2017-01-23 11:40:56.422  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   p
+2017-01-23 11:40:56.422  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   de
+2017-01-23 11:40:56.422  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   do
+2017-01-23 11:40:56.422  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   da
+2017-01-23 11:40:56.422  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   para
+2017-01-23 11:40:56.423  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   em
+2017-01-23 11:40:56.423  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   os
+2017-01-23 11:40:56.423  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   com
+2017-01-23 11:40:56.423  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   no
+2017-01-23 11:40:56.423  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   por
+2017-01-23 11:40:56.423  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   que
+2017-01-23 11:40:56.423  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   um
+2017-01-23 11:40:56.423  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   as
+2017-01-23 11:40:56.423  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   se
+2017-01-23 11:40:56.423  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   na
+2017-01-23 11:40:56.424  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   uma
+2017-01-23 11:40:56.424  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   não
+2017-01-23 11:40:56.424  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   dos
+2017-01-23 11:40:56.424  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   pt
+2017-01-23 11:40:56.424  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   ao
+2017-01-23 11:40:56.424  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   mais
+2017-01-23 11:40:56.424  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   ou
+2017-01-23 11:40:56.424  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   das
+2017-01-23 11:40:56.424  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   nos
+2017-01-23 11:40:56.424  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   como
+2017-01-23 11:40:56.424  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   you
+2017-01-23 11:40:56.425  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   estes
+2017-01-23 11:40:56.425  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   te
+2017-01-23 11:40:56.425  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   it
+2017-01-23 11:40:56.425  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   your
+2017-01-23 11:40:56.425  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   então
+2017-01-23 11:40:56.425  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   essa
+2017-01-23 11:40:56.425  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   esse
+2017-01-23 11:40:56.425  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   estas
+2017-01-23 11:40:56.425  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   are
+2017-01-23 11:40:56.425  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   an
+2017-01-23 11:40:56.425  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   not
+2017-01-23 11:40:56.426  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   that
+2017-01-23 11:40:56.426  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   sob
+2017-01-23 11:40:56.426  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   am
+2017-01-23 11:40:56.426  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   out
+2017-01-23 11:40:56.426  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   seu
+2017-01-23 11:40:56.426  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   este
+2017-01-23 11:40:56.426  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   ser
+2017-01-23 11:40:56.426  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   sua
+2017-01-23 11:40:56.426  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   são
+2017-01-23 11:40:56.426  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   aos
+2017-01-23 11:40:56.426  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   esta
+2017-01-23 11:40:56.427  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   já
+2017-01-23 11:40:56.427  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   the
+2017-01-23 11:40:56.427  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   tem
+2017-01-23 11:40:56.427  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   sem
+2017-01-23 11:40:56.427  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   está
+2017-01-23 11:40:56.427  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   pela
+2017-01-23 11:40:56.427  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   pelo
+2017-01-23 11:40:56.427  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   foi
+2017-01-23 11:40:56.427  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   mas
+2017-01-23 11:40:56.427  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   às
+2017-01-23 11:40:56.428  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   pode
+2017-01-23 11:40:56.428  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   para-a
+2017-01-23 11:40:56.428  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   ter
+2017-01-23 11:40:56.428  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   to
+2017-01-23 11:40:56.428  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   nas
+2017-01-23 11:40:56.428  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   me
+2017-01-23 11:40:56.428  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   só
+2017-01-23 11:40:56.428  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   www
+2017-01-23 11:40:56.428  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   of
+2017-01-23 11:40:56.428  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   here
+2017-01-23 11:40:56.428  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   &
+2017-01-23 11:40:56.429  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   seus
+2017-01-23 11:40:56.429  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   by
+2017-01-23 11:40:56.429  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   and
+2017-01-23 11:40:56.429  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   on
+2017-01-23 11:40:56.429  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   for
+2017-01-23 11:40:56.429  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   há
+2017-01-23 11:40:56.429  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :   és
+2017-01-23 11:40:56.429  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : ***************************
+2017-01-23 11:40:56.429  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : ******* BlackList Urls *******
+2017-01-23 11:40:56.429  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : ***************************
+2017-01-23 11:40:56.429  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : **** Interval Sizes ****
+2017-01-23 11:40:56.430  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :    size: 0
+2017-01-23 11:40:56.430  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :    size: 40000
+2017-01-23 11:40:56.430  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :    size: 120000
+2017-01-23 11:40:56.430  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :    size: 786432
+2017-01-23 11:40:56.430  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 :    size: 2097152
+2017-01-23 11:40:56.430  INFO 12185 --- [localhost-startStop-7] troller$$EnhancerBySpringCGLIB$$3390f644 : ******************
+2017-01-23 11:40:57.054  INFO 12185 --- [localhost-startStop-7] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@21f4cd81: startup date [Mon Jan 23 11:40:54 GMT 2017]; root of context hierarchy
+2017-01-23 11:40:58.143  INFO 12185 --- [localhost-startStop-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public pt.archive.model.ImageSearchResults pt.archive.controller.ImageSearchResultsController.getImages(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2017-01-23 11:40:58.149  INFO 12185 --- [localhost-startStop-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-01-23 11:40:58.149  INFO 12185 --- [localhost-startStop-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-01-23 11:40:58.193  INFO 12185 --- [localhost-startStop-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-23 11:40:58.193  INFO 12185 --- [localhost-startStop-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-23 11:40:58.247  INFO 12185 --- [localhost-startStop-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-23 11:40:58.576  INFO 12185 --- [localhost-startStop-7] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-01-23 11:40:58.594  INFO 12185 --- [localhost-startStop-7] pt.archive.Application                   : Started Application in 4.693 seconds (JVM running for 595091.538)
+2017-01-23 11:41:20.150  INFO 12185 --- [ajp-nio-8009-exec-5] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-01-23 11:41:20.151  INFO 12185 --- [ajp-nio-8009-exec-5] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-01-23 11:41:20.168  INFO 12185 --- [ajp-nio-8009-exec-5] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 17 ms
+2017-01-23 11:41:20.194  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : New request query[gif] stamp[19960101000000-20151022163016] start[0] safeImage[yes]
+2017-01-23 11:41:20.195  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : criteriaRank[score]
+2017-01-23 11:41:20.195  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : TERM => gif
+2017-01-23 11:41:20.195  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : query no final do remove => gif
+2017-01-23 11:41:20.195  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : query final => gif
+2017-01-23 11:41:20.196  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : ****** Terms List ******
+2017-01-23 11:41:20.196  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 :  gif
+2017-01-23 11:41:20.196  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : ***********************
+2017-01-23 11:41:20.196  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : ****** Types *****
+2017-01-23 11:41:20.196  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 :   []
+2017-01-23 11:41:20.196  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : ******************
+2017-01-23 11:41:20.196  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : [buildURL] input => gif
+2017-01-23 11:41:20.196  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : Request to OpenSearch[http://preprod.arquivo.pt/opensearch?query=gif+type:text/html+date:19960101000000-20151022163016&hitsPerSite=1&hitsPerPage=50&start=0]
+2017-01-23 11:41:21.820  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : [ImageSearchResultsController][getImageResults] OpenSearch result : 50
+2017-01-23 11:41:23.506  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 1682
+2017-01-23 11:41:23.506  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 1683
+2017-01-23 11:41:23.520  INFO 12185 --- [pool-35-thread-11] pt.archive.utils.HTMLParser              : Time jsoup connect = 1696
+2017-01-23 11:41:23.522  INFO 12185 --- [pool-35-thread-10] pt.archive.utils.HTMLParser              : Time jsoup connect = 1697
+2017-01-23 11:41:23.536  INFO 12185 --- [pool-35-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 1713
+2017-01-23 11:41:23.557  INFO 12185 --- [pool-35-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 1732
+2017-01-23 11:41:23.577  INFO 12185 --- [pool-35-thread-8] pt.archive.utils.HTMLParser              : Time jsoup connect = 1753
+2017-01-23 11:41:23.590  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.HTMLParser              : Time jsoup connect = 1766
+2017-01-23 11:41:23.608  INFO 12185 --- [pool-35-thread-12] pt.archive.utils.HTMLParser              : Time jsoup connect = 1784
+2017-01-23 11:41:23.817  INFO 12185 --- [pool-35-thread-5] pt.archive.utils.HTMLParser              : Time jsoup connect = 1993
+2017-01-23 11:41:24.170  INFO 12185 --- [pool-35-thread-3] pt.archive.utils.ImageParse              : [Load image] = 168
+2017-01-23 11:41:24.180  INFO 12185 --- [pool-35-thread-10] pt.archive.utils.ImageParse              : [Load image] = 95
+2017-01-23 11:41:24.205  INFO 12185 --- [pool-35-thread-11] pt.archive.utils.ImageParse              : [Load image] = 98
+2017-01-23 11:41:24.220  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.ImageParse              : [Load image] = 260
+2017-01-23 11:41:24.222  INFO 12185 --- [pool-35-thread-8] pt.archive.utils.ImageParse              : [Load image] = 93
+2017-01-23 11:41:24.235  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.ImageParse              : [Load image] = 184
+2017-01-23 11:41:24.267  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Load image] = 96
+2017-01-23 11:41:24.287  INFO 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [Load image] = 169
+2017-01-23 11:41:24.341  INFO 12185 --- [pool-35-thread-12] pt.archive.utils.ImageParse              : [Load image] = 93
+2017-01-23 11:41:24.493  INFO 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [Load image] = 90
+2017-01-23 11:41:25.970  INFO 12185 --- [pool-35-thread-8] pt.archive.utils.ImageParse              : [Safe Image] = 1748
+2017-01-23 11:41:26.100  INFO 12185 --- [pool-35-thread-8] pt.archive.utils.HTMLParser              : Time jsoup connect = 129
+2017-01-23 11:41:26.107  INFO 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [Safe Image] = 1820
+2017-01-23 11:41:26.139  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.ImageParse              : [Safe Image] = 1904
+2017-01-23 11:41:26.209  INFO 12185 --- [pool-35-thread-8] pt.archive.utils.ImageParse              : [Load image] = 89
+2017-01-23 11:41:26.211 ERROR 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141129052515im_/http://pro.annuairefrancais.fr/imagestelpro/91/91190/tel600262.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141129052515im_/http://pro.annuairefrancais.fr/imagestelpro/91/91190/tel600262.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:26.222  INFO 12185 --- [pool-35-thread-11] pt.archive.utils.ImageParse              : [Safe Image] = 2017
+2017-01-23 11:41:26.244  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 105
+2017-01-23 11:41:26.281 ERROR 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141129052515im_/http://pro.annuairefrancais.fr/imagestelpro/91/91190/tel600262.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141129052515im_/http://pro.annuairefrancais.fr/imagestelpro/91/91190/tel600262.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:26.314  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Safe Image] = 2047
+2017-01-23 11:41:26.315  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.ImageParse              : [Safe Image] = 2094
+2017-01-23 11:41:26.352  INFO 12185 --- [pool-35-thread-3] pt.archive.utils.ImageParse              : [Safe Image] = 2181
+2017-01-23 11:41:26.353  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.ImageParse              : [Load image] = 90
+2017-01-23 11:41:26.369  INFO 12185 --- [pool-35-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 87
+2017-01-23 11:41:26.415  INFO 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [Safe Image] = 1922
+2017-01-23 11:41:26.421  INFO 12185 --- [pool-35-thread-10] pt.archive.utils.ImageParse              : [Safe Image] = 2241
+2017-01-23 11:41:26.472  INFO 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [Load image] = 88
+2017-01-23 11:41:26.477  INFO 12185 --- [pool-35-thread-12] pt.archive.utils.ImageParse              : [Safe Image] = 2136
+2017-01-23 11:41:26.595 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141129051811im_/http://pro.annuairefrancais.fr/imagestelpro/91/91190/tel2113985.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141129051811im_/http://pro.annuairefrancais.fr/imagestelpro/91/91190/tel2113985.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:26.760 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141129051811im_/http://pro.annuairefrancais.fr/imagestelpro/91/91190/tel2113985.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141129051811im_/http://pro.annuairefrancais.fr/imagestelpro/91/91190/tel2113985.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:26.989  INFO 12185 --- [pool-35-thread-8] pt.archive.utils.ImageParse              : [Safe Image] = 779
+2017-01-23 11:41:27.000 ERROR 12185 --- [pool-35-thread-2] pt.archive.utils.HTMLParser              : [Jsoup] get response link[http://preprod.arquivo.pt/noFrame/replay/20141126184828000/http://ie.viadin.eu/part/gif] orignalURL[http://ie.viadin.eu/part/gif] exception = 
+
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[na:1.7.0_79]
+	at java.net.SocketInputStream.read(SocketInputStream.java:152) ~[na:1.7.0_79]
+	at java.net.SocketInputStream.read(SocketInputStream.java:122) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:275) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334) ~[na:1.7.0_79]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:689) ~[na:1.7.0_79]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:633) ~[na:1.7.0_79]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1324) ~[na:1.7.0_79]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:468) ~[na:1.7.0_79]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:412) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:429) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:393) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:159) ~[jsoup-1.7.1.jar:na]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:114) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:27.001 ERROR 12185 --- [pool-35-thread-1] pt.archive.utils.HTMLParser              : [Jsoup] get response link[http://preprod.arquivo.pt/noFrame/replay/20141130061623000/http://tr.viadin.eu/part/gif] orignalURL[http://tr.viadin.eu/part/gif] exception = 
+
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[na:1.7.0_79]
+	at java.net.SocketInputStream.read(SocketInputStream.java:152) ~[na:1.7.0_79]
+	at java.net.SocketInputStream.read(SocketInputStream.java:122) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:275) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334) ~[na:1.7.0_79]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:689) ~[na:1.7.0_79]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:633) ~[na:1.7.0_79]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1324) ~[na:1.7.0_79]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:468) ~[na:1.7.0_79]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:412) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:429) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:393) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:159) ~[jsoup-1.7.1.jar:na]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:114) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:27.044  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 728
+2017-01-23 11:41:27.091  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.ImageParse              : [Safe Image] = 738
+2017-01-23 11:41:27.125  INFO 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [Safe Image] = 652
+2017-01-23 11:41:27.194 ERROR 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141126012302im_/http://materiel-occasion.annuairefrancais.fr/gif-sur-yvette/4D_PHONE_PRO.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141126012324im_/http://materiel-occasion.annuairefrancais.fr/gif-sur-yvette/4D_PHONE_PRO.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:27.211 ERROR 12185 --- [pool-35-thread-4] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141126011001im_/http://frigorifique.annuairefrancais.fr/gif-sur-yvette/4D_PHONE_PRO.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141126011026im_/http://frigorifique.annuairefrancais.fr/gif-sur-yvette/4D_PHONE_PRO.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:28.236  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 1024
+2017-01-23 11:41:28.340  INFO 12185 --- [pool-35-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 1146
+2017-01-23 11:41:28.411  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.ImageParse              : [Load image] = 123
+2017-01-23 11:41:28.518  INFO 12185 --- [pool-35-thread-11] pt.archive.utils.HTMLParser              : Time jsoup connect = 2295
+2017-01-23 11:41:28.535  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.HTMLParser              : Time jsoup connect = 2219
+2017-01-23 11:41:28.613  INFO 12185 --- [pool-35-thread-12] pt.archive.utils.HTMLParser              : Time jsoup connect = 2135
+2017-01-23 11:41:28.627  INFO 12185 --- [pool-35-thread-10] pt.archive.utils.HTMLParser              : Time jsoup connect = 2205
+2017-01-23 11:41:28.627  INFO 12185 --- [pool-35-thread-5] pt.archive.utils.HTMLParser              : Time jsoup connect = 1865
+2017-01-23 11:41:29.200  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.ImageParse              : [Safe Image] = 788
+2017-01-23 11:41:29.273  INFO 12185 --- [pool-35-thread-1] pt.archive.utils.HTMLParser              : Time jsoup connect = 2272
+2017-01-23 11:41:29.287  INFO 12185 --- [pool-35-thread-8] pt.archive.utils.HTMLParser              : Time jsoup connect = 2298
+2017-01-23 11:41:29.425  INFO 12185 --- [pool-35-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 3072
+2017-01-23 11:41:29.488  INFO 12185 --- [pool-35-thread-1] pt.archive.utils.HTMLParser              : Time jsoup connect = 215
+2017-01-23 11:41:29.518  INFO 12185 --- [pool-35-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 1177
+2017-01-23 11:41:31.520 ERROR 12185 --- [pool-35-thread-4] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141125171019im_/http://www.gstatic.com/ads/branding/adplanner/adp180_60.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141125171019im_/http://www.gstatic.com/ads/branding/adplanner/adp180_60.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:31.875 ERROR 12185 --- [pool-35-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080318035003im_/http://enscreenshots.softonic.com/s2en/8000/8190/2_gifconstruction.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080318035003im_/http://enscreenshots.softonic.com/s2en/8000/8190/2_gifconstruction.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:32.294  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Load image] = 162
+2017-01-23 11:41:33.394 ERROR 12185 --- [pool-35-thread-2] pt.archive.utils.HTMLParser              : [Jsoup] get response link[http://preprod.arquivo.pt/noFrame/replay/20141204195922000/http://www.gif-paradies.de/] orignalURL[http://www.gif-paradies.de/] exception = 
+
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[na:1.7.0_79]
+	at java.net.SocketInputStream.read(SocketInputStream.java:152) ~[na:1.7.0_79]
+	at java.net.SocketInputStream.read(SocketInputStream.java:122) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:275) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334) ~[na:1.7.0_79]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:689) ~[na:1.7.0_79]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:633) ~[na:1.7.0_79]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1324) ~[na:1.7.0_79]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:468) ~[na:1.7.0_79]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:412) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:429) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:393) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:159) ~[jsoup-1.7.1.jar:na]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:114) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:33.575  INFO 12185 --- [pool-35-thread-2] pt.archive.utils.HTMLParser              : Time jsoup connect = 180
+2017-01-23 11:41:33.660 ERROR 12185 --- [pool-35-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080318035003im_/http://enscreenshots.softonic.com/s2en/9000/9997/2_screen4.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080318035003im_/http://enscreenshots.softonic.com/s2en/9000/9997/2_screen4.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:33.845 ERROR 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141126154140im_/http://www.euroclix.nl/ECLXSSAPP/SilverStream/Objectstore/Images/bnr_euroclix_120x60.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141126154140im_/http://www.euroclix.nl/ECLXSSAPP/SilverStream/Objectstore/Images/bnr_euroclix_120x60.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:34.136  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Safe Image] = 1841
+2017-01-23 11:41:35.225  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 116
+2017-01-23 11:41:35.358  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.ImageParse              : [Load image] = 81
+2017-01-23 11:41:35.659 ERROR 12185 --- [pool-35-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080318035003im_/http://enscreenshots.softonic.com/s2en/3000/3006/2_3006.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080318035003im_/http://enscreenshots.softonic.com/s2en/3000/3006/2_3006.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:35.887  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 96
+2017-01-23 11:41:36.020  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.ImageParse              : [Load image] = 82
+2017-01-23 11:41:36.351  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Load image] = 116
+2017-01-23 11:41:37.348  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.ImageParse              : [Safe Image] = 1990
+2017-01-23 11:41:37.392 ERROR 12185 --- [pool-35-thread-4] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141125192627im_/http://www.gstatic.com/ads/branding/adplanner/adp180_60.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141125192627im_/http://www.gstatic.com/ads/branding/adplanner/adp180_60.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:37.482 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/27000/27351/4_27351.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/27000/27351/4_27351.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:38.277  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.ImageParse              : [Safe Image] = 2257
+2017-01-23 11:41:38.321 ERROR 12185 --- [pool-35-thread-7] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141125173603im_/http://www.gstatic.com/ads/branding/adplanner/adp180_60.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141125173603im_/http://www.gstatic.com/ads/branding/adplanner/adp180_60.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:38.623 ERROR 12185 --- [pool-35-thread-10] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/22000/22448/4_gif_an2.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/22000/22448/4_gif_an2.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:38.979  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Safe Image] = 2628
+2017-01-23 11:41:38.983 ERROR 12185 --- [pool-35-thread-12] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317015351im_/http://enscreenshots.softonic.com/s2en/9000/9044/4_activex1.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317015351im_/http://enscreenshots.softonic.com/s2en/9000/9044/4_activex1.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:39.714  INFO 12185 --- [pool-35-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 55
+2017-01-23 11:41:39.743 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/27000/27351/2_optimize.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/27000/27351/2_optimize.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:39.808 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/27000/27351/2_editor.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/27000/27351/2_editor.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:39.816 ERROR 12185 --- [pool-35-thread-1] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317021033im_/http://enscreenshots.softonic.com/s2en/27000/27396/4_selteco.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317021033im_/http://enscreenshots.softonic.com/s2en/27000/27396/4_selteco.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:39.873 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/27000/27351/2_effect.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/27000/27351/2_effect.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:39.937 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/27000/27351/2_wizard.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/27000/27351/2_wizard.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:40.897  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 106
+2017-01-23 11:41:41.030  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.ImageParse              : [Load image] = 82
+2017-01-23 11:41:41.100  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Load image] = 138
+2017-01-23 11:41:41.599  INFO 12185 --- [pool-35-thread-8] pt.archive.utils.HTMLParser              : Time jsoup connect = 2416
+2017-01-23 11:41:41.677 ERROR 12185 --- [pool-35-thread-11] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080318035003im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080318035003im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:42.617  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.ImageParse              : [Safe Image] = 1586
+2017-01-23 11:41:42.628  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Safe Image] = 1528
+2017-01-23 11:41:42.661 ERROR 12185 --- [pool-35-thread-7] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20141125182647im_/http://www.gstatic.com/ads/branding/adplanner/adp180_60.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20141125182647im_/http://www.gstatic.com/ads/branding/adplanner/adp180_60.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:43.628  INFO 12185 --- [pool-35-thread-2] pt.archive.utils.ImageParse              : [Load image] = 109
+2017-01-23 11:41:44.346  INFO 12185 --- [pool-35-thread-11] pt.archive.utils.HTMLParser              : Time jsoup connect = 2668
+2017-01-23 11:41:44.360  INFO 12185 --- [pool-35-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 3203
+2017-01-23 11:41:44.361 ERROR 12185 --- [pool-35-thread-9] pt.archive.utils.HTMLParser              : [HTMLParser][call] item-digest[null]
+
+java.lang.StringIndexOutOfBoundsException: String index out of range: 55
+	at java.lang.String.substring(String.java:1907) ~[na:1.7.0_79]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:152) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:44.951  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Load image] = 97
+2017-01-23 11:41:45.189  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.HTMLParser              : [HTMLParser] return url[http://preprod.arquivo.pt/noFrame/replay/19961013172310000/http://smalnew.gif/index.html] statusCode == 404
+2017-01-23 11:41:45.202  INFO 12185 --- [pool-35-thread-9] pt.archive.utils.HTMLParser              : [HTMLParser] return url[http://preprod.arquivo.pt/noFrame/replay/19961013174522000/http://waust01.gif/index.html] statusCode == 404
+2017-01-23 11:41:45.227  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.HTMLParser              : [HTMLParser] return url[http://preprod.arquivo.pt/noFrame/replay/19961013155632000/http://spacer.gif/index.html] statusCode == 404
+2017-01-23 11:41:45.241  INFO 12185 --- [pool-35-thread-9] pt.archive.utils.HTMLParser              : [HTMLParser] return url[http://preprod.arquivo.pt/noFrame/replay/19961013155634000/http://dc_online.gif/index.html] statusCode == 404
+2017-01-23 11:41:45.261  INFO 12185 --- [pool-35-thread-8] pt.archive.utils.HTMLParser              : [HTMLParser] return url[http://preprod.arquivo.pt/noFrame/replay/19961013162322000/http://veliav4.gif/index.html] statusCode == 404
+2017-01-23 11:41:45.316  INFO 12185 --- [pool-35-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 89
+2017-01-23 11:41:45.435  INFO 12185 --- [pool-35-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 194
+2017-01-23 11:41:45.547  INFO 12185 --- [pool-35-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 1918
+2017-01-23 11:41:46.768  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Safe Image] = 1817
+2017-01-23 11:41:47.560  INFO 12185 --- [pool-35-thread-8] pt.archive.utils.HTMLParser              : Time jsoup connect = 2299
+2017-01-23 11:41:48.991  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Load image] = 97
+2017-01-23 11:41:49.163 ERROR 12185 --- [pool-35-thread-1] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317021033im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317021033im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:49.777 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:49.856 ERROR 12185 --- [pool-35-thread-12] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317015351im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317015351im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:49.893 ERROR 12185 --- [pool-35-thread-10] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:49.910  INFO 12185 --- [pool-35-thread-12] pt.archive.utils.HTMLParser              : [HTMLParser] return url[http://preprod.arquivo.pt/noFrame/replay/19961013180638000/http://color-line.gif/index.html] statusCode == 404
+2017-01-23 11:41:49.928  INFO 12185 --- [pool-35-thread-10] pt.archive.utils.HTMLParser              : [HTMLParser] return url[http://preprod.arquivo.pt/noFrame/replay/19961013162456000/http://dec-logo.gif/index.html] statusCode == 404
+2017-01-23 11:41:50.606  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Safe Image] = 1615
+2017-01-23 11:41:51.054  INFO 12185 --- [pool-35-thread-12] pt.archive.utils.HTMLParser              : Time jsoup connect = 1144
+2017-01-23 11:41:51.154  INFO 12185 --- [pool-35-thread-12] pt.archive.utils.ImageParse              : [Load image] = 88
+2017-01-23 11:41:51.801  INFO 12185 --- [pool-35-thread-1] pt.archive.utils.HTMLParser              : Time jsoup connect = 2637
+2017-01-23 11:41:51.958  INFO 12185 --- [pool-35-thread-5] pt.archive.utils.HTMLParser              : Time jsoup connect = 2180
+2017-01-23 11:41:52.463  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Load image] = 101
+2017-01-23 11:41:52.719  INFO 12185 --- [pool-35-thread-12] pt.archive.utils.ImageParse              : [Safe Image] = 1564
+2017-01-23 11:41:54.019  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Safe Image] = 1556
+2017-01-23 11:41:54.475 ERROR 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/63000/63122/4_Screenshot_-_08_06_2007___11_46_17.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/63000/63122/4_Screenshot_-_08_06_2007___11_46_17.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:54.553 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:55.522  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Load image] = 94
+2017-01-23 11:41:55.733 ERROR 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/63000/63122/2_Screenshot_-_08_06_2007___11_47_18.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/63000/63122/2_Screenshot_-_08_06_2007___11_47_18.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:55.798 ERROR 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/63000/63122/2_gif2aviswf.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/63000/63122/2_gif2aviswf.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:55.850  INFO 12185 --- [pool-35-thread-2] pt.archive.utils.ImageParse              : [Load image] = 79
+2017-01-23 11:41:55.861 ERROR 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/63000/63122/2_Screenshot_-_08_06_2007___11_46_07.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://enscreenshots.softonic.com/s2en/63000/63122/2_Screenshot_-_08_06_2007___11_46_07.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:56.318  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Safe Image] = 795
+2017-01-23 11:41:56.843  INFO 12185 --- [pool-35-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 993
+2017-01-23 11:41:56.968  INFO 12185 --- [pool-35-thread-2] pt.archive.utils.ImageParse              : [Load image] = 78
+2017-01-23 11:41:57.499  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Load image] = 78
+2017-01-23 11:41:57.944  INFO 12185 --- [pool-35-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 976
+2017-01-23 11:41:58.071  INFO 12185 --- [pool-35-thread-2] pt.archive.utils.ImageParse              : [Load image] = 79
+2017-01-23 11:41:58.426  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Safe Image] = 927
+2017-01-23 11:41:58.952  INFO 12185 --- [pool-35-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 881
+2017-01-23 11:41:59.528  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Load image] = 84
+2017-01-23 11:41:59.771 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:59.901 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:41:59.988 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:00.091 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:00.192 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:00.297 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:00.453 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:00.623 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:00.645  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Safe Image] = 1117
+2017-01-23 11:42:00.782 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:00.994 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:01.644 ERROR 12185 --- [pool-35-thread-9] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:01.965  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Load image] = 130
+2017-01-23 11:42:02.695  INFO 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [Safe Image] = 729
+2017-01-23 11:42:03.090 ERROR 12185 --- [pool-35-thread-2] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080318190056im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080318190056im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:05.977 ERROR 12185 --- [pool-35-thread-6] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20080317022443im_/http://pixel.quantserve.com/pixel/p-14pelSIxpXcB2.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:06.152 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:06.259 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:06.393 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:06.502 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:06.609 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:06.717 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:06.812 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:06.889 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r01_c01.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220032941im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r01_c01.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:07.035 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:07.139 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r02_c01.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220014417im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r02_c01.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:07.247 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r02_c10.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021010174003im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r02_c10.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:07.295 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r02_c12.gif] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r02_c12.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:07.406 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:07.605 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r03_c10.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023618im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r03_c10.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:07.759 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:07.875 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r04_c01.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220024318im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r04_c01.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:08.097 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r04_c06.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220025235im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r04_c06.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:08.284 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r04_c08.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220031253im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r04_c08.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:08.524 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:08.872 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r05_c06.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220044823im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r05_c06.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:09.244 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:14.587 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r06_c06.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220032617im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r06_c06.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:14.851 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r06_c07.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021010180728im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r06_c07.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:21.123 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:22.500 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r07_c11.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023729im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r07_c11.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:23.084 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r07_c14.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220025357im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r07_c14.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:23.511 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:23.769 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r08_c07.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220025944im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r08_c07.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:24.102 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r08_c09.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220031005im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r08_c09.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:24.476 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:30.049 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r09_c11.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220033340im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r09_c11.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:30.211 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:31.471 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r10_c10.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220020211im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r10_c10.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:32.065 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r10_c12.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220021457im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r10_c12.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:32.562 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:32.864 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r11_c12.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220022641im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r11_c12.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:33.002 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r11_c13.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220045712im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r11_c13.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:33.267 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r11_c16.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021010185023im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r11_c16.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:33.370 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:33.534 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r12_c10.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220045817im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r12_c10.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:44.239 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:44.392 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r13_c13.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20020106092038im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r13_c13.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:44.487 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:44.572 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r14_c13.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021010170240im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r14_c13.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:44.673 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r14_c15.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220015112im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r14_c15.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:44.829 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r14_c17.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220021041im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r14_c17.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:45.103 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:45.639 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r15_c15.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220022215im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r15_c15.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:56.261 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:42:56.594 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r16_c01.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023124im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r16_c01.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:43:02.231 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r16_c04.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023809im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r16_c04.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:43:02.564 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r16_c05.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220044701im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r16_c05.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:43:02.751 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:43:08.310 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r17_c01.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220045230im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r17_c01.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:43:13.957 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r17_c02.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021010172724im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r17_c02.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:43:14.082 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r17_c03.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220015040im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r17_c03.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:43:14.311 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:43:14.697 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r18_c02.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220020136im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r18_c02.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:43:15.422 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/mapas-vinhos_r18_c04.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220020640im_/http://cm-marco-canaveses.pt/turismo/mapas-vinhos_r18_c04.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:43:15.795 ERROR 12185 --- [pool-35-thread-5] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20040220103624im_/http://www.cm-marco-canaveses.pt/turismo/shim.gif] e = 
+
+java.io.IOException: Server returned HTTP response code: 502 for URL: http://preprod.arquivo.pt/noFrame/replay/20021220023411im_/http://cm-marco-canaveses.pt/turismo/shim.gif
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1627) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:43:15.814  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : Numero de resposta com duplicados: 240
+2017-01-23 11:43:15.815  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : Numero de resposta sem duplicados: 110
+2017-01-23 11:43:15.815  INFO 12185 --- [ajp-nio-8009-exec-5] troller$$EnhancerBySpringCGLIB$$3390f644 : Search [gif] Results = [110] time = [115620] milliseconds.
+2017-01-23 11:45:38.646  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2017-01-23 11:45:38.647  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Closing Spring root WebApplicationContext
+2017-01-23 11:45:38.648  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@21f4cd81: startup date [Mon Jan 23 11:40:54 GMT 2017]; root of context hierarchy
+2017-01-23 11:45:38.650  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown

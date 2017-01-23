@@ -1,0 +1,432 @@
+2017-01-23 11:45:40.240  INFO 12185 --- [localhost-startStop-8] pt.archive.Application                   : Starting Application v0.1 on p18.arquivo.pt with PID 12185 (/home/wayback/searcher/apache-tomcat-8.0.30/webapps/getimagesWS/WEB-INF/classes started by jnobre in /home/wayback/searcher/apache-tomcat-8.0.30/bin)
+2017-01-23 11:45:40.245  INFO 12185 --- [localhost-startStop-8] pt.archive.Application                   : No active profile set, falling back to default profiles: default
+2017-01-23 11:45:40.270  INFO 12185 --- [localhost-startStop-8] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@78f69510: startup date [Mon Jan 23 11:45:40 GMT 2017]; root of context hierarchy
+2017-01-23 11:45:41.232  INFO 12185 --- [localhost-startStop-8] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Initializing Spring embedded WebApplicationContext
+2017-01-23 11:45:41.233  INFO 12185 --- [localhost-startStop-8] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 963 ms
+2017-01-23 11:45:41.961  INFO 12185 --- [localhost-startStop-8] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-01-23 11:45:41.962  INFO 12185 --- [localhost-startStop-8] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-01-23 11:45:41.962  INFO 12185 --- [localhost-startStop-8] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-01-23 11:45:41.962  INFO 12185 --- [localhost-startStop-8] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-01-23 11:45:41.962  INFO 12185 --- [localhost-startStop-8] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-01-23 11:45:43.048  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : Init method after properties are set : blacklistUrlFile[/home/jnobre/workspaceImages/getimagesWS/blacklistUrl] & blacklistDomainFile[/home/jnobre/workspaceImages/getimagesWS/blacklistDomain]
+2017-01-23 11:45:43.051  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : ********* Properties *********
+2017-01-23 11:45:43.051  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : 	urlBase=http://preprod.arquivo.pt/opensearch?query=
+2017-01-23 11:45:43.051  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : 	type=text/html
+2017-01-23 11:45:43.051  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : 	hitsPerSite=1
+2017-01-23 11:45:43.051  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : 	hitsPerPage=50
+2017-01-23 11:45:43.051  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : 	NThreads=12
+2017-01-23 11:45:43.051  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : 	NumImgsbyUrl=-1
+2017-01-23 11:45:43.051  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : 	HostGetImage=http://preprod.arquivo.pt
+2017-01-23 11:45:43.051  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : 	urldirectoriesImage=/noFrame/replay/
+2017-01-23 11:45:43.051  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : 	NThreads=12
+2017-01-23 11:45:43.052  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : ******************************
+2017-01-23 11:45:43.052  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : ******* StopWords Urls *******
+2017-01-23 11:45:43.052  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   a
+2017-01-23 11:45:43.052  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   e
+2017-01-23 11:45:43.052  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   o
+2017-01-23 11:45:43.052  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   é
+2017-01-23 11:45:43.052  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   à
+2017-01-23 11:45:43.052  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   s
+2017-01-23 11:45:43.052  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   n
+2017-01-23 11:45:43.052  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   d
+2017-01-23 11:45:43.053  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   c
+2017-01-23 11:45:43.053  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   i
+2017-01-23 11:45:43.053  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   p
+2017-01-23 11:45:43.053  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   de
+2017-01-23 11:45:43.053  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   do
+2017-01-23 11:45:43.053  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   da
+2017-01-23 11:45:43.053  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   para
+2017-01-23 11:45:43.053  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   em
+2017-01-23 11:45:43.053  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   os
+2017-01-23 11:45:43.053  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   com
+2017-01-23 11:45:43.053  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   no
+2017-01-23 11:45:43.054  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   por
+2017-01-23 11:45:43.054  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   que
+2017-01-23 11:45:43.054  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   um
+2017-01-23 11:45:43.054  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   as
+2017-01-23 11:45:43.054  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   se
+2017-01-23 11:45:43.054  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   na
+2017-01-23 11:45:43.054  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   uma
+2017-01-23 11:45:43.054  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   não
+2017-01-23 11:45:43.054  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   dos
+2017-01-23 11:45:43.054  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   pt
+2017-01-23 11:45:43.054  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   ao
+2017-01-23 11:45:43.055  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   mais
+2017-01-23 11:45:43.055  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   ou
+2017-01-23 11:45:43.055  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   das
+2017-01-23 11:45:43.055  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   nos
+2017-01-23 11:45:43.055  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   como
+2017-01-23 11:45:43.055  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   you
+2017-01-23 11:45:43.055  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   estes
+2017-01-23 11:45:43.055  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   te
+2017-01-23 11:45:43.055  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   it
+2017-01-23 11:45:43.055  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   your
+2017-01-23 11:45:43.056  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   então
+2017-01-23 11:45:43.056  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   essa
+2017-01-23 11:45:43.056  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   esse
+2017-01-23 11:45:43.056  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   estas
+2017-01-23 11:45:43.056  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   are
+2017-01-23 11:45:43.056  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   an
+2017-01-23 11:45:43.056  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   not
+2017-01-23 11:45:43.056  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   that
+2017-01-23 11:45:43.056  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   sob
+2017-01-23 11:45:43.056  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   am
+2017-01-23 11:45:43.056  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   out
+2017-01-23 11:45:43.057  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   seu
+2017-01-23 11:45:43.057  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   este
+2017-01-23 11:45:43.057  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   ser
+2017-01-23 11:45:43.057  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   sua
+2017-01-23 11:45:43.057  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   são
+2017-01-23 11:45:43.057  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   aos
+2017-01-23 11:45:43.057  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   esta
+2017-01-23 11:45:43.057  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   já
+2017-01-23 11:45:43.057  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   the
+2017-01-23 11:45:43.057  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   tem
+2017-01-23 11:45:43.057  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   sem
+2017-01-23 11:45:43.058  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   está
+2017-01-23 11:45:43.058  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   pela
+2017-01-23 11:45:43.058  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   pelo
+2017-01-23 11:45:43.058  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   foi
+2017-01-23 11:45:43.058  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   mas
+2017-01-23 11:45:43.058  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   às
+2017-01-23 11:45:43.058  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   pode
+2017-01-23 11:45:43.058  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   para-a
+2017-01-23 11:45:43.058  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   ter
+2017-01-23 11:45:43.058  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   to
+2017-01-23 11:45:43.058  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   nas
+2017-01-23 11:45:43.059  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   me
+2017-01-23 11:45:43.059  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   só
+2017-01-23 11:45:43.059  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   www
+2017-01-23 11:45:43.059  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   of
+2017-01-23 11:45:43.059  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   here
+2017-01-23 11:45:43.059  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   &
+2017-01-23 11:45:43.059  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   seus
+2017-01-23 11:45:43.059  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   by
+2017-01-23 11:45:43.059  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   and
+2017-01-23 11:45:43.059  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   on
+2017-01-23 11:45:43.060  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   for
+2017-01-23 11:45:43.060  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   há
+2017-01-23 11:45:43.060  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :   és
+2017-01-23 11:45:43.060  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : ***************************
+2017-01-23 11:45:43.060  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : ******* BlackList Urls *******
+2017-01-23 11:45:43.060  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : ***************************
+2017-01-23 11:45:43.060  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : **** Interval Sizes ****
+2017-01-23 11:45:43.060  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :    size: 0
+2017-01-23 11:45:43.060  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :    size: 40000
+2017-01-23 11:45:43.060  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :    size: 120000
+2017-01-23 11:45:43.060  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :    size: 786432
+2017-01-23 11:45:43.061  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 :    size: 2097152
+2017-01-23 11:45:43.061  INFO 12185 --- [localhost-startStop-8] troller$$EnhancerBySpringCGLIB$$49731a41 : ******************
+2017-01-23 11:45:43.937  INFO 12185 --- [localhost-startStop-8] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@78f69510: startup date [Mon Jan 23 11:45:40 GMT 2017]; root of context hierarchy
+2017-01-23 11:45:44.002  INFO 12185 --- [localhost-startStop-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public pt.archive.model.ImageSearchResults pt.archive.controller.ImageSearchResultsController.getImages(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2017-01-23 11:45:44.007  INFO 12185 --- [localhost-startStop-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-01-23 11:45:44.007  INFO 12185 --- [localhost-startStop-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-01-23 11:45:44.051  INFO 12185 --- [localhost-startStop-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-23 11:45:44.051  INFO 12185 --- [localhost-startStop-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-23 11:45:44.103  INFO 12185 --- [localhost-startStop-8] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-23 11:45:44.410  INFO 12185 --- [localhost-startStop-8] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-01-23 11:45:44.427  INFO 12185 --- [localhost-startStop-8] pt.archive.Application                   : Started Application in 4.887 seconds (JVM running for 595377.371)
+2017-01-23 11:47:04.469  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Closing Spring root WebApplicationContext
+2017-01-23 11:47:04.469  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@78f69510: startup date [Mon Jan 23 11:45:40 GMT 2017]; root of context hierarchy
+2017-01-23 11:47:04.472  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2017-01-23 11:47:06.003  INFO 12185 --- [localhost-startStop-9] pt.archive.Application                   : Starting Application v0.1 on p18.arquivo.pt with PID 12185 (/home/wayback/searcher/apache-tomcat-8.0.30/webapps/getimagesWS/WEB-INF/classes started by jnobre in /home/wayback/searcher/apache-tomcat-8.0.30/bin)
+2017-01-23 11:47:06.009  INFO 12185 --- [localhost-startStop-9] pt.archive.Application                   : No active profile set, falling back to default profiles: default
+2017-01-23 11:47:06.035  INFO 12185 --- [localhost-startStop-9] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@67cdfe4f: startup date [Mon Jan 23 11:47:06 GMT 2017]; root of context hierarchy
+2017-01-23 11:47:06.997  INFO 12185 --- [localhost-startStop-9] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Initializing Spring embedded WebApplicationContext
+2017-01-23 11:47:06.997  INFO 12185 --- [localhost-startStop-9] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 963 ms
+2017-01-23 11:47:07.721  INFO 12185 --- [localhost-startStop-9] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2017-01-23 11:47:07.722  INFO 12185 --- [localhost-startStop-9] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2017-01-23 11:47:07.722  INFO 12185 --- [localhost-startStop-9] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2017-01-23 11:47:07.722  INFO 12185 --- [localhost-startStop-9] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2017-01-23 11:47:07.722  INFO 12185 --- [localhost-startStop-9] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2017-01-23 11:47:07.779  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : Init method after properties are set : blacklistUrlFile[/home/jnobre/workspaceImages/getimagesWS/blacklistUrl] & blacklistDomainFile[/home/jnobre/workspaceImages/getimagesWS/blacklistDomain]
+2017-01-23 11:47:07.781  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : ********* Properties *********
+2017-01-23 11:47:07.781  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : 	urlBase=http://preprod.arquivo.pt/opensearch?query=
+2017-01-23 11:47:07.781  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : 	type=text/html
+2017-01-23 11:47:07.781  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : 	hitsPerSite=1
+2017-01-23 11:47:07.781  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : 	hitsPerPage=50
+2017-01-23 11:47:07.781  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : 	NThreads=12
+2017-01-23 11:47:07.782  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : 	NumImgsbyUrl=-1
+2017-01-23 11:47:07.782  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : 	HostGetImage=http://preprod.arquivo.pt
+2017-01-23 11:47:07.782  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : 	urldirectoriesImage=/noFrame/replay/
+2017-01-23 11:47:07.782  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : 	NThreads=12
+2017-01-23 11:47:07.782  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : ******************************
+2017-01-23 11:47:07.782  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : ******* StopWords Urls *******
+2017-01-23 11:47:07.782  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   a
+2017-01-23 11:47:07.782  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   e
+2017-01-23 11:47:07.782  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   o
+2017-01-23 11:47:07.783  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   é
+2017-01-23 11:47:07.783  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   à
+2017-01-23 11:47:07.783  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   s
+2017-01-23 11:47:07.783  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   n
+2017-01-23 11:47:07.783  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   d
+2017-01-23 11:47:07.783  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   c
+2017-01-23 11:47:07.783  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   i
+2017-01-23 11:47:07.783  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   p
+2017-01-23 11:47:07.783  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   de
+2017-01-23 11:47:07.783  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   do
+2017-01-23 11:47:07.784  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   da
+2017-01-23 11:47:07.784  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   para
+2017-01-23 11:47:07.784  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   em
+2017-01-23 11:47:07.784  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   os
+2017-01-23 11:47:07.784  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   com
+2017-01-23 11:47:07.784  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   no
+2017-01-23 11:47:07.784  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   por
+2017-01-23 11:47:07.784  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   que
+2017-01-23 11:47:07.784  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   um
+2017-01-23 11:47:07.785  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   as
+2017-01-23 11:47:07.785  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   se
+2017-01-23 11:47:07.785  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   na
+2017-01-23 11:47:07.785  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   uma
+2017-01-23 11:47:07.785  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   não
+2017-01-23 11:47:07.785  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   dos
+2017-01-23 11:47:07.785  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   pt
+2017-01-23 11:47:07.785  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   ao
+2017-01-23 11:47:07.785  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   mais
+2017-01-23 11:47:07.786  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   ou
+2017-01-23 11:47:07.786  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   das
+2017-01-23 11:47:07.786  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   nos
+2017-01-23 11:47:07.786  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   como
+2017-01-23 11:47:07.786  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   you
+2017-01-23 11:47:07.786  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   estes
+2017-01-23 11:47:07.786  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   te
+2017-01-23 11:47:07.786  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   it
+2017-01-23 11:47:07.786  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   your
+2017-01-23 11:47:07.786  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   então
+2017-01-23 11:47:07.787  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   essa
+2017-01-23 11:47:07.787  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   esse
+2017-01-23 11:47:07.787  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   estas
+2017-01-23 11:47:07.787  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   are
+2017-01-23 11:47:07.787  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   an
+2017-01-23 11:47:07.787  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   not
+2017-01-23 11:47:07.787  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   that
+2017-01-23 11:47:07.787  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   sob
+2017-01-23 11:47:07.787  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   am
+2017-01-23 11:47:07.788  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   out
+2017-01-23 11:47:07.788  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   seu
+2017-01-23 11:47:07.788  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   este
+2017-01-23 11:47:07.788  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   ser
+2017-01-23 11:47:07.788  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   sua
+2017-01-23 11:47:07.788  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   são
+2017-01-23 11:47:07.788  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   aos
+2017-01-23 11:47:07.788  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   esta
+2017-01-23 11:47:07.788  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   já
+2017-01-23 11:47:07.789  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   the
+2017-01-23 11:47:07.789  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   tem
+2017-01-23 11:47:07.789  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   sem
+2017-01-23 11:47:07.789  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   está
+2017-01-23 11:47:07.789  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   pela
+2017-01-23 11:47:07.789  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   pelo
+2017-01-23 11:47:07.789  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   foi
+2017-01-23 11:47:07.789  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   mas
+2017-01-23 11:47:07.789  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   às
+2017-01-23 11:47:07.789  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   pode
+2017-01-23 11:47:07.790  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   para-a
+2017-01-23 11:47:07.790  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   ter
+2017-01-23 11:47:07.790  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   to
+2017-01-23 11:47:07.790  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   nas
+2017-01-23 11:47:07.790  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   me
+2017-01-23 11:47:07.790  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   só
+2017-01-23 11:47:07.790  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   www
+2017-01-23 11:47:07.790  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   of
+2017-01-23 11:47:07.790  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   here
+2017-01-23 11:47:07.791  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   &
+2017-01-23 11:47:07.791  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   seus
+2017-01-23 11:47:07.791  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   by
+2017-01-23 11:47:07.791  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   and
+2017-01-23 11:47:07.791  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   on
+2017-01-23 11:47:07.791  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   for
+2017-01-23 11:47:07.791  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   há
+2017-01-23 11:47:07.791  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   és
+2017-01-23 11:47:07.791  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : ***************************
+2017-01-23 11:47:07.792  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : ******* BlackList Urls *******
+2017-01-23 11:47:07.792  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : ***************************
+2017-01-23 11:47:07.792  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : **** Interval Sizes ****
+2017-01-23 11:47:07.792  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :    size: 0
+2017-01-23 11:47:07.792  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :    size: 40000
+2017-01-23 11:47:07.792  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :    size: 120000
+2017-01-23 11:47:07.792  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :    size: 786432
+2017-01-23 11:47:07.792  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f :    size: 2097152
+2017-01-23 11:47:07.792  INFO 12185 --- [localhost-startStop-9] troller$$EnhancerBySpringCGLIB$$7fc7da9f : ******************
+2017-01-23 11:47:08.424  INFO 12185 --- [localhost-startStop-9] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@67cdfe4f: startup date [Mon Jan 23 11:47:06 GMT 2017]; root of context hierarchy
+2017-01-23 11:47:08.489  INFO 12185 --- [localhost-startStop-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/],methods=[GET]}" onto public pt.archive.model.ImageSearchResults pt.archive.controller.ImageSearchResultsController.getImages(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2017-01-23 11:47:08.494  INFO 12185 --- [localhost-startStop-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2017-01-23 11:47:08.494  INFO 12185 --- [localhost-startStop-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2017-01-23 11:47:08.538  INFO 12185 --- [localhost-startStop-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-23 11:47:08.538  INFO 12185 --- [localhost-startStop-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-23 11:47:08.590  INFO 12185 --- [localhost-startStop-9] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2017-01-23 11:47:08.892  INFO 12185 --- [localhost-startStop-9] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2017-01-23 11:47:08.909  INFO 12185 --- [localhost-startStop-9] pt.archive.Application                   : Started Application in 3.537 seconds (JVM running for 595461.853)
+2017-01-23 11:47:45.125  INFO 12185 --- [ajp-nio-8009-exec-4] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-01-23 11:47:45.125  INFO 12185 --- [ajp-nio-8009-exec-4] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-01-23 11:47:45.142  INFO 12185 --- [ajp-nio-8009-exec-4] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 17 ms
+2017-01-23 11:47:45.166  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : New request query[Almada Negreiros] stamp[19960101000000-20151022163016] start[0] safeImage[yes]
+2017-01-23 11:47:45.167  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : criteriaRank[score]
+2017-01-23 11:47:45.167  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : TERM => Almada
+2017-01-23 11:47:45.167  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : TERM => Negreiros
+2017-01-23 11:47:45.167  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : query no final do remove => Almada Negreiros
+2017-01-23 11:47:45.167  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : query final => Almada Negreiros
+2017-01-23 11:47:45.167  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : ****** Terms List ******
+2017-01-23 11:47:45.168  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f :  Almada
+2017-01-23 11:47:45.168  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f :  Negreiros
+2017-01-23 11:47:45.168  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : ***********************
+2017-01-23 11:47:45.168  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : ****** Types *****
+2017-01-23 11:47:45.168  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f :   []
+2017-01-23 11:47:45.168  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : ******************
+2017-01-23 11:47:45.168  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : [buildURL] input => Almada Negreiros
+2017-01-23 11:47:45.168  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : Request to OpenSearch[http://preprod.arquivo.pt/opensearch?query=Almada%20Negreiros+type:text/html+date:19960101000000-20151022163016&hitsPerSite=1&hitsPerPage=50&start=0]
+2017-01-23 11:47:48.284  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : [ImageSearchResultsController][getImageResults] OpenSearch result : 50
+2017-01-23 11:47:49.188  INFO 12185 --- [pool-36-thread-5] pt.archive.utils.HTMLParser              : Time jsoup connect = 900
+2017-01-23 11:47:49.301  INFO 12185 --- [pool-36-thread-6] pt.archive.utils.HTMLParser              : Time jsoup connect = 1013
+2017-01-23 11:47:49.488  INFO 12185 --- [pool-36-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 1200
+2017-01-23 11:47:49.499  INFO 12185 --- [pool-36-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 1211
+2017-01-23 11:47:49.539  INFO 12185 --- [pool-36-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 1251
+2017-01-23 11:47:49.793  INFO 12185 --- [pool-36-thread-10] pt.archive.utils.HTMLParser              : Time jsoup connect = 1505
+2017-01-23 11:47:49.955  INFO 12185 --- [pool-36-thread-6] pt.archive.utils.HTMLParser              : Time jsoup connect = 648
+2017-01-23 11:47:49.960  INFO 12185 --- [pool-36-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 472
+2017-01-23 11:47:49.977  INFO 12185 --- [pool-36-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 1689
+2017-01-23 11:47:50.299  INFO 12185 --- [pool-36-thread-10] pt.archive.utils.HTMLParser              : Time jsoup connect = 505
+2017-01-23 11:47:50.304  INFO 12185 --- [pool-36-thread-11] pt.archive.utils.HTMLParser              : Time jsoup connect = 2016
+2017-01-23 11:47:50.314  INFO 12185 --- [pool-36-thread-12] pt.archive.utils.HTMLParser              : Time jsoup connect = 2026
+2017-01-23 11:47:50.388  INFO 12185 --- [pool-36-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 426
+2017-01-23 11:47:50.834  INFO 12185 --- [pool-36-thread-6] pt.archive.utils.HTMLParser              : Time jsoup connect = 877
+2017-01-23 11:47:50.921  INFO 12185 --- [pool-36-thread-2] pt.archive.utils.HTMLParser              : Time jsoup connect = 2633
+2017-01-23 11:47:51.218  INFO 12185 --- [pool-36-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 829
+2017-01-23 11:47:51.275  INFO 12185 --- [pool-36-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 1293
+2017-01-23 11:47:51.509  INFO 12185 --- [pool-36-thread-1] pt.archive.utils.HTMLParser              : Time jsoup connect = 3221
+2017-01-23 11:47:51.770  INFO 12185 --- [pool-36-thread-11] pt.archive.utils.HTMLParser              : Time jsoup connect = 1465
+2017-01-23 11:47:52.146  INFO 12185 --- [pool-36-thread-6] pt.archive.utils.HTMLParser              : Time jsoup connect = 1311
+2017-01-23 11:47:52.198  INFO 12185 --- [pool-36-thread-10] pt.archive.utils.HTMLParser              : Time jsoup connect = 1899
+2017-01-23 11:47:52.306  INFO 12185 --- [pool-36-thread-1] pt.archive.utils.ImageParse              : [Load image] = 672
+2017-01-23 11:47:52.630  INFO 12185 --- [pool-36-thread-5] pt.archive.utils.HTMLParser              : Time jsoup connect = 3441
+2017-01-23 11:47:52.630  INFO 12185 --- [pool-36-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 3130
+2017-01-23 11:47:52.632  INFO 12185 --- [pool-36-thread-12] pt.archive.utils.HTMLParser              : Time jsoup connect = 2318
+2017-01-23 11:47:52.724  INFO 12185 --- [pool-36-thread-2] pt.archive.utils.HTMLParser              : Time jsoup connect = 1801
+2017-01-23 11:47:52.741  INFO 12185 --- [pool-36-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 1522
+2017-01-23 11:47:52.756  INFO 12185 --- [pool-36-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 3215
+2017-01-23 11:47:52.762 ERROR 12185 --- [pool-36-thread-4] pt.archive.utils.HTMLParser              : [HTMLParser][call] item-digest[null]
+
+java.lang.StringIndexOutOfBoundsException: String index out of range: 55
+	at java.lang.String.substring(String.java:1907) ~[na:1.7.0_79]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:152) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:47:52.964  INFO 12185 --- [pool-36-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 1689
+2017-01-23 11:47:53.143  INFO 12185 --- [pool-36-thread-1] pt.archive.utils.ImageParse              : [Safe Image] = 837
+2017-01-23 11:47:53.421  INFO 12185 --- [pool-36-thread-1] pt.archive.utils.HTMLParser              : Time jsoup connect = 277
+2017-01-23 11:47:53.507  INFO 12185 --- [pool-36-thread-11] pt.archive.utils.HTMLParser              : Time jsoup connect = 1736
+2017-01-23 11:47:53.677  INFO 12185 --- [pool-36-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 713
+2017-01-23 11:47:53.929  INFO 12185 --- [pool-36-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 1166
+2017-01-23 11:47:54.012 ERROR 12185 --- [pool-36-thread-8] pt.archive.utils.HTMLParser              : [Jsoup] get response link[http://preprod.arquivo.pt/noFrame/replay/20080311180258000/http://escritas.paginas.sapo.pt/almada_negreiros.htm] orignalURL[http://escritas.paginas.sapo.pt/almada_negreiros.htm] exception = 
+
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[na:1.7.0_79]
+	at java.net.SocketInputStream.read(SocketInputStream.java:152) ~[na:1.7.0_79]
+	at java.net.SocketInputStream.read(SocketInputStream.java:122) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:275) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334) ~[na:1.7.0_79]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:689) ~[na:1.7.0_79]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:633) ~[na:1.7.0_79]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1324) ~[na:1.7.0_79]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:468) ~[na:1.7.0_79]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:412) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:429) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:393) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:159) ~[jsoup-1.7.1.jar:na]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:114) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:47:54.460  INFO 12185 --- [pool-36-thread-5] pt.archive.utils.HTMLParser              : Time jsoup connect = 1830
+2017-01-23 11:47:54.498  INFO 12185 --- [pool-36-thread-6] pt.archive.utils.HTMLParser              : Time jsoup connect = 2352
+2017-01-23 11:47:54.560  INFO 12185 --- [pool-36-thread-10] pt.archive.utils.HTMLParser              : Time jsoup connect = 2361
+2017-01-23 11:47:54.804  INFO 12185 --- [pool-36-thread-2] pt.archive.utils.HTMLParser              : Time jsoup connect = 2080
+2017-01-23 11:47:55.083  INFO 12185 --- [pool-36-thread-9] pt.archive.utils.HTMLParser              : Time jsoup connect = 1405
+2017-01-23 11:47:55.626  INFO 12185 --- [pool-36-thread-8] pt.archive.utils.HTMLParser              : Time jsoup connect = 1614
+2017-01-23 11:47:55.633  INFO 12185 --- [pool-36-thread-12] pt.archive.utils.HTMLParser              : Time jsoup connect = 3001
+2017-01-23 11:47:55.635  INFO 12185 --- [pool-36-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 3004
+2017-01-23 11:47:55.690  INFO 12185 --- [pool-36-thread-4] pt.archive.utils.HTMLParser              : Time jsoup connect = 1761
+2017-01-23 11:47:55.762  INFO 12185 --- [pool-36-thread-10] pt.archive.utils.HTMLParser              : Time jsoup connect = 1201
+2017-01-23 11:47:55.873  INFO 12185 --- [pool-36-thread-3] pt.archive.utils.HTMLParser              : Time jsoup connect = 3131
+2017-01-23 11:47:55.973  INFO 12185 --- [pool-36-thread-9] pt.archive.utils.ImageParse              : [Load image] = 708
+2017-01-23 11:47:56.412  INFO 12185 --- [pool-36-thread-9] pt.archive.utils.ImageParse              : [Safe Image] = 439
+2017-01-23 11:47:56.485  INFO 12185 --- [pool-36-thread-2] pt.archive.utils.ImageParse              : [Load image] = 1595
+2017-01-23 11:47:56.509  INFO 12185 --- [pool-36-thread-4] pt.archive.utils.ImageParse              : [Load image] = 784
+2017-01-23 11:47:56.664  INFO 12185 --- [pool-36-thread-1] pt.archive.utils.HTMLParser              : Time jsoup connect = 3243
+2017-01-23 11:47:56.898  INFO 12185 --- [pool-36-thread-9] pt.archive.utils.ImageParse              : [Load image] = 350
+2017-01-23 11:47:57.150  INFO 12185 --- [pool-36-thread-2] pt.archive.utils.ImageParse              : [Safe Image] = 665
+2017-01-23 11:47:57.153  INFO 12185 --- [pool-36-thread-1] pt.archive.utils.ImageParse              : [Load image] = 409
+2017-01-23 11:47:57.161  INFO 12185 --- [pool-36-thread-12] pt.archive.utils.HTMLParser              : Time jsoup connect = 1527
+2017-01-23 11:47:57.187  INFO 12185 --- [pool-36-thread-4] pt.archive.utils.ImageParse              : [Safe Image] = 668
+2017-01-23 11:47:57.404  INFO 12185 --- [pool-36-thread-5] pt.archive.utils.HTMLParser              : Time jsoup connect = 2943
+2017-01-23 11:47:57.477  INFO 12185 --- [pool-36-thread-9] pt.archive.utils.ImageParse              : [Safe Image] = 578
+2017-01-23 11:47:57.652  INFO 12185 --- [pool-36-thread-1] pt.archive.utils.ImageParse              : [Safe Image] = 499
+2017-01-23 11:47:58.028  INFO 12185 --- [pool-36-thread-9] pt.archive.utils.ImageParse              : [Load image] = 425
+2017-01-23 11:47:58.146  INFO 12185 --- [pool-36-thread-1] pt.archive.utils.ImageParse              : [Load image] = 459
+2017-01-23 11:47:58.245  INFO 12185 --- [pool-36-thread-5] pt.archive.utils.ImageParse              : [Load image] = 819
+2017-01-23 11:47:58.318  INFO 12185 --- [pool-36-thread-8] pt.archive.utils.HTMLParser              : Time jsoup connect = 2691
+2017-01-23 11:47:58.578  INFO 12185 --- [pool-36-thread-9] pt.archive.utils.ImageParse              : [Safe Image] = 550
+2017-01-23 11:47:58.731  INFO 12185 --- [pool-36-thread-7] pt.archive.utils.HTMLParser              : Time jsoup connect = 3095
+2017-01-23 11:47:58.847  INFO 12185 --- [pool-36-thread-1] pt.archive.utils.ImageParse              : [Safe Image] = 700
+2017-01-23 11:47:58.891  INFO 12185 --- [pool-36-thread-5] pt.archive.utils.ImageParse              : [Safe Image] = 646
+2017-01-23 11:47:59.482  INFO 12185 --- [pool-36-thread-1] pt.archive.utils.ImageParse              : [Load image] = 602
+2017-01-23 11:47:59.574  INFO 12185 --- [pool-36-thread-8] pt.archive.utils.ImageParse              : [Load image] = 1226
+2017-01-23 11:47:59.781  INFO 12185 --- [pool-36-thread-6] pt.archive.utils.ImageParse              : [Load image] = 5231
+2017-01-23 11:47:59.799 ERROR 12185 --- [pool-36-thread-11] pt.archive.utils.HTMLParser              : [Jsoup] get response link[http://preprod.arquivo.pt/noFrame/replay/20080315080130000/http://www.apena.rcts.pt/aproximar/galeria/voltaaomundo/etapa4/almada.htm] orignalURL[http://www.apena.rcts.pt/aproximar/galeria/voltaaomundo/etapa4/almada.htm] exception = 
+
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method) ~[na:1.7.0_79]
+	at java.net.SocketInputStream.read(SocketInputStream.java:152) ~[na:1.7.0_79]
+	at java.net.SocketInputStream.read(SocketInputStream.java:122) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:275) ~[na:1.7.0_79]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334) ~[na:1.7.0_79]
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:689) ~[na:1.7.0_79]
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:633) ~[na:1.7.0_79]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1324) ~[na:1.7.0_79]
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:468) ~[na:1.7.0_79]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:412) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:429) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection$Response.execute(HttpConnection.java:393) ~[jsoup-1.7.1.jar:na]
+	at org.jsoup.helper.HttpConnection.execute(HttpConnection.java:159) ~[jsoup-1.7.1.jar:na]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:114) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:48:00.048 ERROR 12185 --- [pool-36-thread-7] pt.archive.utils.ImageParse              : [ImageParse][getPropImage] [http://preprod.arquivo.pt/noFrame/replay/20071014005616im_/http://img.olhares.com/data/big/84/841673.jpg] e = 
+
+java.io.FileNotFoundException: http://preprod.arquivo.pt/noFrame/replay/20071014005616im_/http://img.olhares.com/data/big/84/841673.jpg
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1625) ~[na:1.7.0_79]
+	at pt.archive.utils.ImageParse.getPropImage(ImageParse.java:69) ~[classes/:0.1]
+	at pt.archive.utils.HTMLParser.buildResponse(HTMLParser.java:192) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:83) [classes/:0.1]
+	at pt.archive.utils.HTMLParser.call(HTMLParser.java:25) [classes/:0.1]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) [na:1.7.0_79]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) [na:1.7.0_79]
+	at java.lang.Thread.run(Thread.java:745) [na:1.7.0_79]
+
+2017-01-23 11:48:00.104  INFO 12185 --- [pool-36-thread-1] pt.archive.utils.ImageParse              : [Safe Image] = 622
+2017-01-23 11:48:00.232  INFO 12185 --- [pool-36-thread-8] pt.archive.utils.ImageParse              : [Safe Image] = 658
+2017-01-23 11:48:00.341  INFO 12185 --- [pool-36-thread-6] pt.archive.utils.ImageParse              : [Safe Image] = 559
+2017-01-23 11:48:00.343  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : Numero de resposta com duplicados: 12
+2017-01-23 11:48:00.343  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : Numero de resposta sem duplicados: 12
+2017-01-23 11:48:00.344  INFO 12185 --- [ajp-nio-8009-exec-4] troller$$EnhancerBySpringCGLIB$$7fc7da9f : Search [Almada Negreiros] Results = [12] time = [15177] milliseconds.
+2017-01-23 11:49:48.949  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2017-01-23 11:49:48.950  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] o.a.c.c.C.[.[localhost].[/getimagesWS]   : Closing Spring root WebApplicationContext
+2017-01-23 11:49:48.950  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@67cdfe4f: startup date [Mon Jan 23 11:47:06 GMT 2017]; root of context hierarchy
+2017-01-23 11:49:48.952  INFO 12185 --- [ContainerBackgroundProcessor[StandardEngine[reciver]]] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
