@@ -1,6 +1,13 @@
 import sys
 
 
+def extractValue( line ):
+	try:
+		value = int( line )
+		return value
+	except ValueError:
+		return 0
+
 
 
 if __name__ == '__main__':
@@ -17,12 +24,13 @@ if __name__ == '__main__':
 				for line in f:
 					#line = fline.replace( " " , "" )
 					start = line.find( "= " ) + 2
-					if "[Load image]" in line :
-						loadImage +=  int( line[start:] )
-					if "[Safe Image]" in line:
-						safeImage +=  int( line[start:] )
+						
+					if "[Load image]" in line:
+						loadImage +=  extractValue( line[start:] )
+					if "[Safe Image]" in line: 
+						safeImage +=  extractValue( line[start:] )
 					if "Time jsoup connect" in line:
-						jsoup +=  int( line[start:] )
+						jsoup +=  extractValue( line[start:] )
 
 			print ("LoadImage[{0}] SafeImage[{1}] Jsoup[{2}]".format( loadImage , safeImage , jsoup ) )
 			loadImage = 0
