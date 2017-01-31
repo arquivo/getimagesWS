@@ -120,10 +120,9 @@ public class ImageParse {
 					bao.close( );
 					img.setThumbnail( base64String );
 					if( flagSafeImage == 1  ) {
-						SafeImage safeImage = checkSafeImage(  safeImageType , base64StringOriginal , hostSafeImage , log , img );
+						BigDecimal safeImage = checkSafeImage(  safeImageType , base64StringOriginal , hostSafeImage , log , img );
 						if( safeImage != null ) {
-							img.setSafe( safeImage.getSafe( ) );
-							img.setNotSafe( safeImage.getNotSafe( ) );
+							img.setNsfw( safeImage );
 						}
 					}	
 					return img;
@@ -153,10 +152,9 @@ public class ImageParse {
 			log.info( "[Load image] = " + elapsedTime );
 			if( flagSafeImage == 1  ){
 				start = System.currentTimeMillis( );
-				SafeImage safeImage = checkSafeImage(  safeImageType , base64StringOriginal , hostSafeImage , log , img );
-				if( safeImage != null ) {
-					img.setSafe( safeImage.getSafe( ) );
-					img.setNotSafe( safeImage.getNotSafe( ) );
+				BigDecimal safeImageValue = checkSafeImage(  safeImageType , base64StringOriginal , hostSafeImage , log , img );
+				if( safeImageValue != null ) {
+					img.setNsfw( safeImageValue );
 				}
 				elapsedTime = System.currentTimeMillis( ) - start;
 				log.info( "[Safe Image] = " + elapsedTime );
@@ -325,10 +323,10 @@ public class ImageParse {
 	 * @param img
 	 * @return
 	 */
-	public SafeImage checkSafeImage(  String safeImageType , String base64String , String hostSafeImage , Logger log , ImageSearchResult img ) {
+	public BigDecimal checkSafeImage(  String safeImageType , String base64String , String hostSafeImage , Logger log , ImageSearchResult img ) {
 		if( !safeImageType.toLowerCase( ).equals( "all" ) ) { //adult image filter
 			//TODO 
-			SafeImage safeImage = SafeImageClient.getSafeImage( base64String , hostSafeImage , log , img.getUrl( ) );
+			BigDecimal safeImage = SafeImageClient.getSafeImage( base64String , hostSafeImage , log , img.getUrl( ) );
 			if( safeImage == null ) {
 				log.info( "Reject image!!!!! url["+img.getUrl( )+"]" );
 				return null;

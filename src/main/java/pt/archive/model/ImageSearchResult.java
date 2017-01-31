@@ -19,11 +19,11 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	String thumbnail;
 	String longdesc;
 	String imgBase64;
-	BigDecimal safe;
-	BigDecimal notSafe;
+	BigDecimal nsfw;
+	String pageTitle;
     public ImageSearchResult( ) { }
     
-	public ImageSearchResult( String url, String width, String height, String alt, String title, String urlOriginal, String timestamp, Ranking score, String longdesc ){
+	public ImageSearchResult( String url, String width, String height, String alt, String title, String urlOriginal, String timestamp, Ranking score, String longdesc , String pageTitle ){
         this.url 			= url;
         this.width 			= width;
         this.height 		= height;
@@ -33,6 +33,7 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
         this.timestamp 		= timestamp;
         this.score 			= score;
         this.longdesc		= longdesc;
+        this.pageTitle		= pageTitle;
 	}
 
 	public Ranking getScore() {
@@ -107,23 +108,23 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 	public void setLongdesc(String longdesc) {
 		this.longdesc = longdesc;
 	}
-	public BigDecimal getSafe() {
-		return safe;
+	public BigDecimal getNsfw() {
+		return nsfw;
 	}
-	public void setSafe(BigDecimal safe) {
-		this.safe = safe;
-	}
-	public BigDecimal getNotSafe() {
-		return notSafe;
-	}
-	public void setNotSafe(BigDecimal notSafe) {
-		this.notSafe = notSafe;
+	public void setNsfw(BigDecimal nsfw) {
+		this.nsfw = nsfw;
 	}
 	public String getImgBase64() {
 		return imgBase64;
 	}
 	public void setImgBase64(String imgBase64) {
 		this.imgBase64 = imgBase64;
+	}
+	public String getPageTitle() {
+		return pageTitle;
+	}
+	public void setPageTitle(String pageTitle) {
+		this.pageTitle = pageTitle;
 	}
 
 	@Override
@@ -177,7 +178,6 @@ public class ImageSearchResult implements Comparable< ImageSearchResult > {
 			else
 				result = 0;
 		}
-		
 		
 		return result;
 	}

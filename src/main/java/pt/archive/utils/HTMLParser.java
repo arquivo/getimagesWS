@@ -186,7 +186,7 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 					continue;
 				*/
 				
-				imgResult = new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , longdesc );
+				imgResult = new ImageSearchResult(  src , width , height , alt , titleImg , itemtoSearch.getUrl( ) , timestamp , rank , longdesc , title );
 				if( imgParseflag == 1) { //return thumbnail
 					ImageParse imgParse = new ImageParse( );
 					imgResult = imgParse.getPropImage( imgResult , widthThumbnail , heightThumbnail ,  sizes , sizeInterval , adultfilter , safeImageHost , safeValue , safeImage );
@@ -194,17 +194,21 @@ public class HTMLParser implements Callable< List< ImageSearchResult > > {
 						continue;
 					
 					if( adultfilter == 1 && ( safeImage.toLowerCase().equals( "yes" ) || safeImage.toLowerCase().equals( "no" ) ) ) {
-						if( imgResult.getSafe( ).compareTo( BigDecimal.ZERO ) < 0 ){
-							log.debug( "getSafe["+imgResult.getSafe( )+"] is null = " + (imgResult.getSafe( ).compareTo( BigDecimal.ZERO ) < 0 ) );
+						if( imgResult.getNsfw( ).compareTo( BigDecimal.ZERO ) < 0 ){
+							log.debug( "getSafe["+imgResult.getNsfw( )+"] is null = " + (imgResult.getNsfw( ).compareTo( BigDecimal.ZERO ) < 0 ) );
 							continue;
 						}
 						
-						log.debug( "safeImage["+safeImage+"] getsafe["+imgResult.getSafe().floatValue( )+"] safeValue["+safeValue.floatValue( )+"] compareTo["+(imgResult.getSafe( ).compareTo( safeValue ) < 0)+"]" );
+						log.info( "safeImage["+safeImage+"] getsafe["+imgResult.getNsfw( ).floatValue( )+"] safeValue["+safeValue.floatValue( )+"] compareTo["+(imgResult.getNsfw( ).compareTo( safeValue ) < 0)+"]" );
 						if( safeImage.toLowerCase( ).equals( "yes" ) ) { //show images safe
-							if( imgResult.getSafe( ).compareTo( imgResult.getNotSafe( ) ) <= 0 )
+							/*if( imgResult.getSafe( ).compareTo( imgResult.getNotSafe( ) ) <= 0 )
+								continue;*/
+							if( imgResult.getNsfw( ).compareTo( safeValue ) <= 0 )
 								continue;
 						} else if( safeImage.toLowerCase( ).equals( "no" ) ) { //Only show images not safe
-							if( imgResult.getSafe( ).compareTo( imgResult.getNotSafe( ) ) > 0 )
+							/*if( imgResult.getSafe( ).compareTo( imgResult.getNotSafe( ) ) > 0 )
+								continue;*/
+							if( imgResult.getNsfw( ).compareTo( safeValue ) > 0 )
 								continue;
 						}	
 					}	

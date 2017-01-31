@@ -12,7 +12,7 @@ import com.sun.jersey.api.client.WebResource;
 public class SafeImageClient {
 
 	
-	public static SafeImage getSafeImage( String imgBase64 , String host , Logger log , String urlDebug) {
+	public static BigDecimal getSafeImage( String imgBase64 , String host , Logger log , String urlDebug) {
 		try{
 			log.debug( "Call safeImage API host[" + host + "]" );
 			
@@ -30,20 +30,21 @@ public class SafeImageClient {
 			}
 			
 			log.debug( "Output from Server .... \n" );
-			String outputJS = response.getEntity( String.class );
+			/*String outputJS = response.getEntity( String.class );
 			JSONObject output = new JSONObject(  outputJS.substring( 1, outputJS.length( ) - 2 ).replace( "\\" , "" ) ); 
 			BigDecimal safe =  output.getBigDecimal( "Safe" );
 			BigDecimal notSafe = output.getBigDecimal( "NotSafe" );
-			SafeImage safeImage = new SafeImage( safe, notSafe );
-			
+			SafeImage safeImage = new SafeImage( safe, notSafe );*/
+			String outputJS = response.getEntity( String.class );
+			JSONObject output = new JSONObject( outputJS );
+			BigDecimal NSFW =  output.getBigDecimal( "NSFW" );
 		    
-			log.debug( "SafeImage api  return safe[" + safe.floatValue() + "] notSafe[" 
-						+ notSafe.floatValue() + "]  to url["+urlDebug+"]" );
-			return safeImage;
+			log.debug( "SafeImage api  return NSFW[" + NSFW + "] to url["+urlDebug+"]" );
+			return NSFW;
 			
 		} catch( Exception e ) {
 			log.error( "[getSafeImage] error " , e );
-			return null;
+			return BigDecimal.ZERO;
 		}
 	}
 	
